@@ -1,0 +1,296 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="row match-height">
+      <div class="col-md-12 col-12">
+        <div class="card-body">
+          <form [formGroup]="projectForm" class="form form-horizontal">
+            <div class="content-header">
+              <h2 class="mb-0" style="padding-bottom: 20px">
+                Enter Project Details
+              </h2>
+            </div>
+            <div class="row">
+              <div class="form-group form-password-toggle col-md-6">
+                <label for="name" class="font-weight-bold"
+                  >Name <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control invalid-input"
+                  id="name"
+                  formControlName="name"
+                  [(ngModel)]="name"
+                  [readonly]="readOnly"
+                />
+                <span
+                  class="help-block"
+                  *ngIf="!projectform.name?.valid && projectform.name?.touched"
+                >
+                  <span *ngIf="projectform.name?.errors.required"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="type" class="font-weight-bold"
+                  >Type <span class="required">*</span></label
+                >
+                <ng-select
+                  [items]="types"
+                  formControlName="type"
+                  bindLabel="id"
+                  bindValue="id"
+                  (click)="getEnumType()"
+                  placeholder="Select Type"
+                  [(ngModel)]="selectedValue"
+                >
+                </ng-select>
+                <input
+                  name="type"
+                  *ngIf="selectedValue === 'OTHERS'"
+                  class="form-control invalid-input"
+                  type="text"
+                  [(ngModel)]="userInputData"
+                  (change)="StoreInputType($event)"
+                  placeholder="Enter your value"
+                  formControlName="userInputData"
+                />
+                <span
+                  class="help-block"
+                  *ngIf="!projectform.type.valid && projectform.type.touched"
+                >
+                  <span *ngIf="projectform.type.errors.required"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group form-password-toggle col-md-6">
+                <label class="font-weight-bold"
+                  >Start Date <span class="required">*</span></label
+                >
+
+                <input
+                  class="form-control invalid-input"
+                  type="date"
+                  id="fromDate"
+                  formControlName="fromDate"
+                  [(ngModel)]="fromDate"
+                  (ngModelChange)="fromDate = formatSelectedDate($event)"
+                />
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.fromDate.valid && projectform.fromDate.touched
+                  "
+                >
+                  <span *ngIf="projectform.fromDate.errors.required"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+              <div class="form-group form-password-toggle col-md-6">
+                <label class="font-weight-bold">End Date</label>
+
+                <input
+                  class="form-control"
+                  type="date"
+                  id="toDate"
+                  formControlName="toDate"
+                  [(ngModel)]="toDate"
+                  (ngModelChange)="toDate = formatSelectedDate($event)"
+                />
+              </div>
+              <!-- <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.toDate.valid && projectform.toDate.touched
+                  "
+                >
+                  <span *ngIf="projectform.toDate.errors.required"
+                    >field is required</span
+                  >
+                </span> -->
+            </div>
+
+            <div class="row">
+              <div class="form-group form-password-toggle col-md-6">
+                <label for="organization" class="font-weight-bold"
+                  >Organization <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control invalid-input"
+                  id="organization"
+                  formControlName="organization"
+                />
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.organization.valid &&
+                    projectform.organization.touched
+                  "
+                >
+                  <span *ngIf="projectform.organization.errors.required"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+              <div class="form-group form-password-toggle col-md-6">
+                <label for="authorName" class="font-weight-bold"
+                  >Author Name <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control invalid-input"
+                  id="authorName"
+                  formControlName="authorName"
+                />
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.authorName.valid &&
+                    projectform.authorName.touched
+                  "
+                >
+                  <span *ngIf="projectform.authorName.errors.required"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group form-password-toggle col-md-6">
+                <label for="vesselName" class="font-weight-bold"
+                  >Vessel Name</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="vesselName"
+                  formControlName="vesselName"
+                />
+                <!-- <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.vesselName.valid &&
+                    projectform.vesselName.touched
+                  "
+                >
+                  <span *ngIf="projectform.vesselName.errors.required"
+                    >field is required</span
+                  >
+                </span> -->
+              </div>
+              <div class="form-group form-password-toggle col-md-6">
+                <label for="location" class="font-weight-bold"
+                  >Location <span class="required">*</span></label
+                >
+                <input
+                  type="text"
+                  class="form-control invalid-input"
+                  id="location"
+                  formControlName="location"
+                />
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.location.valid && projectform.location.touched
+                  "
+                >
+                  <span *ngIf="projectform.location.errors.required"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group form-password-toggle col-md-6">
+                <label class="font-weight-bold">Add Authors </label>
+                <ng-select
+                  [items]="membersname"
+                  formControlName="members"
+                  bindLabel="id"
+                  bindValue="id"
+                  (click)="getUsersName()"
+                  [multiple]="true"
+                  placeholder="Select members"
+                >
+                </ng-select>
+                <!-- <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.members.valid && projectform.members.touched
+                  "
+                >
+                  <span *ngIf="projectform.members.errors.required"
+                    >field is required</span
+                  >
+                </span> -->
+              </div>
+              <div class="form-group form-password-toggle col-md-6">
+                <label class="font-weight-bold"
+                  >Keywords <span class="required">*</span></label
+                >
+                <!-- <input
+                  type="text"
+                  class="form-control invalid-input"
+                  id="keywords"
+                  formControlName="keywords"
+                /> -->
+                <ng-select
+                  [addTag]="true"
+                  [multiple]="true"
+                  [selectOnTab]="true"
+                  [isOpen]="false"
+                  [items]=""
+                  (change)="onTagAdded($event)"
+                >
+                </ng-select>
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !projectform.keywords.valid && projectform.keywords.touched
+                  "
+                >
+                  <span *ngIf="projectform.keywords.errors.required"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <button class="btn btn-primary" type="reset">Reset</button>
+              <!-- <span
+                class="help-block"
+                *ngIf="!projectForm.valid && !projectForm.touched"
+              >
+                Please enter valid data
+              </span> -->
+              <button
+                *ngIf="isEditMode"
+                class="btn btn-primary"
+                type="submit"
+                (click)="updateProjectDetails()"
+              >
+                Update
+              </button>
+
+              <button
+                class="btn btn-primary"
+                type="submit"
+                [disabled]="isEditMode || !projectForm.valid"
+                (click)="onSubmit()"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

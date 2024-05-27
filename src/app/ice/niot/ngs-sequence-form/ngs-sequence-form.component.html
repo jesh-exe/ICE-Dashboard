@@ -1,0 +1,338 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <div class="row match-height">
+      <div class="col-md-12 col-12">
+        <div class="card-body">
+          <form [formGroup]="ngssequenceForm">
+            <div class="row">
+              <div class="form-group col-md-6">
+                <div class="content-header">
+                  <h2 class="mb-0" style="padding-bottom: 20px">
+                    Select Project Name
+                  </h2>
+                </div>
+                <label for="name" class="font-weight-bold">
+                  Project Name <span class="required">*</span>
+                </label>
+                <label for="">[Project Id-Project Name]</label>
+                <ng-select
+                  [items]="projectnames"
+                  formControlName="projectId"
+                  bindLabel="project"
+                  bindValue="id"
+                  [readonly]="readOnly"
+                  placeholder="Select Project name">
+                  <ng-template ng-option-tmp let-item="item">
+                    {{ item.project }}
+                    <div style="float: right">{{ item.relation }}</div>
+                  </ng-template>
+                </ng-select>
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !ngssequenceForm.get('projectId').valid &&
+                    ngssequenceForm.get('projectId').touched
+                  ">
+                  <span
+                    *ngIf="ngssequenceForm.get('projectId').errors['required']"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+              <div class="form-group col-md-6">
+                <div class="content-header">
+                  <h2 class="mb-0" style="padding-bottom: 20px">
+                    Select Sample Name
+                  </h2>
+                </div>
+                <div class="form-group">
+                  <label for="name" class="font-weight-bold"
+                    >Sample Name <span class="required">*</span></label
+                  >
+                  <label for="">[Sample Id-Sample Name]</label>
+                  <ng-select
+                    [items]="samplenames"
+                    formControlName="sampleId"
+                    bindLabel="sample"
+                    bindValue="id"
+                    [readonly]="readOnly"
+                    placeholder="Select sampleName"
+                    (click)="getSampleNames()">
+                  </ng-select>
+                  <ng-template ng-option-tmp let-item="item">
+                    {{ item.sampleCode }}
+                  </ng-template>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !ngssequenceForm.get('sampleId').valid &&
+                      ngssequenceForm.get('sampleId').touched
+                    ">
+                    <span
+                      *ngIf="ngssequenceForm.get('sampleId').errors['required']"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="content-header">
+                <h2 class="mb-0">Enter Sequence Info</h2>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name" class="font-weight-bold"
+                    >Sequence Header <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="header"
+                    class="form-control invalid-input"
+                    placeholder="WGS Sequence Header"
+                    formControlName="header" />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !ngssequenceForm.get('header').valid &&
+                      ngssequenceForm.get('header').touched
+                    ">
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('header').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="organismType" class="font-weight-bold"
+                    >Organism Type <span class="required">*</span></label
+                  >
+                  <ng-select
+                    [items]="organismTypes"
+                    formControlName="organismType"
+                    bindLabel="id"
+                    bindValue="id"
+                    (click)="getEnumType()"
+                    placeholder="Select organismType">
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !ngssequenceForm.get('organismType').valid &&
+                      ngssequenceForm.get('organismType').touched
+                    ">
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('organismType').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="organismName" class="font-weight-bold"
+                    >Organism Name <span class="required">*</span></label
+                  >
+                  <!-- <input
+                      type="text"
+                      id="organismName"
+                      class="form-control invalid-input"
+                      placeholder="organismName"
+                      formControlName="organismName"
+  
+                      [disabled]="!isFormEnabled"
+                    /> -->
+                  <br />
+                  <p-autoComplete
+                    [style]="{ width: '100%' }"
+                    [inputStyle]="{ width: '100%' }"
+                    formControlName="organismName"
+                    [suggestions]="filteredOrganism"
+                    (completeMethod)="filterOrganism($event)"></p-autoComplete>
+
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !ngssequenceForm.get('organismName').valid &&
+                      ngssequenceForm.get('organismName').touched
+                    ">
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('organismName').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="description" class="font-weight-bold"
+                    >Description <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="description"
+                    class="form-control invalid-input"
+                    placeholder="Description"
+                    formControlName="description" />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !ngssequenceForm.get('description').valid &&
+                      ngssequenceForm.get('description').touched
+                    ">
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('description').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('ngsSequence.description').errors[
+                          'maxlength'
+                        ]
+                      ">
+                      Description exceeds 256 characters
+                    </span>
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('ngsSequence.description').errors[
+                          'minlength'
+                        ]
+                      ">
+                      Description must be at least 2 characters</span
+                    >
+                  </span>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="sequencingPlatform" class="font-weight-bold"
+                    >Sequencing Platform <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="platform"
+                    class="form-control invalid-input"
+                    name="platform"
+                    placeholder="Platform"
+                    formControlName="platform" />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !ngssequenceForm.get('platform').valid &&
+                      ngssequenceForm.get('platform').touched
+                    ">
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('platform').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="pressure" class="font-weight-bold"
+                    >Sequence Type <span class="required">*</span></label
+                  >
+                  <ng-select
+                    [items]="sequenceTypes"
+                    formControlName="type"
+                    bindLabel="id"
+                    bindValue="id"
+                    (click)="getEnumType()"
+                    placeholder="Select sequenceType">
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !ngssequenceForm.get('type').valid &&
+                      ngssequenceForm.get('type').touched
+                    ">
+                    <span
+                      *ngIf="
+                        ngssequenceForm.get('type').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="basicInputFile" class="font-weight-bold"
+                    >Upload Sequence File <span class="required">*</span></label
+                  >
+                  <div class="custom-file">
+                    <input
+                      type="file"
+                      class="custom-file-input"
+                      id="customFile"
+                      (change)="onFileSelected($event)"
+                      formControlName="files"
+                      multiple />
+                    <label class="custom-file-label" for="customFile">{{
+                      selectedFileName.length
+                        ? selectedFileName.join(",")
+                        : "Choose file"
+                    }}</label>
+                    <div
+                      *ngFor="let fileName of selectedFileName; let i = index">
+                      <span
+                        >{{ fileName
+                        }}<button type="button" (click)="removeFile(i)">
+                          x
+                        </button></span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between">
+                <button type="reset" rippleEffect class="btn btn-primary">
+                  Reset
+                </button>
+
+                <button
+                  *ngIf="isEditMode"
+                  class="btn btn-primary"
+                  type="submit"
+                  (click)="updateSequenceDetails()">
+                  Update
+                </button>
+                <!-- <span
+                  class="help-block"
+                  *ngIf="!ngssequenceForm.valid && ngssequenceForm.touched">
+                  Please enter valid data
+                </span> -->
+                <button
+                  type="submit"
+                  rippleEffect
+                  [disabled]="isEditMode || !ngssequenceForm.valid"
+                  class="btn btn-primary"
+                  (click)="onNgsSequenceSubmit()">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

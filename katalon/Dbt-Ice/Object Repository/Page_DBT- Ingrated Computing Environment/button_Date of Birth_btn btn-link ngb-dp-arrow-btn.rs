@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_Date of Birth_btn btn-link ngb-dp-arrow-btn</name>
+   <tag></tag>
+   <elementGuidId>576b07f0-5f59-4309-b98e-4a7dee3f0684</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//button[@type='button']</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>button.btn.btn-link.ngb-dp-arrow-btn</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>5faf1306-27f0-407e-9261-ecd012d81bc5</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>type</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>f38076eb-29ea-4281-ba04-81d8c9c4c954</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>aria-label</name>
+      <type>Main</type>
+      <value>Previous month</value>
+      <webElementGuid>032be48c-cf8e-4bfe-b2d9-73a6f8efc269</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>title</name>
+      <type>Main</type>
+      <value>Previous month</value>
+      <webElementGuid>885ef178-0806-4d4e-a1df-499508c02f7e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>btn btn-link ngb-dp-arrow-btn</value>
+      <webElementGuid>378c057b-9836-439a-a698-404a5271a916</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;row&quot;)/div[@class=&quot;col-lg-6 col-md-6 col-sm-6&quot;]/div[@class=&quot;form-group&quot;]/div[@class=&quot;input-group&quot;]/ngb-datepicker[@class=&quot;dropdown-menu show ng-star-inserted&quot;]/div[@class=&quot;ngb-dp-header&quot;]/ngb-datepicker-navigation[@class=&quot;ng-star-inserted&quot;]/div[@class=&quot;ngb-dp-arrow&quot;]/button[@class=&quot;btn btn-link ngb-dp-arrow-btn&quot;]</value>
+      <webElementGuid>5cd05ab3-f0b7-4c0a-997e-ef545ad43b3a</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>//button[@type='button']</value>
+      <webElementGuid>63fe259f-9e9a-42f0-af4c-52b2c6acb7c2</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='row']/div[7]/div/div/ngb-datepicker/div/ngb-datepicker-navigation/div/button</value>
+      <webElementGuid>0ea8e68b-795a-4e79-8782-da68a2b3a88f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Date of Birth'])[1]/following::button[1]</value>
+      <webElementGuid>83549429-e574-44d4-b4df-6dd5c3a1c65b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='LastName'])[1]/following::button[1]</value>
+      <webElementGuid>4375a31e-3108-4bc8-a29e-293d8bef2e70</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Mo'])[1]/preceding::button[2]</value>
+      <webElementGuid>86c50d98-ee5c-403a-b2a0-289d39b95c65</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Tu'])[1]/preceding::button[2]</value>
+      <webElementGuid>c8155342-8121-420a-b464-2fee9551d235</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//ngb-datepicker-navigation/div/button</value>
+      <webElementGuid>e6e4092a-a62f-4121-b527-bd21df086b24</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[@type = 'button' and @title = 'Previous month']</value>
+      <webElementGuid>353c7740-3dc2-48ec-9250-2d7f2690bd8f</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

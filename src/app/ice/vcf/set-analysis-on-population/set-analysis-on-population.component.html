@@ -1,0 +1,320 @@
+<block-ui
+  ><div class="content-wrapper container-xxxl p-0">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="card">
+      <div class="card-body">
+        <div class="row my-2">
+          <div class="col-12 col-md-12 align-items-center">
+            <h1 class="content-header-title" style="text-align: center">
+              Set Analysis On Population
+            </h1>
+            <div class="row">
+              <div class="col-8">
+                <p class="card-text">
+                  Efficient analysis of Single Nucleotide Polymorphisms (SNPs)
+                  across genomic samples enable in deciphering the relationship
+                  between genotype and phenotype. The core principle behind SNP
+                  comparison is to arrive at a probable list of variants that
+                  can differentiate two sets of data (populations). Such SNPs
+                  have direct applications in array design, genotype imputation
+                  and in cataloging of variants in regions of interest<br /><br />
+                  Finding variants across a population typically refers to
+                  identifying genetic variations or mutations that exist in
+                  different individuals within a specific group or population.
+                  This process is a fundamental part of population genetics and
+                  genomics research, which aims to understand the genetic
+                  diversity and evolutionary history of populations<br /><br />
+                  Unique sets of variants among two or more populations refer to
+                  genetic variants that are exclusive or specific to each
+                  population and are not shared with other populations. These
+                  variants are characterized by their absence or extremely low
+                  frequency in other populations, indicating population-specific
+                  genetic differences. Identifying unique sets of variants among
+                  populations is important for : understanding the genetic
+                  diversity and distinctiveness of different groups. It provides
+                  insights into the genetic adaptations, evolutionary history,
+                  and population-specific genetic factors that may contribute to
+                  phenotypic differences and disease susceptibilities. To
+                  identify unique sets of variants, researchers compare the
+                  genomic data of different populations and analyze the presence
+                  or absence of specific genetic variants in each population.
+                  This analysis can be conducted through various methods, such
+                  as whole-genome sequencing, targeted sequencing, or genotyping
+                  arrays, followed by variant calling and comparison.
+                  Population-specific variants can arise due to various factors,
+                  including genetic drift, natural selection, migration, and
+                  population isolation. These unique variants may play a role in
+                  population-specific traits, adaptations, and susceptibility or
+                  resistance to certain diseases. Studying the unique sets of
+                  variants among populations contributes to our understanding of
+                  human genetic diversity, population structure, and the complex
+                  interplay between genes, environment, and evolutionary forces.
+                  It also has implications for personalized medicine, as
+                  population-specific variants can impact drug response and
+                  treatment efficacy.<br />
+                  <br />
+                  variants that are present in the genomes of two or more
+                  populations. These variants are often defined based on their
+                  frequency and prevalence across different populations.
+                  Identifying common variants among populations is crucial in
+                  population genetics research as it provides insights into the
+                  shared genetic heritage and evolutionary history of different
+                  groups. The study of common variants involves comparing the
+                  genetic profiles of multiple populations and analyzing the
+                  frequency distribution of specific genetic variants.
+                </p>
+              </div>
+              <div class="col-4">
+                <img
+                  src="assets/images/vcf/Set.png"
+                  height="400"
+                  class="card-img-top"
+                  alt="VCF-Filter-by-tag" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Set Analysis On Population</h2>
+      </div>
+      <div class="row">
+        <div class="card-body">
+          <div class="form-group col-md-12">
+            <label
+              ngbTooltip="Project Name should not include spaces or any special characters"
+              placement="right"
+              >Project Name <span class="required">*</span></label
+            >
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><span [data-feather]="'file'"></span
+                ></span>
+              </div>
+              <input
+                appNoSpace
+                type="text"
+                id="analysisName"
+                class="form-control"
+                [(ngModel)]="analysisName" />
+            </div>
+            <br />
+            <label ngbTooltip="Description" placement="right"
+              >Description
+            </label>
+            <fieldset>
+              <textarea
+                class="form-control"
+                id="description"
+                rows="3"
+                placeholder="Textarea"
+                [(ngModel)]="description"></textarea>
+            </fieldset>
+            <br />
+            <label
+              ngbTooltip="Collection Name contains files thats are uploaded for analysis"
+              placement="right"
+              >Collection <span class="required">*</span></label
+            >
+            <ng-select
+              [items]="Collection"
+              [(ngModel)]="selectCollection"
+              bindLabel="name"
+              (change)="keyBlur()">
+              <ng-template ng-footer-tmp>
+                <button
+                  (click)="addFileForAnalysis()"
+                  class="btn btn-primary"
+                  rippleEffect>
+                  Add File for Analysis
+                </button>
+              </ng-template>
+            </ng-select>
+          </div>
+          <div class="form-group col-md-12" *ngIf="change">
+            <label
+              for="outputfileformat"
+              ngbTooltip="Output File Format is the format of anaylsis output file"
+              placement="right"
+              >Output File Format <span class="required">*</span></label
+            >
+            <div class="row">
+              <div
+                *ngFor="let outputfileformat of outputFileFormatList"
+                class="col-lg-3">
+                <div
+                  class="custom-control custom-control-primary custom-radio outputfileformat">
+                  <input
+                    id="outputfileformat-{{ outputfileformat.id }}"
+                    type="radio"
+                    [checked]="outputfileformat.selected"
+                    (change)="radioChecked(outputfileformat.id, i)"
+                    class="custom-control-input" />
+                  <label
+                    for="outputfileformat-{{ outputfileformat.id }}"
+                    class="custom-control-label"
+                    >{{ outputfileformat.label }}</label
+                  >
+                </div>
+              </div>
+            </div>
+            <br />
+            <label
+              ngbTooltip="Duplication of sample accross population are not allowed, Sample must be a part of uploaded analysis file and must be case sensitive "
+              placement="right"
+              >Select Population File</label
+            ><br />
+            <input
+              type="file"
+              class="btn btn-outline-primary"
+              (change)="popFileUpload($event)" />
+
+            <br /><br />
+            <button
+              class="btn btn-success btn-submit"
+              rippleEffect
+              (click)="onSubmit(modalVC)">
+              Submit
+            </button>
+          </div>
+          <br />
+          <div class="card shadow-none bg-transparent border-warning">
+            <div class="card-body">
+              <h4 class="card-title">Note</h4>
+              <ul>
+                <li>
+                  <p class="card-text">
+                    Project Name should not include spaces or any special
+                    characters
+                  </p>
+                </li>
+                <li>
+                  <p class="card-text">
+                    Collection Name contains files thats are uploaded for
+                    analysis
+                  </p>
+                </li>
+                <li>
+                  <p class="card-text">
+                    Output File Format is the format of anaylsis output file
+                  </p>
+                </li>
+                <li>
+                  <p class="card-text">
+                    Kindly check sample file for Population Code
+                    <a
+                      href="assets/samplePopFile.txt"
+                      target="_blank"
+                      download="samplePopFile.txt">
+                      <i
+                        data-feather="download"
+                        class="font-medium-3 cursor-pointer"></i
+                    ></a>
+                  </p>
+                  <ul>
+                    <li>
+                      Duplication of sample accross population are not allowed
+                    </li>
+                    <li>Sample must be a part of uploaded analysis file</li>
+                    <li>Sample names must be case sensitive</li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #modalVC let-modal>
+        <div class="modal-header">
+          <h5 class="modal-title" id="myModalLabel160">
+            Do you want to sumbit this data
+          </h5>
+          <button
+            type="button"
+            class="close"
+            (click)="modal.dismiss('Cross click')"
+            aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" tabindex="0" ngbAutofocus>
+          <table class="table table-sm table-borderless">
+            <tr>
+              <th>Project Name</th>
+              <td>{{ data.analysisName }}</td>
+            </tr>
+            <tr>
+              <th>Description</th>
+              <td>{{ data.description }}</td>
+            </tr>
+
+            <tr>
+              <th>Collection</th>
+              <td>
+                {{ data.collection }}
+              </td>
+            </tr>
+            <tr>
+              <th>Output File Format</th>
+              <td>
+                {{ data.outputExtension }}
+              </td>
+            </tr>
+            <tr>
+              <th>Population Code</th>
+              <table class="table table-striped table-sm table-hover">
+                <tr>
+                  <th>Population Code</th>
+                  <th>No. of Samples</th>
+                </tr>
+                <tr *ngFor="let recipient of data.popcode | keyvalue">
+                  <td>{{ recipient.key }}</td>
+
+                  <!-- <td>{{ recipient.value }}</td> -->
+                  <td>
+                    {{ recipient.value ? recipient.value.length : "0" }}
+                  </td>
+                </tr>
+              </table>
+            </tr>
+            <tr>
+              <th class="text-danger">Discarded values</th>
+              <table
+                class="table table-striped text-danger table-sm table-hover">
+                <tr>
+                  <th>Population Code</th>
+                  <th>No. of Samples</th>
+                </tr>
+                <tr *ngFor="let recipient of discarded | keyvalue">
+                  <th>{{ recipient.key }}</th>
+                  <td>
+                    {{ recipient.value ? recipient.value.length : "0" }}
+                  </td>
+                </tr>
+              </table>
+            </tr>
+          </table>
+        </div>
+        <div class="modal-footer">
+          <button
+            class="btn btn-success btn-submit"
+            rippleEffect
+            (click)="confirmSubmit()">
+            Yes Submit it!
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            (click)="modal.close('Accept click')"
+            rippleEffect>
+            Close
+          </button>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</block-ui>

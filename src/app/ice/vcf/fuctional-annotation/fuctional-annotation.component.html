@@ -1,0 +1,276 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="card">
+      <div class="card-body">
+        <div class="row my-2">
+          <div class="col-12 col-md-12 align-items-center">
+            <h1 class="content-header-title" style="text-align: center">
+              Functional Annotation Filter
+            </h1>
+            <div class="row">
+              <div class="col-7">
+                <p class="card-text">
+                  Variant filtration using annotation terms is an essential step
+                  in genetic research and analysis to identify and prioritize
+                  variants of interest. Annotation terms provide valuable
+                  information about the functional consequences, genomic
+                  location, and known associations of genetic variants. By
+                  applying specific annotation filters, researchers can narrow
+                  down the variants based on their relevance to the research
+                  question or disease under investigation. These filters can
+                  include criteria such as variant type, allele frequency,
+                  predicted impact on protein structure or function,
+                  conservation scores, and annotations related to disease
+                  associations or functional domains. By applying stringent
+                  filters, researchers can focus on variants that are more
+                  likely to have functional significance or potential clinical
+                  relevance. This filtration process helps in reducing the
+                  number of false-positive variants and improves the specificity
+                  of downstream analyses. Additionally, by incorporating
+                  annotation terms related to known pathogenic variants or genes
+                  of interest, researchers can prioritize variants for further
+                  validation or functional characterization. Overall, variant
+                  filtration using annotation terms is a powerful approach to
+                  streamline the analysis and interpretation of genetic
+                  variants, enabling researchers to identify potential candidate
+                  variants that may contribute to the studied phenotype or
+                  disease.<br />
+                  Annotation terms provide valuable information about the
+                  functional consequences, genomic location, and known
+                  associations of genetic variants.By applying specific
+                  annotation filters, researchers can narrow down the variants
+                  based on their relevance to the research question or disease
+                  under investigation.
+                  <br />This filtration process helps in reducing the number of
+                  false-positive variants and improves the specificity of
+                  downstream analyses. Additionally, by incorporating annotation
+                  terms related to known pathogenic variants or genes of
+                  interest, researchers can prioritize variants for further
+                  validation or functional characterization.
+                  <!-- Variant annotation is the process of assigning functional
+                  information to DNA variants. There are many different types of
+                  information that could be associated with variants, from
+                  measures of sequence conservation to predictions about the
+                  effect of a variant on protein structure and function -->
+                </p>
+              </div>
+              <div class="col-5">
+                <img
+                  src="assets/images/vcf/FA.png"
+                  class="card-img-top"
+                  height="350 px"
+                  alt="VCF-Functional-Annotation" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Functional Annotation</h2>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="functionalAnnotationForm">
+          <div class="row" id="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label
+                ngbTooltip="Project Name should not include spaces or any special characters"
+                placement="right"
+                >Project Name <span class="required">*</span></label
+              >
+              <div
+                class="input-group input-group-merge"
+                [ngClass]="{
+                  'is-invalid':
+                    (form.analysisName.touched || submitted) &&
+                    form.analysisName.errors
+                }">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><span [data-feather]="'file'"></span
+                  ></span>
+                </div>
+                <input
+                  appNoSpace
+                  type="text"
+                  id="analysisName"
+                  formControlName="analysisName"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      (form.analysisName.touched || submitted) &&
+                      form.analysisName.errors
+                  }" />
+              </div>
+
+              <div *ngIf="form.analysisName.errors" class="invalid-feedback">
+                <div *ngIf="form.analysisName.errors?.required">
+                  Project Name is required
+                </div>
+                <div *ngIf="form.analysisName.errors?.minlength">
+                  Project Name must be at least 2 characters
+                </div>
+                <div *ngIf="form.analysisName.errors?.maxlength">
+                  Project Name exceeds 225 characters
+                </div>
+                <div *ngIf="form.analysisName.errors?.pattern">
+                  Project Name is should not contain space or special charaters
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label
+                ngbTooltip="Collection Name contains files thats are uploaded for analysis"
+                placement="right"
+                >File Name <span class="required">*</span></label
+              >
+              <ng-select
+                id="collection"
+                formControlName="collection"
+                required
+                [items]="Collection"
+                bindLabel="collection"
+                bindValue="collection"
+                [ngClass]="{
+                  'is-invalid': submitted && form.collection.errors
+                }">
+              </ng-select>
+
+              <div
+                *ngIf="submitted && form.collection.errors"
+                class="invalid-feedback">
+                <div *ngIf="form.collection.errors?.required">
+                  FileName is required
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <label ngbTooltip="Annotation Value" placement="right"
+                >Annotation Value <span class="required">*</span></label
+              >
+              <ng-select
+                id="faValue"
+                formControlName="faValue"
+                required
+                [items]="FAValues"
+                bindLabel="faValue"
+                bindValue="faValue"
+                [ngClass]="{
+                  'is-invalid': submitted && form.faValue.errors
+                }">
+              </ng-select>
+
+              <div *ngIf="form.faValue.errors" class="invalid-feedback">
+                <div *ngIf="form.faValue.errors?.required">
+                  Annotation Value is required
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="col-lg-6 col-md-6 col-sm-6">
+              <div class="form-group">
+                <label
+                  ngbTooltip="Output File Format is the format of anaylsis output file"
+                  placement="right"
+                  >Output File Format <span class="required">*</span></label
+                >
+                <div class="row">
+                  <div
+                    *ngFor="let outputfileformat of outputFileFormatList"
+                    class="col-lg-3">
+                    <div
+                      class="custom-control custom-control-primary custom-radio outputfileformat">
+                      <input
+                        id="outputfileformat-{{ outputfileformat.id }}"
+                        type="radio"
+                        value="{{ outputfileformat.value }}"
+                        name="{{ outputfileformat.name }}"
+                        formControlName="{{ outputfileformat.name }}"
+                        [checked]="outputfileformat.selected"
+                        (change)="radioChecked(outputfileformat.id, i)"
+                        class="custom-control-input" />
+                      <label
+                        for="outputfileformat-{{ outputfileformat.id }}"
+                        class="custom-control-label"
+                        >{{ outputfileformat.label }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div
+                  *ngIf="submitted && form.outputfileformat.errors"
+                  class="text text-danger">
+                  <small *ngIf="form.outputfileformat.errors.required"
+                    >Output File Format is required.</small
+                  >
+                </div>
+              </div>
+            </div>
+            <br />
+            <div class="col-lg-12 col-md-6 col-sm-6">
+              <div class="form-group">
+                <label ngbTooltip="Description" placement="right"
+                  >Description
+                </label>
+
+                <fieldset class="form-label-group">
+                  <textarea
+                    class="form-control"
+                    id="description"
+                    rows="3"
+                    placeholder="Textarea"
+                    formControlName="description"></textarea>
+                </fieldset>
+
+                <div
+                  *ngIf="submitted && form.outputfileformat.errors"
+                  class="text text-danger">
+                  <small *ngIf="form.outputfileformat.errors.required"
+                    >Output File Format is required.</small
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+        <br />
+        <div class="d-flex justify-content-between">
+          <button
+            class="btn btn-success btn-submit"
+            rippleEffect
+            (click)="onSubmit()">
+            Submit
+          </button>
+        </div>
+        <br />
+        <div class="card shadow-none bg-transparent border-warning">
+          <div class="card-body">
+            <h4 class="card-title">Note</h4>
+            <ul>
+              <li>
+                <p class="card-text">
+                  Project Name should not include spaces or any special
+                  characters
+                </p>
+              </li>
+              <li>
+                <p class="card-text">
+                  Collection Name contains files thats are uploaded for analysis
+                </p>
+              </li>
+              <li>
+                <p class="card-text">
+                  Output File Format is the format of anaylsis output file
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block-ui>

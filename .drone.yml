@@ -1,0 +1,93 @@
+---
+kind: pipeline
+type: kubernetes
+name: UI api dev pipeline
+
+clone:
+  tags: true
+  skip_verify: true
+
+steps:
+  - name: compile
+    image: node:lts-alpine
+    volumes:
+      - name: ice-node-cache
+        path: /drone/src/node_modules/
+    commands:
+      # - rm  package-lock.json
+      - npm install --legacy-peer-deps
+      - npm run build:prod-ssl
+
+  - name: build image
+    image: hub.bio.pune.cdac.in/dbt/drone-kaniko:v3 #banzaicloud/drone-kaniko
+    volumes:
+      - name: kaniko-cache
+        path: /cache/
+    settings:
+      registry: hub.bio.pune.cdac.in
+      dockerfile: droneCI/Dockerfile
+      cache: true
+      skip_tls_verify: true
+      # build_args:
+      # - COMMIT_SHA=${DRONE_COMMIT_SHA}
+      # - COMMIT_AUTHOR_EMAIL=${DRONE_COMMIT_AUTHOR_EMAIL}
+      username:
+        from_secret: username_biohub
+      password:
+        from_secret: password_biohub
+      repo: dbt/ice-ui-service
+      tags:
+        - ${DRONE_COMMIT_SHA}
+        - latest
+
+  - name: update-manifests
+    image: hub.bio.pune.cdac.in/dbt/update-manifest:v2
+    environment:
+      SSH_KEY: LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05dVpRQUFBQUFBQUFBQkFBQUNGd0FBQUFkemMyZ3RjbgpOaEFBQUFBd0VBQVFBQUFnRUFxYjZYL1VXVlRFc25tT0hLTmpzVlFiUElsM0F0MHFXZFc2b1hUL3JTWFRZeGVkbitjbWphCkNLZ3RyNDBoM3JtZ254djhJRGYwSXFBS1RDdmVKTlVZbEZIcmg2MzNoRjNuMVBKOTZFaEs1NnBEenY5YkNWd2x6cVZ6TFQKbjNNMVhRcnRVMmR0eGhFdEVFYkg3Q00wZk9ZQWZJeE1LVDJpY05sVWVqS0JrVUJRaEZjRitKcmtJMjVsRXMya3lnT3FMNgo2Q2JVV0xHWlh1SUYzdUxDUFlLTno2WXRma2gvd0pSYUFhTzhETXlqYTJ1VW15NEFVNXVrdkpmbDZwYnAxNE1haTZlVWd1Cmp2T1FwTnlidE52NXdSbzI4aCszYlJGZHIrZU4zVnB4SHdBVUthem1Kd0ZKaDFTUVZrR29oZXI3dVVRa1c5UDdYRkJXWGkKak50eVI5d3U3dlVrSU1qSmprY3didWhFUkhPcVNaRGFJeXIzK29meCtmQjVwclR6ZkozYUFGanhBK2E0T21ieElnQ3lSdwpVZmFKQnZhNEh1Ym5pZE94WWxYSFRzNkl4UHRmak41N3FqMldBNllsL2hubTg0U2VHQUtsSVpHdVpDeU5Pb0lUSnExZS84CjcrZEh1MEoxYXVxWHZibWQ2U0U5Mnp6YWFyMHlISTRvSzBqMnFTY0xqUzlWNkhjUkxPMzFTYzRrQlN2YXVtK25SM2NuOUMKY1p4YlVhOEo1U29RcXdUS3d0U1dybERjVitIWWJXdWNlbVVpaTc1OUtSQTVGNWFkTC9lR0pPZVl6T3QvZmg2cS96eTExVQpNUW1nZThLWVVrUUNzcWpibzdCZml1NG1kRlIrUEFQczVKYy9Vdzc1elZiT251ZS9SSUY5ZndreUJFRE0vVUxMckxJUUpJCjhBQUFkQVRNOXVBMHpQYmdNQUFBQUhjM05vTFhKellRQUFBZ0VBcWI2WC9VV1ZURXNubU9IS05qc1ZRYlBJbDNBdDBxV2QKVzZvWFQvclNYVFl4ZWRuK2NtamFDS2d0cjQwaDNybWdueHY4SURmMElxQUtUQ3ZlSk5VWWxGSHJoNjMzaEYzbjFQSjk2RQpoSzU2cER6djliQ1Z3bHpxVnpMVG4zTTFYUXJ0VTJkdHhoRXRFRWJIN0NNMGZPWUFmSXhNS1QyaWNObFVlaktCa1VCUWhGCmNGK0pya0kyNWxFczJreWdPcUw2NkNiVVdMR1pYdUlGM3VMQ1BZS056Nll0ZmtoL3dKUmFBYU84RE15amEydVVteTRBVTUKdWt2SmZsNnBicDE0TWFpNmVVZ3Vqdk9RcE55YnROdjV3Um8yOGgrM2JSRmRyK2VOM1ZweEh3QVVLYXptSndGSmgxU1FWawpHb2hlcjd1VVFrVzlQN1hGQldYaWpOdHlSOXd1N3ZVa0lNakpqa2N3YnVoRVJIT3FTWkRhSXlyMytvZngrZkI1cHJUemZKCjNhQUZqeEErYTRPbWJ4SWdDeVJ3VWZhSkJ2YTRIdWJuaWRPeFlsWEhUczZJeFB0ZmpONTdxajJXQTZZbC9obm04NFNlR0EKS2xJWkd1WkN5Tk9vSVRKcTFlLzg3K2RIdTBKMWF1cVh2Ym1kNlNFOTJ6emFhcjB5SEk0b0swajJxU2NMalM5VjZIY1JMTwozMVNjNGtCU3ZhdW0rblIzY245Q2NaeGJVYThKNVNvUXF3VEt3dFNXcmxEY1YrSFliV3VjZW1VaWk3NTlLUkE1RjVhZEwvCmVHSk9lWXpPdC9maDZxL3p5MTFVTVFtZ2U4S1lVa1FDc3FqYm83QmZpdTRtZEZSK1BBUHM1SmMvVXc3NXpWYk9udWUvUkkKRjlmd2t5QkVETS9VTExyTElRSkk4QUFBQURBUUFCQUFBQ0FBSCsybTVqNTB5YWxmSEVjSzBpV3E1d0RpNmtmbFZxRk5YMAp3MzVPWlFTMjl3VmtWcGJPU0RXTDJEenNYekMrcW5aM1RNSEVra1FWays4N1QxWnU5NkFCcW9vQUVzQUljQW5xd1BseXZICnlEMGk5WWhQelRvdlJVVkZWOG1PQUN6ZndRTUxYUTFJYVlBMThISjQzYW1PT3dUZXVuVms3bzRKKzZ2TjZSdDlDZnNhSUUKSEE4U0hYcnRyZXZEYndmaGNQeHBnMXVQOEFkZlFjWGRxR2NiY2JjcXhLL0l2TVdQL3J1ZFN1THU2RGQyelNDSWNnQzRLeApFcXMvdmpDS29CcW5oL2QvQ3IzT2t3cW5UbUNVTlJmbm5GcXBuSnY0ZFVzNmo1QWU1RmhJZjY1ZFlZa1oyb0FTNFJDYlFrClZLT0xzdVk2QWdZQi9YK1pNNnR3YnkrWUxKeXhiVldtSDYveDZFd2kxcUtjNXZ1TnlBWmpXamJnWURCSnd1aFhUbVRxbzkKa2Iyb3ZjeDZvV1d5VFE2dUs5dHRNeWNlNk5XSHpzcHMyYVlIMFBjVE1KcDlkeFpBeWl0ZHlpSEpWUUg2YW56NFFwTXZUQgpZQzEyczdqdng2RlRzMC9rWXdiR3lCQjcycGhSWDFrNWVwN200ZDBzRS95Q1U0RXRreU81OGxFSVJ4ZXh6NFdlcUxaaUlhCmNvY1BrTWtjTEl0UERLN1I2R3NJVlFRakovVEVnYTV5b1MwRVdiNGJ2QnZzN1dkWWJ3R25jWTBXSDNjSktVQTVGSXB0Y0YKejVMWm9TR1RIcnhUeUJnSzFNM3NMbGh1ajVCUGUzUURlSzdXWERNNytLTGx0L1FHTittQnBtOWxrTGg5dmM0RGRaL0cwcApLa3RUUm90dlZFYlJCZ21oR3hBQUFCQUV5VVB5WmpoNjhFZWE3OGx2K3RNWVpxOGpybTBvNmh4b1RoVkFqdTRCUU13MEEwCmttbm1qNjdPS25SNGwxMktRN1JLeEsyUEcrSnI0dlJMK1ZXTVVPZHhXci9YZEdaRkx1YXMxVWs4dnhhVUxKNEwyNEllZWYKM2JpWnJaVm5jRTN3Ky9BQlpFd29qVE16TnQ4U044Yk9meWM0Z2F2SzRSRC9LMi9kMitQUnFwMldnZjlQL21BcFVLSTVPRQp5NnhzMnIwK2dYalpuN3J2QmhobmUvcHdGOG9MbWN2YnNuY0l2SnJ6QmY3MVVaWDd3Z0hhdC8wdmVlejdYcWZjaFRyWkdQCmg5OXlSMk9GZk5oRVFNSGpYcTBXNHNKWVhkYkVVV2VZUEphaEFvMjVtZGx6dGZSM2lzR2ovdExwbWY4SGRVTllBV2xGa0gKblUwTDF1UmJ2Zk1GUklvQUFBRUJBTzF0emhVWW95aHA1VklrVjJick1PY0hKWS9GRlIxSVN0VHhBTXdua1ZpSll4RVN4VQpwMVJtbGhzS003YUtJbjRiWnVmZzhSRHRreDE3SFNlMHhhRWlXNi9SQTRBa2NLeVhCQzlyNEwrQUxNWHVCQmkyTW9YTmRYClFmbUdvQ1lTRGsvZFFQNEhJOC9qaG1HNUZuSy8rVmplanI2N0lVSEQ3dk1RRDRqbVoyTmppYm1mT3o2S3NLYzZUKy9WZkgKeHlONXVsNjlPc21yYzM1eHV2cFZQRU83MldONU5RNFhaZ1pEc3RZYnZIZDg1a3p1ZmIxYWhwc09VT2FRQlRsRnlmWWRaKwoxOW1nRGFJandUNkF2RjdiL3FTL2o5emIwckpObGlqVlFidDBzMTQzQlBkVFpCNjJuTlRvNStlNE5qUy9PUUE4ZkRmdmdlCnhaZ25vQmJXcWZQTmNBQUFFQkFMY0ZmOHlIcWVzU2RreTlENnRJb0QrRU4xdERVQmRVNmx2dDdUZGNhY3RiMzgzTUo1TkUKSlNFd0JoVGJQTXREV0NjNm4zUTE4SmtELzFrODNXQWdyY0xBTjVQbmVhbjhUQlpZNzlwTmJvb0cralBrYU1EbDFMRld3bApBVWdwSE1WWXVGRC9mTjVtZDg5b1N3OXM2eVVCQ2RCZFFvZExtQUN6d1VjYWk2MXdkT3Uzck9rL2Zza2I2Ym5iekxaVWpFCjhrRnFBaTVYRW5SMVJyUXAwOEFwdzhsQWJCbGhhbmk5TlVSNHR1YlJwOVQyL0xYVGs2RFdSZUhzK1RMT3kva1o1UVREdGIKN2lCVXhob2dZRVdlaXhRVWRLbnNZekdFTktJdjN2Nmh5Skcvb2lSRzhmeFQ3VUxxangrZWxUVTRiOUtFT2JjZ2o3RjZNYgpqZlZxYitiWDV3a0FBQUFMY21GdGEybEFjbUZ0YTJrPQotLS0tLUVORCBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KCg==
+      IMAGES: hub.bio.pune.cdac.in/dbt/ice-ui-service
+      IMAGE_TAG: ${DRONE_COMMIT_SHA}
+      MANIFEST_HOST: gitea-ssh-access.gitea
+      MANIFEST_USER: sandeep
+      MANIFEST_USER_EMAIL: sandeepm@cdac.in
+      MANIFEST_REPO: ice-deployment
+      MANIFEST_BRANCH: development
+      KUSTOMIZATION: ice-ui-service/dev
+
+  - name: notify
+    image: drillster/drone-email
+    settings:
+      from: drone-ci@cdac.in
+      host: smtp.cdac.in
+      username:
+        from_secret: email_username
+      password:
+        from_secret: email_password
+      subject: >
+        [{{ build.status }}]
+        {{ repo.owner }}/{{ repo.name }}
+        ({{ build.branch }} - {{ truncate build.commit 8 }})
+      recipients:
+        - rkrishnan@cdac.in
+
+volumes:
+  - name: node-cache
+    claim:
+      name: node-claim
+  - name: ice-node-cache
+    claim:
+      name: ice-node-claim
+  - name: kubectl-data
+    claim:
+      name: kubectl-claim
+  - name: kaniko-cache
+    claim:
+      name: kaniko-cache-claim
+
+trigger:
+  branch:
+    - development
+    - release
+#  email_username rkrishnan
+# email_password -->
+# username_biohub
+#password_biohub

@@ -1,0 +1,908 @@
+<div class="content-wrapper container-xxxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Basic Alerts start -->
+    <section id="home-page">
+      <div class="row">
+        <div class="col-12">
+          <app-carousel2></app-carousel2>
+        </div>
+      </div>
+      <!-- <div class="card text-center">
+        <div class="card-body">
+          <div class="card-title">
+            <h2 style="font-size: 40px">
+              Integrated Computing Environment (ICE)
+            </h2>
+          </div>
+          <div class="row mt-3 mb-2">
+            <div class="col-md-6 card shadow-0 bg-transparent border-primary">
+              <h2 class="card-text">Hardware component</h2>
+              <img
+                class="img-logo"
+                src="assets/images/DBT ICE _ Small.png"
+                alt="Cube-logo" />
+            </div>
+            <div class="col-md-6 card shadow-0 bg-transparent border-primary">
+              <h2 class="card-text">Software component</h2>
+              <img
+                class="img-logo"
+                src="assets/images/ICE Flakes_1.png"
+                alt="Flakes-logo" />
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="card">
+        <div class="card-body">
+          <div class="row my-2">
+            <div class="col-12">
+              <div
+                class="card border border-primary shadow-0 mb-3"
+                style="max-width: 18rem">
+                <div class="card-header">
+                  <i
+                    class="fa fa-cogs"
+                    aria-hidden="true"
+                    style="
+                      font-size: 40px;
+                      padding: 13px 80px;
+                      color: #314f8b;
+                    "></i>
+                </div>
+                <div class="card-body text-primary">
+                  <!-- <h5 class="card-title">Primary card title</h5> -->
+                  <h3 class="card-text">Integrated Hardware with Software.</h3>
+                </div>
+              </div>
+              <div
+                class="card border border-success shadow-0 mb-3"
+                style="max-width: 18rem">
+                <div class="card-header">
+                  <i
+                    class="fa fa-database"
+                    aria-hidden="true"
+                    style="
+                      font-size: 40px;
+                      padding-left: 89px;
+                      color: #28c76f;
+                    "></i>
+                </div>
+                <div class="card-body text-success">
+                  <h3 class="card-text">
+                    Access to Hardware resources through Software interface
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="card border border-danger shadow-0 mb-3"
+                style="max-width: 18rem">
+                <div class="card-header">
+                  <i
+                    class="fa fa-share-square-o"
+                    aria-hidden="true"
+                    style="
+                      font-size: 40px;
+                      padding-left: 89px;
+                      color: #ea5455;
+                    "></i>
+                </div>
+                <div class="card-body text-danger">
+                  <h3 class="card-text">
+                    On demand resources/application availability
+                  </h3>
+                </div>
+              </div>
+              <div
+                class="card border border-warning shadow-0 mb-3"
+                style="max-width: 18rem">
+                <div class="card-header">
+                  <i
+                    class="fa fa-cubes"
+                    aria-hidden="true"
+                    style="
+                      font-size: 40px;
+                      padding: 13px 80px;
+                      color: #ff9f43;
+                    "></i>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-text">Based on Kubernetes platform.</h3>
+                </div>
+              </div>
+              <div
+                class="card border border-info shadow-0 mb-3"
+                style="max-width: 18rem">
+                <div class="card-header">
+                  <i
+                    class="fa fa-cloud-upload"
+                    aria-hidden="true"
+                    style="
+                      font-size: 40px;
+                      padding: 13px 80px;
+                      color: #00cfe8;
+                    "></i>
+                </div>
+                <div class="card-body">
+                  <h3 class="card-text">
+                    Highly scalable with persistent storage
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <section>
+        <h1 class="pillars" *ngIf="show" [@slideInOut]>Major Pillars of ICE</h1>
+      </section>
+
+      <div>
+        <img
+          class="majorpillarimg"
+          style="
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            width: 100%;
+          "
+          src="assets/images/majorpillars.jpg" />
+      </div> -->
+      <section
+        class="section section-sm section-last bg-gray-100 section-style-2 text-md-left">
+        <h1 class="pillars text-white" *ngIf="show" [@slideInOut]>Services</h1>
+      </section>
+      <div class="row">
+        <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/compute.png"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: red">Compute</h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  color: red;
+                  background-color: red;
+                " />
+              <p class="card-text">
+                Docker is a container-based application packager that allows for
+                multiple containers on a single host. Users can download Docker
+                images from the Hub and use the Ice compute service for
+                on-demand access.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/storage.png"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: green">Storage</h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  color: green;
+                  background-color: green;
+                " />
+              <p class="card-text">
+                Publishing a sequence typically involves the systematic release
+                or dissemination of content, often in a specific order or
+                arrangement. This could apply to various contexts, such as a
+                series of articles, chapters, videos, or any other creative
+                works.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/vcf.png"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: darkblue">VCF</h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  color: darkblue;
+                  background-color: darkblue;
+                " />
+              <p class="card-text">
+                The tool allows users to identify potential variants (SNPs) that
+                can differentiate between populations and diseases, aiding in
+                array design, genotype imputation, and variant cataloging. It
+                allows users to partition samples based on traits, narrowing
+                down potential SNPs for further research.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/sharing.webp"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: orangered">
+                Collaborations & Sharing
+              </h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  color: orangered;
+                  background-color: orangered;
+                " />
+              <p class="card-text">
+                The ICE solution offers advanced features like web links,
+                reliable transfer, endpoint encryption, and version control,
+                making it user-friendly and pleasant to use over the internet,
+                ensuring long file transfers.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/publish.png"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: red">Publish Sequence</h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  color: red;
+                  background-color: red;
+                " />
+              <p class="card-text">
+                Publishing a sequence typically involves the systematic release
+                or dissemination of content, often in a specific order or
+                arrangement. This could apply to various contexts, such as a
+                series of articles, chapters, videos, or any other creative
+                works.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/search-icon.png"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: green">Search Sequence</h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  border-width: 0;
+                  color: green;
+                  background-color: green;
+                " />
+              <p class="card-text">
+                Researchers can access the Nucleotide or Protein databases, such
+                as GenBank and GenPept, respectively. By entering a specific
+                sequence, gene name, or related information into the search bar,
+                users can retrieve a list of matching sequences and relevant
+                details.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/BLASTLogo.png"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: darkblue">
+                Basic Local Alignment Search Tool (BLAST) Homology
+              </h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  border-width: 0;
+                  color: darkblue;
+                  background-color: darkblue;
+                " />
+              <p class="card-text">
+                The Basic Local Alignment Search Tool, commonly known as BLAST,
+                is a fundamental bioinformatics tool designed to identify
+                homologous sequences within large biological databases. Homology
+                refers to the evolutionary relationship between sequences
+                derived from a common ancestor.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="card text-center pad">
+            <img
+              class="card-img-services"
+              src="assets/images/pipeline_icon.png"
+              alt="publish" />
+            <div class="card-body">
+              <h1 class="card-title" style="color: orangered">
+                Pipeline Execution
+              </h1>
+              <hr
+                style="
+                  width: 40%;
+                  height: 2px;
+                  border-width: 0;
+                  color: orangered;
+                  background-color: orangered;
+                " />
+              <p class="card-text">
+                The process often begins with raw data acquisition, such as DNA
+                or RNA sequences generated from high-throughput sequencing
+                technologies. Subsequently, these raw data undergo quality
+                control steps to identify and filter out any anomalies or
+                errors.
+              </p>
+            </div>
+          </div>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <section class="section section-sm bg-default"></section>
+          <section
+            class="section section-sm section-last bg-gray-100 section-style-2 text-md-left">
+            <h1 class="pillars text-white" *ngIf="show" [@slideInOut]>
+              Salient Features
+            </h1>
+          </section>
+
+          <div class="card">
+            <div class="card-body">
+              <div class="row my-2">
+                <div class="col-12">
+                  <div
+                    class="card text-white bg-primary mb-3"
+                    style="max-width: 18rem; display: inline-block">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h3 class="card-title text-white">Scalable</h3>
+                      <p class="card-text">
+                        Continue to function well when it is changed in size or
+                        volume.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="card text-white bg-secondary mb-3"
+                    style="max-width: 18rem; display: inline-block">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h3 class="card-title text-white">Resilience</h3>
+                      <p class="card-text">
+                        Capable heal from unexpected events.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="card text-white bg-success mb-3"
+                    style="max-width: 18rem; display: inline-block">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h3 class="card-title text-white">Data Storage</h3>
+                      <p class="card-text">
+                        Allows you to store,manage,use and protect data.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="card text-white bg-danger mb-3"
+                    style="max-width: 18rem; display: inline-block">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h3 class="card-title text-white">Fault Tolerance</h3>
+                      <p class="card-text">
+                        Uninterupted despite the failure of one or more
+                        components.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="card text-white bg-warning mb-3"
+                    style="max-width: 18rem; display: inline-block">
+                    <div class="card-header"></div>
+                    <div class="card-body">
+                      <h3 class="card-title text-white">Data Security</h3>
+                      <p class="card-text">
+                        To protect it from corruption,theft or unauthorized
+                        access.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <section class="section section-sm bg-default"></section>
+              <section
+                class="section section-sm section-last bg-gray-100 section-style-2 text-md-left">
+                <h1 class="pillars text-white" *ngIf="show" [@slideInOut]>
+                  Partnering Institution
+                </h1>
+              </section>
+          <div class="card">
+            <div class="card-body">
+              <div class="row my-2">
+                <div class="col-12">
+           
+                  <div class="card Collaborations">
+                    <div class="row">
+                    <div class="col-sm-2">
+                      <a
+                        href="https://dbtindia.gov.in/"
+                        title="MINISTRY OF SCIENCE &amp; TECHNOLOGY"
+                        class="dbt-text"
+                        target="_blank">
+                        <img src="assets/images/carousel/dbtGov.png" style="    height: 94px;"/>
+                        <h4>Department of Biotechnology <br>  <h5>MINISTRY OF SCIENCE &amp; TECHNOLOGY, Government of India</h5></h4>
+                      </a>
+                    </div>
+                    <div class="col-sm-2">
+                      <a href="https://www.cdac.in/" target="_blank"
+                        ><img src="assets/images/carousel/cdac.jpeg"
+                      /></a>
+                    </div>
+                    <div class="col-sm-2">
+                      <a href="https://www.cdac.in/" target="_blank"
+                      ><img src="assets/images/carousel/IBDC_logo-01.png" style="    height: 200px;"
+                    /></a>
+                    </div>
+                    <div class="col-sm-2">     <a href="https://www.cdac.in/" target="_blank"
+                      ><img src="assets/images/ICE Flakes_1.png" style="margin-top: 31px;
+                      width: 295px;"
+                    /></a></div>
+                    <div class="col-sm-2">     <a href="https://www.cdac.in/" target="_blank"
+                      ><img src="assets/images/carousel/braf_logo1 (1).png" style=" height: 175px;
+                      width: 192px;"
+                    /></a></div>
+                    <div class="col-sm-2">     <a href="https://www.cdac.in/" target="_blank"
+                      ><img src="assets/images/carousel/RCB+UNESCOlogo.png" style="height: 154px;"
+                    /></a></div>
+                  </div>
+                  </div>
+                </div></div></div></div>
+                </div></div>
+
+          <!-- <div class="card">
+            <div class="card-body">
+              <div class="row my-2">
+                <section class="section section-sm bg-default"></section>
+                <section>
+                  <div>
+                    <img
+                      src="assets/images/3.png"
+                      style="margin-right: auto; width: 50%; height: 30%" />
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row my-2">
+                <section class="section section-sm bg-default"></section>
+                <section>
+                  <div>
+                    <img
+                      src="assets/images/4.png"
+                      style="margin-right: auto; width: 50%; height: 30%" />
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row my-2">
+                    <div
+                      class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                      <img
+                        src="assets/images/spec.jpg"
+                        style="margin-left: 121px; width: 86%" />
+                    </div>
+                    <div
+                      class="col-12 col-md-6 align-items-center justify-content-center"
+                      style="text-align: start">
+                      <h3 class="heading-3">DBT-ICE Specifications</h3>
+                      <div class="item">
+                        <article class="quote-modern">
+                          <h5 class="quote-modern-text">
+                            <h5 class="quote-modern-author">container</h5>
+                            <span class="q"
+                              ><b>Processor</b> : Dual Intel Xeon Gold 6248R
+                              <br />
+                              <b>RAM</b> : 768GB (12 * 64GB) DDR4-2933 in
+                              balanced configuration</span
+                            >
+                          </h5>
+                        </article>
+                      </div>
+                      <div class="item">
+                        <article class="quote-modern">
+                          <h5 class="quote-modern-text">
+                            <h5 class="quote-modern-author">Network</h5>
+                            <span class="q"
+                              ><b>Primary Network</b> : 25g Ethernet Managed
+                              Switch with SFP+ modules
+                              <br />
+                              <b>Secondary Network</b> : 1G Managed Ethernet
+                              Switch
+                            </span>
+                          </h5>
+                        </article>
+                      </div>
+                      <div class="item">
+                        <article class="quote-modern">
+                          <h5 class="quote-modern-text">
+                            <h5 class="quote-modern-author">Storage</h5>
+                            <span class="q"
+                              >200 TB raw NFS based storage, with Hot-Plug 10k
+                              RPM SAS HDD mounted through 25G ethernet on all
+                              nodes.</span
+                            >
+                          </h5>
+                        </article>
+                      </div>
+                      <div class="item">
+                        <article class="quote-modern">
+                          <h5 class="quote-modern-text">
+                            <h5 class="quote-modern-author">Quick Specs</h5>
+                            <span class="q"
+                              ><b>Number of Nodes</b> : 1 Interface Node, 10
+                              container nodes
+                              <br />
+                              <b>Peak Performance</b> : 32TH theorotical
+                              performance
+                              <br />
+                              <b>Storage Capacity</b> : 200TB Raw</span
+                            >
+                          </h5>
+                        </article>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <section
+            class="section section-sm section-last bg-gray-100 section-style-2 text-md-left">
+            <h1 class="pillars text-white" *ngIf="show" [@slideInOut]>
+              Contact US
+            </h1>
+          </section>
+          <section class="faq-contact" id="contactus">
+            <div class="row">
+              <div class="col-sm-12">
+                <div class="card text-center heightstatus">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div id="map1"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="card text-center">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="card-body">
+                        <div class="centered">
+                          <h1><b>Our Office</b></h1>
+                          <hr
+                            style="
+                              width: 40%;
+                              height: 2px;
+                              border-width: 0;
+                              color: gray;
+                              background-color: gray;
+                            " />
+                          <h3>
+                            Centre for Development of Advanced Computing<br />
+                            C-DAC Innovation Park 34, B/1, Panchawati Rd,
+                            Panchawati,Pashan,<br />
+                            Pune, Maharashtra 411008
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="card-body callus">
+                        <div
+                          class="avatar avatar-tag bg-light-primary mb-2 mx-auto">
+                          <img
+                            src="assets/images/carousel/call.png"
+                            alt="image"
+                            width="89px"
+                            height="89px" />
+                        </div>
+                        <div class="mx-auto centered">
+                          <h1 style="color: white"><b>Call Us!</b></h1>
+                          <p>
+                            Just pick up the phone to chat with member of our
+                            team.
+                          </p>
+                          <b
+                            ><a
+                              style="color: white !important"
+                              href="tel: 020-25503272"
+                              >020-25503272</a
+                            ></b
+                          >
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="card-body callus">
+                        <div
+                          class="avatar avatar-tag bg-light-primary mb-2 mx-auto">
+                          <img
+                            src="assets/images/carousel/mail.jpg"
+                            alt="image"
+                            width="89px"
+                            height="89px" />
+                        </div>
+
+                        <div class="mx-auto centered">
+                          <h1 style="color: white"><b>Ask a question</b></h1>
+                          <p>
+                            Sometimes you need a little support or a help. Don't
+                            worry...We're here for you.
+                          </p>
+                          <b>
+                            <a href="mailto:ice@cdac.in" style="color: white">
+                              ice@cdac.in</a
+                            ></b
+                          >
+                          or
+                          <b>
+                            <a
+                              href="mailto:braf-help@cdac.in"
+                              style="color: white">
+                              braf-help@cdac.in</a
+                            >
+                          </b>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <br />
+          <footer class="text-lg-start text-white">
+            <div class="copy-right_text">
+              <div class="container">
+                <div class="row text-center">
+                  <div class="col-lg-12">
+                    <div class="row text-center">
+                      <div class="col-lg-2 col-md-2 col-12"></div>
+                      <div class="col-lg-8 col-md-8 col-12 footerpolicy">
+                        <i class="fa fa-file"></i>
+                        <a style="color: #00cfe8" href="#"> Website Policies </a
+                        ><span> | </span>
+
+                        <i class="fa fa-question"></i
+                        ><a style="color: #00cfe8" href="#"> Help </a>
+                        <span> | </span>
+
+                        <i class="fa fa-comment"></i>
+                        <a style="color: #00cfe8" href="/aboutUs"> About US </a>
+                        <span> | </span>
+
+                        <i class="fa fa-id-badge"></i>
+                        <a style="color: #00cfe8" href="/contactUs">
+                          Contact Us</a
+                        >
+                      </div>
+                      <div class="col-lg-2 col-md-2 col-12"></div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="text-center middleContent">
+                      © Funded by Department of Biotechnology (DBT), <br />
+                      Website Designed, Developed and Maintained By
+                      <a
+                        style="color: #00cfe8"
+                        href="https://cdac.in/"
+                        target="blank"
+                        class="external_link">
+                        HPC M&BA group, Centre for Development of Advanced
+                        Computing &amp; (C-DAC)</a
+                      >, Government of India
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+          <!-- <footer class="text-lg-start text-muted icons">
+           
+            <section
+              class="d-flex justify-content-center justify-content-lg-between border-bottom">
+              <div class="container text-md-start">
+               
+                <div class="row mt-3">
+               
+                  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                   
+                    <h3 class="text-uppercase fw-bold color">C-DAC</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 60px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <h3 class="color">
+                      <b>C-DAC Innovation Park,</b>
+                      Panchavati, Pashan, Pune - 411 008, Maharashtra (India)
+                    </h3>
+                  </div>
+
+                  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
+                   
+                    <h3 class="fw-bold mb-2 color">Get connected with us:</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 107px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <p>
+                      <a class="li-ic">
+                        <a
+                          href="https://in.linkedin.com/company/cdac"
+                          target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/linkedin.svg"
+                        /></a>
+                      </a>
+                    </p>
+                    <p>
+                      
+                      <a class="tw-ic">
+                        <a href="https://twitter.com/cdacindia" target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/twitter.svg"
+                        /></a>
+                      </a>
+                    </p>
+                    <p>
+                      
+                      <a class="fb-ic">
+                        <a
+                          href="https://www.facebook.com/CDACINDIA"
+                          target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/icons8-facebook.svg"
+                        /></a>
+                      </a>
+                    </p>
+                    <p>
+                      
+                      <a class="pin-ic">
+                        <a
+                          href="https://www.kooapp.com/profile/cdac"
+                          target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/koo-app-white.svg"
+                        /></a>
+                      </a>
+                    </p>
+                  </div>
+                 
+                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-2 color">
+                    
+                    <h3 class="font fw-bold mb-2 color">Useful links</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 60px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <h3 class="color">
+                      <a (click)="aboutus()" class="text-reset font"
+                        >About Us</a
+                      >
+                    </h3>
+                    <h3 class="color">
+                      <a (click)="contactus()" class="text-reset font"
+                        >Contact Us</a
+                      >
+                    </h3>
+                    <h3 class="color">
+                      <a href="#!" class="text-reset font">Faq</a>
+                    </h3>
+                    <h3 class="color">
+                      <a href="#!" class="text-reset font">Help</a>
+                    </h3>
+                  </div>
+                 
+                  <div class="col-md-2 col-lg-4 col-xl-3 mx-auto mb-2 color">
+                   
+                    <h3 class="fw-bold mb-2 color">Contact US</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 60px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <h3 class="color">
+                      Mail us :
+                      <a href="mailto:braf-help@cdac.in" class="color">
+                        braf-help@cdac.in</a
+                      >
+                    </h3>
+
+                    <h3 class="color">
+                      Phone :
+                      <a href="tel: 020-25503272" style="color: white"
+                        >020-25503272</a
+                      >
+                    </h3>
+                  </div>
+                  
+                </div>
+               
+              </div>
+            </section>
+
+            <div
+              class="text-center p-2 color"
+              style="background-color: rgba(0, 0, 0, 0.05)">
+              © 2022 C-DAC. All rights reserved
+            </div>
+          </footer> -->
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

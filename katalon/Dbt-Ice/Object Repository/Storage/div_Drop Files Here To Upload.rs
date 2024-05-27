@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Drop Files Here To Upload</name>
+   <tag></tag>
+   <elementGuidId>720d37d4-aa36-48c5-a6ac-36cf27f099fd</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//section[@id='file-upload']/div/div/div/div[2]/div</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>div.py-5.mb-3.text-center.font-medium-5.text-uppercase.file-drop-zone</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>2aba7bd0-a602-449f-af8d-d72ed9e5e465</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>py-5 mb-3 text-center font-medium-5 text-uppercase file-drop-zone</value>
+      <webElementGuid>9a109e81-1beb-4d71-a6e6-86d69ecac367</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Drop Files Here To Upload</value>
+      <webElementGuid>e11b4d5a-7417-46c1-a47c-a9697794fb3f</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;file-upload&quot;)/div[@class=&quot;card&quot;]/div[@class=&quot;card-body&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;col-md-12 col-lg-6&quot;]/div[@class=&quot;py-5 mb-3 text-center font-medium-5 text-uppercase file-drop-zone&quot;]</value>
+      <webElementGuid>834b4746-f1cc-432f-97ad-abc3c75df4a9</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//section[@id='file-upload']/div/div/div/div[2]/div</value>
+      <webElementGuid>f40e317e-acaf-40a8-8aa3-89f0791f4f6b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Calendar'])[1]/following::div[6]</value>
+      <webElementGuid>011f1180-eba1-48fe-b34c-9aae3da17156</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Email'])[1]/following::div[6]</value>
+      <webElementGuid>9079ab86-8a27-4091-bfc5-4ca584e42ca1</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='OR'])[1]/preceding::div[2]</value>
+      <webElementGuid>1b56f975-366e-4853-9547-75e9fc6be76f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div/div/div[2]/div</value>
+      <webElementGuid>cdb4c226-8d72-4ae0-a8d4-91740bbd18ff</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Drop Files Here To Upload' or . = 'Drop Files Here To Upload')]</value>
+      <webElementGuid>30f9a474-9cda-4c84-8ba2-38509ac2e2b0</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

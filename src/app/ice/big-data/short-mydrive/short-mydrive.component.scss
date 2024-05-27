@@ -1,0 +1,27 @@
+
+.list-container {
+  height: 310px; 
+  overflow-y: scroll;
+  width:400px;
+  //border: 1px solid #ccc;
+}
+.arrow:hover {
+  //transform: scale(1.2); 
+  background-color: #D3D3D3;
+}
+.file-name {
+  max-width: 100px;
+  word-wrap: break-word;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  height: fit-content; /* Adjust this value as needed */
+  background-color: #f0f0f0;
+  margin-bottom: 3px; /* Optional: Add margin between list items */
+  overflow:hidden;
+  white-space: normal;
+}

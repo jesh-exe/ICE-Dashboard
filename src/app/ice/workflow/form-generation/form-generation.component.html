@@ -1,0 +1,295 @@
+<div class="content-wrapper container-xxxl p-0">
+  <div class="content-body" style="align-items: center">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="row">
+      <div class="col-lg-1"></div>
+      <div class="col-lg-10 card" style="padding: 15px">
+        <h2 class="card-title h2" style="text-align: center">
+          {{ pipelineName | uppercase }}
+        </h2>
+        <ul ngbNav #nav="ngbNav" class="nav-tabs">
+          <li ngbNavItem>
+            <a class="h5" ngbNavLink
+              ><span [data-feather]="'log-in'"></span>Introduction
+            </a>
+            <ng-template ngbNavContent> <div #myDiv></div></ng-template>
+          </li>
+          <li ngbNavItem>
+            <a class="h5" ngbNavLink active
+              ><span [data-feather]="'list'"></span>Parameters</a
+            >
+            <ng-template ngbNavContent>
+              <h3>
+                {{ jsonFormData.title | splitLast : "/" | uppercase }}
+              </h3>
+              <div class="row">
+                <div class="col-6">
+                  <p>
+                    {{ jsonFormData.description }}
+                  </p>
+                </div>
+                <div class="col-6 mb-1">
+                  <button
+                    class="btn btn-primary float-right"
+                    (click)="loadDefaultParameter()">
+                    Set Sample Parameter
+                  </button>
+                </div>
+              </div>
+
+              <form [formGroup]="myForm">
+                <ngb-accordion
+                  class="accordion collapse-border"
+                  #acc="ngbAccordion"
+                  activeIds="ngb-panel-0"
+                  *ngFor="
+                    let recipient of jsonFormData.definitions
+                      | keyvalue : asIsOrder
+                  "
+                  #{{recipient.key}}>
+                  <ngb-panel [cardClass]="'collapse-border-item'">
+                    <ng-template ngbPanelTitle>
+                      <span class="lead collapse-title" style="color: black">
+                        <i
+                          [class]="
+                            recipient.value['fa_icon']
+                              ? recipient.value['fa_icon']
+                              : 'fa fa-info-circle'
+                          "
+                          style="color: #ea5455"></i>
+                        &nbsp; {{ recipient.value.title }}
+                      </span>
+                    </ng-template>
+
+                    <ng-template ngbPanelContent>
+                      <div *ngIf="recipient.value.description != null">
+                        <p>
+                          {{ recipient.value.description }}
+                        </p>
+                      </div>
+                      <div *ngIf="recipient.value.help_text != null">
+                        <p>
+                          {{ recipient.value.help_text }}
+                        </p>
+                      </div>
+                      <div
+                        class="col-12"
+                        *ngFor="
+                          let field of recipient.value.properties
+                            | keyvalue : asIsOrder
+                        ">
+                        <div class="form-group row">
+                          <div
+                            class="input-group input-group-merge"
+                            [ngClass]="{
+                              'is-invalid':
+                                (myForm.get(field.key)?.touched || submitted) &&
+                                myForm.get(field.key)?.errors
+                            }">
+                            <div class="input-group-prepend">
+                              <span
+                                class="input-group-text"
+                                style="background: #e9ecef">
+                                <i
+                                  [class]="
+                                    field.value['fa_icon']
+                                      ? field.value['fa_icon']
+                                      : 'fa fa-info-circle'
+                                  "
+                                  style="color: #314f8b"></i>
+                              </span>
+                              <label
+                                class="input-group-text"
+                                style="background: #e9ecef; color: black">
+                                - -{{ field.key }}
+                                <div
+                                  *ngIf="
+                                    recipient?.value?.required?.length > 0
+                                  ">
+                                  <span
+                                    *ngIf="
+                                      recipient.value.required.indexOf(
+                                        field.key
+                                      ) > -1
+                                    "
+                                    class="required">
+                                    &nbsp;&nbsp;*</span
+                                  >
+                                </div>
+                              </label>
+                            </div>
+                            <input
+                              *ngIf="
+                                field.value['type'] === 'string' &&
+                                !field.value['enum']
+                              "
+                              type="text"
+                              id="text"
+                              class="form-control"
+                              [formControlName]="field.key"
+                              [ngClass]="{
+                                'is-invalid':
+                                  (myForm.get(field.key)?.touched ||
+                                    submitted) &&
+                                  myForm.get(field.key)?.errors
+                              }" />
+                            <input
+                              *ngIf="field.value['type'] === 'integer'"
+                              type="number"
+                              id="number"
+                              class="form-control"
+                              [formControlName]="field.key"
+                              [ngClass]="{
+                                'is-invalid':
+                                  (myForm.get(field.key)?.touched ||
+                                    submitted) &&
+                                  myForm.get(field.key)?.errors
+                              }" />
+                            <input
+                              *ngIf="field.value['type'] === 'number'"
+                              type="number"
+                              id="number"
+                              class="form-control"
+                              [formControlName]="field.key"
+                              [ngClass]="{
+                                'is-invalid':
+                                  (myForm.get(field.key)?.touched ||
+                                    submitted) &&
+                                  myForm.get(field.key)?.errors
+                              }" />
+
+                            <select
+                              [formControlName]="field.key"
+                              class="custom-select"
+                              *ngIf="
+                                field.value['type'] === 'string' &&
+                                field.value['enum']
+                              "
+                              [ngClass]="{
+                                'is-invalid':
+                                  (myForm.get(field.key)?.touched ||
+                                    submitted) &&
+                                  myForm.get(field.key)?.errors
+                              }">
+                              <option *ngFor="let item of field.value['enum']">
+                                {{ item }}
+                              </option>
+                            </select>
+                            <div
+                              class="input-group-text"
+                              *ngIf="field.value['type'] === 'boolean'"
+                              [ngClass]="{
+                                'is-invalid':
+                                  (myForm.get(field.key)?.touched ||
+                                    submitted) &&
+                                  myForm.get(field.key)?.errors
+                              }">
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  id="{{ field.key }}"
+                                  [formControlName]="field.key"
+                                  [value]="true"
+                                  [checked]="field.value['default']" />
+                                <label class="form-check-label">True</label>
+                              </div>
+                              <div class="form-check form-check-inline">
+                                <input
+                                  class="form-check-input"
+                                  type="radio"
+                                  id="{{ field.key }}"
+                                  [formControlName]="field.key"
+                                  [checked]="!field.value['default']"
+                                  [value]="false" />
+                                <label class="form-check-label">False</label>
+                              </div>
+                            </div>
+                            <div
+                              class="input-group-append"
+                              *ngIf="field.value['format']"
+                              id="{{ field.key }}">
+                              <button
+                                class="btn btn-outline-secondary"
+                                (click)="openMyDriveDialog(field.key)"
+                                type="button"
+                                rippleEffect>
+                                <i class="fa fa-folder-open-o"></i>
+                              </button>
+                            </div>
+                            <div
+                              class="input-group-append"
+                              *ngIf="field.value['help_text']"
+                              id="{{ field.key }}">
+                              <button
+                                class="btn btn-outline-secondary"
+                                (click)="toggle(field.key)"
+                                type="button"
+                                rippleEffect>
+                                <i class="fa fa-question-circle"></i>
+                              </button>
+                            </div>
+                          </div>
+                          <div
+                            *ngIf="
+                              (myForm.get(field.key)?.touched || submitted) &&
+                              myForm.get(field.key)?.errors
+                            "
+                            class="invalid-feedback">
+                            <div *ngIf="myForm.get(field.key).errors.required">
+                              {{ field.key }} is required
+                            </div>
+                          </div>
+
+                          <div *ngIf="field.value['description']">
+                            {{ field.value["description"] }}
+                          </div>
+
+                          <div
+                            class="my_rounded_corners"
+                            *ngIf="opened === field.key && show === true">
+                            {{ field.value["help_text"] }}
+                          </div>
+                        </div>
+                      </div>
+                    </ng-template>
+                  </ngb-panel>
+                </ngb-accordion>
+
+                <br />
+                <div class="row">
+                  <div class="col-6 text-left">
+                    <button
+                      class="btn btn-primary float-left"
+                      rippleEffect
+                      (click)="clear()">
+                      Clear
+                    </button>
+                  </div>
+                  <div class="col-6 text-right">
+                    <button
+                      class="btn btn-primary float-right"
+                      rippleEffect
+                      (click)="onSubmit()">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </ng-template>
+          </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="mt-2"></div>
+      </div>
+      <div class="col-lg-1">
+        <!-- <div *ngIf="jsonFormData" *ngFor="let one of jsonFormData.allOf">
+          <button
+            (click)="open(one.$ref.split('/')[one.$ref.split('/').length - 1])">
+            {{ one.$ref | splitLast : "/" }}
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

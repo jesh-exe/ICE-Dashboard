@@ -1,0 +1,56 @@
+<div class="card-body">
+  <div id="bar-chart" #apexBarChartRef>
+    <!-- <p style="text-align: right;">X-axis: Chromosomes <br>
+        Y-axis: Mutation
+      </p> -->
+    <apx-chart [series]="apexBarChart.series" [chart]="{
+          height: 400,
+          width: isMenuToggled === false ? apexBarChartRef.offsetWidth : apexBarChart.chart.width,
+          type: 'bar',
+          toolbar:apexBarChart.chart.toolbar        }" [dataLabels]="apexBarChart.dataLabels"
+      [plotOptions]="apexBarChart.plotOptions" [xaxis]="apexBarChart.xaxis" [yaxis]="apexBarChart.yaxis"
+      [colors]="apexBarChart.colors" [grid]="apexBarChart.grid" [tooltip]="apexBarChart.tooltip"
+      [legend]="apexBarChart.legend"></apx-chart>
+  </div>
+</div>
+<!-- <ng-template #modalLG let-modal>
+    <div class="modal-header">
+      <h5 class="modal-title" id="myModalLabel160">More Information</h5>
+      <button type="button" class="close" (click)="modal.dismiss('Cross click')" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body" tabindex="0" ngbAutofocus>
+
+  
+        <table class="table table-bordered">
+  
+          <tr>
+            <th scope="col" class="text-nowrap">recordID</th>
+            <th scope="col" class="text-nowrap">setOne</th>
+            <th scope="col" class="text-nowrap">setTwo</th>
+            <th scope="col" class="text-nowrap">chromosome_Position</th>
+            <th scope="col" class="text-nowrap">setOneRaw</th>
+            <th scope="col" class="text-nowrap">setTwoRaw</th>
+            <th scope="col" class="text-nowrap">chromosome</th>
+            <th scope="col" class="text-nowrap">ref</th>
+          </tr>
+          <tr *ngFor="let data of showData">
+            <td class="text-nowrap">{{data.recordID}}</td>
+            <td class="text-nowrap">{{data.setOne}}</td>
+            <td class="text-nowrap">{{data.setTwo}}</td>
+            <td class="text-nowrap">{{data.chromosome_Position}}</td>
+            <td class="text-nowrap">{{data.setOneRaw}}</td>
+            <td class="text-nowrap">{{data.setTwoRaw}}</td>
+            <td class="text-nowrap">{{data.chromosome}}</td>
+            <td class="text-nowrap">{{data.ref}}</td>
+          </tr>
+        </table>
+  
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="modal.close('Accept click')" rippleEffect>
+        Close
+      </button>
+    </div>
+  </ng-template> -->

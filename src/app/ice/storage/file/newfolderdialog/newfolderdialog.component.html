@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>Create a new folder</h1>
+<form [formGroup]="form">
+<mat-dialog-content>
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Folder Name"  formControlName="folderName" [(ngModel)]="folderName">
+   
+  </mat-form-field>
+  <div *ngIf="form.controls['folderName'].errors?.pattern" style="color: red"> * No space permitted</div>
+</mat-dialog-content>
+</form>
+
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button [mat-dialog-close]="folderName" color="primary" [disabled]="form.invalid">OK</button>
+</mat-dialog-actions>

@@ -1,0 +1,207 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <div class="content-body">
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+      <section>
+        <div class="card">
+          <img src="assets/images/Blast_Banner_Image1_scaled.jpg" class="card-img-top" alt="BLAST IMAGE" />
+          <div class="card-body">
+            <form [formGroup]="BLASTForm">
+              <ngb-accordion activeIds="accordion-1" class="accordion collapse-border" #acc="ngbAccordion">
+                <ngb-panel id="accordion-1" [cardClass]="'collapse-border-item'">
+                  <ng-template ngbPanelTitle>
+                    <span class="lead collapse-title text-primary">
+                      Enter Query Sequence
+                    </span>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="form-group">
+                      <label for="jobName" ngbTooltip=" Enter a descriptive title for your BLAST search"
+                        placement="right">
+                        Job Name <span class="required">*</span>
+                      </label>
+                      <input id="jobName" class="form-control" formControlName="jobName" [ngClass]="{
+                          'is-invalid': submitted && form.jobName.errors
+                        }" />
+
+                      <div *ngIf="form.jobName.errors" class="invalid-feedback">
+                        <div *ngIf="form.jobName.errors?.required">
+                          Job Name is required
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="form-group">
+                          <label
+                            class="form-label"
+                            for="toolName"
+                            ngbTooltip="Choose a BLAST Task"
+                            placement="right">
+                            Program Selection (Task)
+                            <span class="required">*</span>
+                          </label>
+                          <ng-select
+                            id="toolName"
+                            formControlName="toolName"
+                            required
+                            [items]="Tools"
+                            bindLabel="toolName"
+                            bindValue="toolName"
+                            [ngClass]="{
+                              'is-invalid': submitted && form.toolName.errors
+                            }">
+                          </ng-select>
+
+                          <div
+                            *ngIf="submitted && form.toolName.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="form.toolName.errors.required">
+                              Tool is required
+                            </div>
+                          </div>
+                        </div> -->
+                    <div class="form-group">
+                      <label class="form-label" for="db"
+                        ngbTooltip="The nucleotide collection consists of GenBank+EMBL+DDBJ+PDB+RefSeq sequences"
+                        placement="right">
+                        Database <span class="required">*</span>
+                      </label>
+                      <ng-select id="db" formControlName="db" required [items]="Databases" bindLabel="db" bindValue="db"
+                        [ngClass]="{
+                          'is-invalid': submitted && form.db.errors
+                        }">
+                      </ng-select>
+
+                      <div *ngIf="submitted && form.db.errors" class="invalid-feedback">
+                        <div *ngIf="form.db.errors.required">
+                          Database is required
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="sequence">
+                        FASTA sequence
+                        <!-- <span class="required">*</span> -->
+                      </label>
+                      <textarea #textLength class="form-control" id="textarea-counter" rows="3"
+                        formControlName="sequence" placeholder=""></textarea>
+                      <!-- <div
+                            *ngIf="form.sequence.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="form.sequence.errors?.required">
+                              sequence is required
+                            </div>
+                          </div> -->
+                    </div>
+                    OR
+                    <div class="form-group">
+                      <label for="accessionId">
+                        Enter accession number
+                        <!-- <span class="required">*</span> -->
+                      </label>
+                      <input id="accessionId" class="form-control" formControlName="accessionId" disabled />
+                      <!-- [ngClass]="{
+                              'is-invalid': submitted && form.accessionId.errors
+                            }" />
+
+                          <div
+                            *ngIf="form.accessionId.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="form.accessionId.errors?.required">
+                              Accession Id is required
+                            </div>
+                          </div> -->
+                    </div>
+                    OR
+                    <div class="from-group">
+                      <div class="custom-file">
+                        <input #fileInput class="custom-file-input" type="file" [disabled]="processing"
+                          (change)="OnFileChange(fileInput.files)" />
+                        <label class="custom-file-label" for="customFile">
+                          Choose file
+                        </label>
+                      </div>
+                    </div>
+
+                    <div *ngIf="error">
+                      {{ error }}
+                    </div>
+                    <hr />
+                    <div>
+                      <i class="text-secondary">
+                        Use the browse button to upload a file from your local
+                        disk. The file may contain a single sequence or a list
+                        of sequences. The data may be either a list of database
+                        accession numbers, MMIP gi numbers, or sequences in
+                        FASTA format.
+                      </i>
+                    </div>
+                    <br />
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel id="accordion-2" [cardClass]="'collapse-border-item'">
+                  <ng-template ngbPanelTitle>
+                    <span class="lead collapse-title text-primary">
+                      Advance Parameters
+                    </span>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="form-group">
+                      <label class="form-label" for="output_format" ngbTooltip="The output format for the blast search"
+                        placement="right">
+                        Output Format
+                      </label>
+                      <ng-select id="output_format" formControlName="output_format" required [items]="outputFormat"
+                        bindLabel="label" bindValue="value">
+                      </ng-select>
+                    </div>
+                    <div class="form-group">
+                      <label for="max_target_sequence"
+                        ngbTooltip="Select the maximum number of aligned sequences to display" placement="right">
+                        Max target Seq
+                      </label>
+                      <input type="number" id="max_target_sequence" class="form-control"
+                        formControlName="max_target_sequence" />
+                    </div>
+                    <div class="form-group">
+                      <label for="expect_threshold" ngbTooltip="Expected number of chance matches in a random model."
+                        placement="right">
+                        Expect threshold
+                      </label>
+                      <input type="number" id="expect_threshold" class="form-control"
+                        formControlName="expect_threshold" />
+                    </div>
+                    <div class="form-group">
+                      <label for="word_size" ngbTooltip="The length of the seed that initiates an alignment."
+                        placement="right">
+                        Word size
+                      </label>
+                      <input type="text" id="word_size" class="form-control" formControlName="word_size" />
+                    </div>
+                    <!-- <div class="form-group custom-control custom-checkbox">
+                          <input
+                            class="form-control custom-control-input"
+                            type="checkbox"
+                            formControlName="html"
+                            id="html" />
+                          <label class="custom-control-label" for="html">
+                            html
+                          </label>
+                        </div> -->
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+              <br />
+              <div class="d-flex justify-content-between">
+                <button class="btn btn-primary" type="reset">Reset</button>
+
+                <button class="btn btn-primary" rippleEffect (click)="formOnSubmit()">
+                  BLAST
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</block-ui>

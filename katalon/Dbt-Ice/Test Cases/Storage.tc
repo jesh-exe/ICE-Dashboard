@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TestCaseEntity>
+   <description></description>
+   <name>Storage</name>
+   <tag></tag>
+   <comment></comment>
+   <testCaseGuid>e082695e-652f-465d-9ff4-fd6f8acbed3f</testCaseGuid>
+   <variableLinks>
+      <testDataLinkId></testDataLinkId>
+      <type>DEFAULT</type>
+      <value></value>
+      <variableId>fc4cce81-36fe-40df-8187-390362888f37</variableId>
+   </variableLinks>
+   <variable>
+      <defaultValue>'/home/preet/Downloads/HetqV33-london-desktop-wallpaper.jpg'</defaultValue>
+      <description></description>
+      <id>fc4cce81-36fe-40df-8187-390362888f37</id>
+      <masked>false</masked>
+      <name>file</name>
+   </variable>
+</TestCaseEntity>

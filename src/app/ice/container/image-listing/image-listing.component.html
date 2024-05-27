@@ -1,0 +1,139 @@
+<div class="content-wrapper container-xxxl p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="content-body">
+    <!-- <div class="list-group" *ngIf="dockerImage">
+      <div
+        (click)="copyClip(image.imageName)"
+        class="list-group-item list-group-item-action"
+        *ngFor="let image of dockerImage">
+        <p class="mb-1">
+          {{ image.imageName }}
+        </p>
+        <small class="text-secondary">{{ image.type }}</small>
+      </div>
+    </div> -->
+    <div class="row mb-1">
+      <div class="col-lg-7 col-sm-12">
+        <ngb-alert [type]="'primary'" [dismissible]="false">
+          <div class="alert-body">
+            A <strong>Docker Image </strong> is a file used to execute code in a
+            Docker container. An image is comparable to a snapshot in virtual
+            machine (VM) environments.
+          </div>
+        </ngb-alert>
+      </div>
+      <div class="col-lg-4 col-sm-12">
+        <div class="input-group input-group-merge">
+          <input
+            type="text"
+            class="form-control search-product"
+            placeholder="Search Image"
+            aria-label="Search..."
+            [(ngModel)]="searchText" />
+          <div
+            class="input-group-append"
+            ngbTooltip="Search by name"
+            placement="right">
+            <span class="input-group-text">
+              <i data-feather="search" class="text-muted"> </i>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-1 col-sm-12 text-right">
+        <div
+          class="btn-group btn-group-toggle"
+          ngbRadioGroup
+          name="radioBasic"
+          [(ngModel)]="grid">
+          <label ngbButtonLabel class="btn btn-outline-primary">
+            <input ngbButton type="radio" [value]="true" />
+            <i data-feather="grid" class="avatar-icon"></i>
+          </label>
+          <label ngbButtonLabel class="btn btn-outline-primary">
+            <input ngbButton type="radio" [value]="false" />
+            <i data-feather="list" class="avatar-icon"></i>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row match-height">
+      <div
+        [ngClass]="grid ? 'col-lg-4 col-sm-12' : 'col-lg-12 col-sm-12'"
+        *ngFor="
+          let item of dockerImage
+            | filter : searchText : 'imageName'
+            | slice : (page - 1) * pageSize : (page - 1) * pageSize + pageSize
+        ">
+        <div class="card" (click)="routeToCreateContainer(item)">
+          <div class="card-body row match-height">
+            <div
+              [ngClass]="grid ? 'col-lg-8 col-sm-12' : 'col-lg-10 col-sm-12'">
+              <h4 class="card-title">
+                {{ item.imageName }}
+              </h4>
+              <p class="card-text" *ngIf="item.type">
+                {{ item.type }}
+              </p>
+              <!-- <a href="{{ item.html_url }}">{{ item.html_url }}</a> -->
+            </div>
+
+            <!-- <div
+              class="card-body text-right"
+              [ngClass]="grid ? 'col-lg-4 col-sm-12' : 'col-lg-2 col-sm-12'">
+              <a
+                routerLink="/workflow/input/{{
+                  item.full_name | splitLast : '/'
+                }}"
+                rippleEffect
+                class="btn btn-success">
+                <i class="fa-solid fa-rocket"></i>&nbsp; Launch
+              </a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="d-flex justify-content-center">
+          <ngb-pagination
+            class="pagination-success"
+            [collectionSize]="dockerImage.length"
+            [pageSize]="pageSize"
+            [rotate]="true"
+            [(page)]="page"
+            [ellipses]="false"
+            [boundaryLinks]="true"
+            *ngIf="dockerImage !== undefined">
+            <ng-template ngbPaginationPrevious
+              ><span
+                [data-feather]="'chevron-left'"
+                [class]="'font-weight-bolder'"
+                [size]="18"></span>
+            </ng-template>
+            <ng-template ngbPaginationFirst
+              ><span
+                [data-feather]="'chevrons-left'"
+                [class]="'font-weight-bolder'"
+                [size]="18"></span>
+            </ng-template>
+            <ng-template ngbPaginationNext
+              ><span
+                [data-feather]="'chevron-right'"
+                [class]="'font-weight-bolder'"
+                [size]="18"></span
+            ></ng-template>
+            <ng-template ngbPaginationLast
+              ><span
+                [data-feather]="'chevrons-right'"
+                [class]="'font-weight-bolder'"
+                [size]="18"></span>
+            </ng-template>
+          </ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

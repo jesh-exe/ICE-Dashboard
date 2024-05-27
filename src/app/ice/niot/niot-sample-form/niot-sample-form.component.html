@@ -1,0 +1,608 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="row match-height">
+      <div class="col-md-12 col-12">
+        <div class="card-body">
+          <div *ngIf="!alertClose && toastmsg!==undefined">
+            <ngb-alert [type]="'primary'" (closed)="alertClose = !alertClose">
+              <div class="alert-body">{{toastmsg}}
+                <button type="button" class="close" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            </ngb-alert>
+          </div>
+        
+          <form [formGroup]="sampleForm" class="form form-horizontal">
+            <div class="content-header">
+              <h2 class="mb-0" style="padding-bottom: 20px">
+                Select Project Name
+              </h2>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label for="name" class="font-weight-bold">
+                  Project Name
+                  <span class="required">* </span>
+                </label>
+                <label>[Project Id-Project Name]</label>
+                <ng-select
+                  [items]="projectnames"
+                  formControlName="projectId"
+                  bindLabel="project"
+                  bindValue="id"
+                  [readonly]="readOnly"
+                  placeholder="Select Project name"
+                >
+                  <ng-template ng-option-tmp let-item="item">
+                    {{ item.project }}
+                    <div style="float: right">{{ item.relation }}</div>
+                  </ng-template>
+                  <ng-template ng-footer-tmp *ngIf="!projectnames.length">
+                    <button
+                      routerLink="/submit/manage-project-list"
+                      class="btn btn-primary"
+                      rippleEffect
+                    >
+                      Add Project
+                    </button>
+                  </ng-template>
+                </ng-select>
+                <span
+                  class="help-block"
+                  *ngIf="
+                    !sampleForm.get('projectId').valid &&
+                    sampleForm.get('projectId').touched
+                  "
+                >
+                  <span *ngIf="sampleForm.get('projectId').errors['required']"
+                    >field is required</span
+                  >
+                </span>
+              </div>
+            </div>
+            <div formGroupName="sample">
+              <div class="content-header">
+                <h2 class="mb-0" style="padding-bottom: 20px">
+                  Enter Sample Info
+                </h2>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name" class="font-weight-bold"
+                    >Sample Name <span class="required">*</span></label
+                  >
+                  <input
+                    type="text"
+                    id="sampleName"
+                    class="form-control"
+                    placeholder="Sample Name"
+                    [readonly]="readOnly"
+                    formControlName="sampleName"
+                    [(ngModel)]="sampleName"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.sampleName').valid &&
+                      sampleForm.get('sample.sampleName').touched
+                    "
+                  >
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.sampleName').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="sampletype" class="font-weight-bold"
+                    >Sample Type <span class="required">*</span></label
+                  >
+
+                  <!-- <ng-select
+                    [items]="sampleTypes"
+                    formControlName="type"
+                    bindLabel="type"
+                    bindValue="type"
+                    [addTag]="true"
+                    [hideSelected]="true"
+                    [minTermLength]="2"
+                    [loading]="false"
+                    typeToSearchText="Please enter 2 or more characters"
+                    [typeahead]="peopleInputType$"
+                  >
+                  </ng-select> -->
+                  <ng-select
+                    [items]="sampleTypes"
+                    formControlName="type"
+                    bindLabel="id"
+                    bindValue="id"
+                    placeholder="Select Type"
+                    [(ngModel)]="selectedValue"
+                  >
+                  </ng-select>
+                  <input
+                    name="type"
+                    *ngIf="selectedValue === 'OTHER'"
+                    class="form-control invalid-input"
+                    type="text"
+                    [(ngModel)]="userInputData"
+                    (change)="StoreInputType($event)"
+                    placeholder="Enter your value"
+                    formControlName="userInputData"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.type').valid &&
+                      sampleForm.get('sample.type').touched
+                    "
+                  >
+                    <span
+                      *ngIf="sampleForm.get('sample.type').errors['required']"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="sampledate" class="font-weight-bold"
+                    >Sample Date <span class="required">*</span></label
+                  >
+                  <input
+                    class="form-control"
+                    type="date"
+                    id="date"
+                    name="sampleDate"
+                    formControlName="sampleDate"
+                    [(ngModel)]="sampleDate"
+                    (ngModelChange)="sampleDate = formatSelectedDate($event)"
+                  />
+
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.sampleDate').valid &&
+                      sampleForm.get('sample.sampleDate').touched
+                    "
+                  >
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.sampleDate').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="depth" class="font-weight-bold"
+                    >Depth <span class="required">*</span></label
+                  >
+                  <div class="input-group mb-2">
+                    <input
+                      type="text"
+                      id="depth"
+                      class="form-control"
+                      placeholder="Depth"
+                      formControlName="depth"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2">
+                        meter(s)
+                      </span>
+                    </div>
+                  </div>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.depth').valid &&
+                      sampleForm.get('sample.depth').touched
+                    "
+                  >
+                    <span
+                      *ngIf="sampleForm.get('sample.depth').errors['required']"
+                    >
+                      field is required
+                    </span>
+                    <span
+                      *ngIf="sampleForm.get('sample.depth').errors['pattern']"
+                    >
+                      invalid input
+                    </span>
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="latitude" class="font-weight-bold"
+                    >Lattitude <span class="required">*</span> (in
+                    decimals)</label
+                  >
+                  <div class="input-group mb-2">
+                    <input
+                      type="text"
+                      id="latitude"
+                      class="form-control"
+                      name="latitude"
+                      placeholder="Lattitude"
+                      formControlName="latitude"
+                      autocomplete="off"
+                      onkeydown="return ['Backspace','Delete','ArrowLeft','ArrowRight','.','-'].includes(event.key) || (!isNaN(Number(event.key)) && event.code !== 'Space') || (event.ctrlKey && event.key === 'v')" (paste)="validatePaste($event)" 
+                    />
+                    <!-- <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"
+                        >decimals</span
+                      >
+                    </div> -->
+                  </div>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.latitude').valid &&
+                      sampleForm.get('sample.latitude').touched
+                    "
+                  >
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.latitude').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="longitude" class="font-weight-bold"
+                    >Longitude <span class="required">*</span> (in
+                    decimals)</label
+                  >
+                  <div class="input-group mb-2">
+                    <input
+                      type="text"
+                      id="longitude"
+                      class="form-control"
+                      name="longitude"
+                      placeholder="Longitude"
+                      formControlName="longitude"
+                      autocomplete="off"
+                      onkeydown="return ['Backspace','Delete','ArrowLeft','ArrowRight','.','-'].includes(event.key) || (!isNaN(Number(event.key)) && event.code !== 'Space') || (event.ctrlKey && event.key === 'v')" (paste)="validatePaste($event)"
+                    />
+                    <!-- <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"
+                        >decimals</span
+                      >
+                    </div> -->
+                  </div>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.longitude').valid &&
+                      sampleForm.get('sample.longitude').touched
+                    "
+                  >
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.longitude').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="location" class="font-weight-bold"
+                    >Location <span class="required">*</span></label
+                  >
+
+                  <input
+                    type="text"
+                    id="location"
+                    class="form-control"
+                    name="location"
+                    placeholder="Location"
+                    formControlName="location"
+                  />
+
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.location').valid &&
+                      sampleForm.get('sample.location').touched
+                    "
+                  >
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.location').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="ph" class="font-weight-bold"
+                    >pH <span class="required">*</span></label
+                  >
+                  <input
+                    type="number"
+                    id="ph"
+                    class="form-control"
+                    name="ph"
+                    placeholder="pH"
+                    formControlName="ph"
+                    autocomplete="off"
+                    onkeydown="return ['Backspace','Delete','ArrowLeft','ArrowRight','.','-'].includes(event.key) || (!isNaN(Number(event.key)) && event.code !== 'Space') || (event.ctrlKey && event.key === 'v')" (paste)="validatePaste($event)"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.ph').valid &&
+                      sampleForm.get('sample.ph').touched
+                    "
+                  >
+                    <span *ngIf="sampleForm.get('sample.ph').errors['required']"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="temperature" class="font-weight-bold"
+                    >Temperature <span class="required">*</span></label
+                  >
+                  <div class="input-group mb-2">
+                    <input
+                    type="text"
+                      id="temperature"
+                      class="form-control"
+                      name="temperature"
+                      placeholder="Temperature"
+                      formControlName="temperature"
+                      autocomplete="off"
+                      onkeydown="return ['Backspace','Delete','ArrowLeft','ArrowRight','.','-'].includes(event.key) || (!isNaN(Number(event.key)) && event.code !== 'Space') || (event.ctrlKey && event.key === 'v')" (paste)="validatePaste($event)"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2">°C</span>
+                    </div>
+                  </div>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.temperature').valid &&
+                      sampleForm.get('sample.temperature').touched
+                    "
+                  >
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.temperature').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="pressure" class="font-weight-bold"
+                    >Pressure</label
+                  >
+                  <div class="input-group mb-2">
+                    <input
+                      type="number"
+                      id="pressure"
+                      class="form-control"
+                      name="pressure"
+                      formControlName="pressure"
+                      autocomplete="off"
+                      onkeydown="return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.key) || (!isNaN(Number(event.key)) && event.code !== 'Space') || (event.ctrlKey && event.key === 'v')" (paste)="validatePaste($event)"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"
+                        >bar</span
+                      >
+                    </div>
+                  </div>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.pressure').valid &&
+                      sampleForm.get('sample.pressure').touched
+                    "
+                  >
+                    <!-- <span
+                      *ngIf="
+                        sampleForm.get('sample.pressure').errors['required']
+                      ">
+                      field is required
+                    </span> -->
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.pressure').errors['pattern']
+                      "
+                    >
+                      invalid input
+                    </span>
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="salinity" class="font-weight-bold"
+                    >Salinity
+                  </label>
+                  <div class="input-group mb-2">
+                    <input
+                      type="text"
+                      id="salinity"
+                      class="form-control"
+                      name="salinity"
+                      placeholder="Salinity"
+                      formControlName="salinity"
+                      autocomplete="off"
+                      onkeydown="return ['Backspace','Delete','ArrowLeft','ArrowRight','.'].includes(event.key) || (!isNaN(Number(event.key)) && event.code !== 'Space') || (event.ctrlKey && event.key === 'v')" (paste)="validatePaste($event)"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"
+                        >ppt</span
+                      >
+                    </div>
+                  </div>
+                  <!-- <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.salinity').valid &&
+                      sampleForm.get('sample.salinity').touched
+                    ">
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.salinity').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span> -->
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="dissolvedOxygen" class="font-weight-bold"
+                    >Dissolved Oxygen
+                  </label>
+                  <div class="input-group mb-2">
+                    <input
+                      type="text"
+                      id="dissolvedOxygen"
+                      class="form-control"
+                      name="dissolvedOxygen"
+                      placeholder="Dissolved Oxygen"
+                      formControlName="dissolvedOxygen"
+                      autocomplete="off"
+                      onkeydown="return ['Backspace','Delete','ArrowLeft','ArrowRight','.'].includes(event.key) || (!isNaN(Number(event.key)) && event.code !== 'Space') || (event.ctrlKey && event.key === 'v')" (paste)="validatePaste($event)"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text" id="basic-addon2"
+                        >mg/L</span
+                      >
+                    </div>
+                  </div>
+                  <!-- <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.dissolvedOxygen').valid &&
+                      sampleForm.get('sample.dissolvedOxygen').touched
+                    ">
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.dissolvedOxygen').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                  </span> -->
+                </div>
+                <!-- <div class="form-group col-md-6">
+                  <label for="environmentMaterial" class="font-weight-bold"
+                    >Environmental Material
+                    <span class="required">*</span></label
+                  >
+                  <ng-select
+                    [items]="environmentMaterials"
+                    formControlName="environmentMaterial"
+                    bindLabel="id"
+                    bindValue="id"
+                    placeholder="Select environmentMaterial"
+                  >
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.environmentMaterial').valid &&
+                      sampleForm.get('sample.environmentMaterial').touched
+                    "
+                  >
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.environmentMaterial').errors[
+                          'required'
+                        ]
+                      "
+                      >field is required</span
+                    >
+                  </span>
+                </div> -->
+                <div class="form-group col-md-6">
+                  <label for="publications" class="font-weight-bold"
+                    >Publication</label
+                  >
+                  <!-- <input
+                    type="text"
+                    id="publications"
+                    class="form-control"
+                    name="publications"
+                    placeholder="Publication"
+                    formControlName="publications"
+                  /> -->
+                  <ng-select
+                    [items]="publicationFields"
+                    formControlName="publications"
+                    bindLabel="id"
+                    bindValue="id"
+                    placeholder="Select Type"
+                    [(ngModel)]="publicationValue"
+                    name="publications"
+                    id="publications"
+                  >
+                  </ng-select>
+                  <input
+                    name="publications"
+                    *ngIf="publicationValue === 'PUBLISHED'"
+                    class="form-control"
+                    type="text"
+                    [(ngModel)]="userData"
+                    (change)="StorePublishType($event)"
+                    placeholder="Title of the publication and DOI"
+                    formControlName="userData"
+                  />
+                  <!-- <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('sample.publications').valid &&
+                      sampleForm.get('sample.publications').touched
+                    ">
+                    <span
+                      *ngIf="
+                        sampleForm.get('sample.publications').errors['required']
+                      "
+                      >field is required</span
+                    >
+                  </span> -->
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <button type="reset" rippleEffect class="btn btn-primary">
+                  Reset
+                </button>
+
+                <button
+                  *ngIf="isEditMode"
+                  class="btn btn-primary"
+                  type="submit"
+                  (click)="updateSampleDetails()"
+                >
+                  Update
+                </button>
+                <!-- <span class="help-block" *ngIf="sampleForm.valid">
+                  Please enter valid data
+                </span> -->
+                <button
+                  type="submit"
+                  rippleEffect
+                  class="btn btn-primary"
+                  [disabled]="isEditMode || !sampleForm.valid"
+                  (click)="onSampleSubmit()"
+                >
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

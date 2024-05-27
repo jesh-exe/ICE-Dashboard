@@ -1,0 +1,174 @@
+// @import '@core/scss/angular/libs/ratings.component.scss';
+@import "~@angular/cdk/overlay-prebuilt.css";
+
+.item-img {
+  padding-left: 7.5rem !important;
+}
+
+.grid-view .item-name .text-body {
+  inline-size: 223px;
+  overflow-wrap: break-word;
+}
+
+.user-menu {
+  background-color: #fafafa;
+  padding: 4pt;
+  // font-size: 10pt;
+  z-index: 1000;
+  box-shadow: 0 0 12pt rgba(0, 0, 0, 0.25);
+  border-radius: 4pt;
+  padding: 0.5em 0 0.5em 0;
+  animation: fadeIn 0.1s ease-out;
+  opacity: 1;
+  display: block;
+}
+
+.user-menu hr {
+  border: none;
+  border-bottom: 1px solid #eee;
+}
+
+.user-menu div {
+  cursor: pointer;
+  display: block;
+  text-decoration: none;
+  color: #333;
+  padding: 0.5em 2em 0.5em 0.75em;
+  max-width: 18em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-menu div:hover {
+  //background-color: #7367f0
+  background-color: #314f8b;
+  color: #fff;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+@media (min-width: 910px) and (max-width: 1200px) {
+  .ecommerce-application .grid-view {
+    grid-template-columns: 1fr 1fr 1fr !important;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1470px) {
+  .ecommerce-application .grid-view {
+    grid-template-columns: 1fr 1fr 1fr !important;
+    .card.ecommerce-card {
+      width: 300px;
+    }
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 910px) {
+  .ecommerce-application .grid-view {
+    grid-template-columns: 1fr 1fr !important;
+    //column-gap: 1rem;
+    .card.ecommerce-card {
+      margin-left: 30px;
+      width: 300px !important;
+    }
+  }
+
+  .item-img {
+    padding-left: 8.7rem !important;
+  }
+
+  .item-name {
+    .text-body {
+      inline-size: 250px;
+    }
+  }
+}
+
+@media (min-width: 1471px) and (max-width: 1792px) {
+  .ecommerce-application .grid-view {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .d-flex {
+    display: contents !important;
+}
+  .list-view {
+    .item-img {
+      padding-left: 0rem !important;
+    }
+
+    .item-name {
+      .text-body {
+        inline-size: 550px;
+      }
+    }
+  }
+}
+
+@media (min-width: 414px) and (max-width: 896px) {
+
+  .list-view {
+    .item-img {
+      padding-left: 1.2rem !important;
+    }
+
+    .item-name {
+      .text-body {
+        inline-size: 350px;
+      }
+    }
+  }
+}
+
+.material-icons.file-or-folder-icon {
+  font-size: 53px;
+}
+
+.ecommerce-application .grid-view .ecommerce-card .item-img {
+  min-height: 5.85rem;
+  margin-top: 0.75rem;
+}
+
+.ecommerce-application .grid-view {
+  .card.ecommerce-card {
+    width: 265px;
+    margin-left: 60px;
+  }
+}
+ .btn{
+  float: left !important;
+ }
+
+
+ .modal-content {
+  padding: 26px;
+}
+
+
+li.inline-block-child {
+  padding-right: 230px;
+  list-style-type:disc;
+}
+.cdk-overlay-container {
+  z-index:2000;
+}
+
+.owner-header{
+  text-transform: capitalize;
+}
+
+// .datetimepicker{
+ 
+//   // font-size: 10pt;
+//   z-index: 2000;
+//   box-shadow: 0 0 12pt rgba(0, 0, 0, 0.25);
+//   border-radius: 4pt;
+//   padding: 0.5em 0 0.5em 0;
+//   animation: fadeIn 0.1s ease-out;
+//   opacity: 1;
+//   display: block;
+// }

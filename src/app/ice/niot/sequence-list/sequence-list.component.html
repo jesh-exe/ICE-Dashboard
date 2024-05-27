@@ -1,0 +1,153 @@
+<div class="content-wrapper p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="row" id="basic-table">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header class-sequence">
+            <h2 style="font-size: 30px" class="text-white">Sequence List</h2>
+            <div class="btn-group">
+              <a
+                routerLink="/submit/niot-sequence-form"
+                class="btn btn-outline-danger text-white"
+                role="button"
+                aria-pressed="true"
+                >Add New Sequence</a
+              >
+            </div>
+          </div>
+
+          <div class="table table-striped">
+            <table class="table">
+              <thead style="color: rgb(76, 124, 170)">
+                <tr>
+                  <th class="font-weight-bold">Temp Accession Number</th>
+                  <th class="font-weight-bold">Sequence Header</th>
+                  <th class="font-weight-bold">Sample Name</th>
+                  <th class="font-weight-bold">Sequence Type</th>
+                  <th>Status</th>
+                  <!-- <th>Status</th> -->
+                  <!-- <th class="font-weight-bold">Actions</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sequence of sequencedetails">
+                  <td>
+                    <a
+                      class="underline"
+                      (click)="navigateToSequence(sequence.sequenceId)"
+                      ><span class="font-weight-bold">{{
+                        sequence.tempAccessionNumber
+                      }}</span></a
+                    >
+                  </td>
+                  <td>
+                    <span class="font-weight-bold">{{
+                      sequence.sequenceHeader
+                    }}</span>
+                  </td>
+
+                  <td>
+                    <span class="font-weight-bold">{{
+                      sequence.sample.sampleName
+                    }}</span>
+                  </td>
+                  <td>
+                    <span class="font-weight-bold">
+                      {{ sequence.sequenceType }}
+                    </span>
+                  </td>
+
+                 <td>
+                  <div
+                  class="badge badge-pill"
+                  [ngClass]="{
+                    'badge-light-success': sequence.status == 'ACCEPTED',
+                    'badge-danger': sequence.status == 'REJECTED',
+                    'badge-light-warning': sequence.status == 'PENDING',
+                    'badge-light-primary': sequence.status == 'UNDER_REVIEW'
+                  }"
+                  style="font-size: 1.1rem; font-weight: 500; padding: 8px"
+                >
+                  {{ sequence.status }}
+                </div>
+                  </td> 
+
+                  <!-- <td><span class="badge badge-pill badge-light-primary mr-1">
+                        {{project.project.status}}
+                      </span></td> -->
+                  <!-- <td class="overflow-hidden"> -->
+                    <!-- <div ngbDropdown container="body">
+                      <button
+                        type="button"
+                        class="btn btn-sm hide-arrow"
+                        ngbDropdownToggle
+                        data-toggle="dropdown">
+                        <i data-feather="more-vertical"></i>
+                      </button>
+                      <div ngbDropdownMenu>
+                        <a
+                          ngbDropdownItem
+                          (click)="editsequence(sequence.sequenceId)">
+                          <i data-feather="edit-2" class="mr-50"></i
+                          ><span>Edit</span>
+                        </a>-->
+                    <!-- <a ngbDropdownItem href="javascript:void(0);">
+                            <i data-feather="eye" class="mr-50"></i><span>View</span>
+                          </a> -->
+                    <!-- <a
+                          ngbDropdownItem
+                          (click)="deletesequence(sequence.sequenceId)">
+                          <i data-feather="trash" class="mr-50"></i
+                          ><span>Delete</span>
+                        </a>
+                      </div>
+                    </div> -->
+                    <!-- <div class="d-flex align-items-center col-actions"> -->
+                      <!-- <a
+                        class="mr-1"
+                        container="body"
+                        placement="top"
+                        ngbTooltip="Preview Project"
+                        style="color: navy"
+                        (click)="navigateToComponent(project.projectId)"
+                      >
+                        <i size="18" data-feather="eye"></i>
+                      </a> -->
+                      <!-- <a
+                        class="mr-1"
+                        container="body"
+                        placement="top"
+                        ngbTooltip="Edit Sequence"
+                        style="color: orange"
+                        (click)="editsequence(sequence.sequenceId)"
+                      >
+                        <i size="18" data-feather="edit"></i>
+                      </a>
+
+                      <a
+                        class="mr-1"
+                        container="body"
+                        placement="top"
+                        ngbTooltip="Delete Sequence"
+                        style="color: red"
+                        (click)="deletesequence(sequence.sequenceId)"
+                      >
+                        <i
+                          data-feather="trash"
+                          size="18"
+                          class="cursor-pointer"
+                        ></i>
+                      </a>
+                    </div> -->
+                  <!-- </td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--/ Table Basic -->
+  </div>
+</div>

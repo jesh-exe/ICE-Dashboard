@@ -1,0 +1,73 @@
+@import "@core/scss/angular/libs/file-uploader.component.scss";
+
+.file-drop-zone {
+  min-height: 400px;
+}
+
+#row2 {
+  position: absolute;
+  margin: -169px 31px;
+  top: 98%;
+  left: 45.87%;
+  transform: translate(-45%, -50%);
+  //text-align: center;
+}
+
+.text-center {
+  color: #314f8b;
+}
+.headings {
+  margin-top: -20px;
+}
+// .col-lg-12{
+//     width: 30%;
+// }
+
+@media screen and (max-width: 530px) {
+  #row2 {
+    position: relative;
+    margin: 10px 10px;
+    top: -35%;
+    padding: 0px 22px;
+    left: 45%;
+    // text-align: center;
+  }
+}
+
+// ngb-typeahead-window .dropdown-menu {
+//   position: absolute !important;
+//   top: 65px !important;
+//   left: 20px !important;
+//   will-change: transform !important;
+//   transform: translate(0px, 0px) !important;
+// }
+
+// dropdown-menu.show {
+//   display: contents;
+//   overflow: scroll;
+//   height: 500px;
+// }
+
+// ::ng-deep ngb-typeahead-window.dropdown-menu {
+//     display: contents;
+//   overflow: scroll;
+//   height: 500px;
+// }
+
+.dropdown-item {
+  padding: 0.3rem 1rem;
+  width: -webkit-fill-available !important;
+}
+
+.toast-top-center {
+  top: 211px;
+  margin: 0 auto;
+  left: 4%;
+}
+
+.myDIV:hover + .hide {
+  display: block;
+  color: black;
+}
+
+

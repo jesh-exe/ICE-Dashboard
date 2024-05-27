@@ -1,0 +1,220 @@
+<div class="content-wrapper container-xxxl overflow-hidden p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <!-- Sidebar filters  -->
+
+  <!--/ Sidebar filters -->
+
+  <div class="content-detached content-right">
+    <!-- <mat-sidenav
+      #drawer
+      class="sidenav"
+      opened
+      mode="side"
+      [fixedInViewport]="options.value.fixed"
+      [fixedTopGap]="options.value.top"
+      [fixedBottomGap]="options.value.bottom"
+    >
+      <div class="sidebar-detached sidebar-left">
+        <div class="sidebar">
+          <core-sidebar
+            class="sidebar-shop"
+            id="ecommerce-sidebar-toggler"
+            name="ecommerce-sidebar"
+            collapsibleSidebar="bs-gt-lg"
+            overlayClass="body-content-overlay"
+          >
+            <sidebar
+              (filterext)="getFileOnFilter($event)"
+              (filterall)="getAllFileOnFilter($event)"
+              (filtersize)="getFileOnSize($event)"
+            ></sidebar>
+          </core-sidebar>
+        </div>
+      </div>
+    </mat-sidenav> -->
+    <!-- <block-ui> -->
+    <!-- <div
+        class="content-body"
+        [ngStyle]="{
+          'margin-left': drawer.opened ? 'calc(260px + 2rem)' : '0'
+        }"
+      > -->
+    <!-- <div class="btn-group">
+          <a
+            routerLink="/file/drive"
+            class="btn btn-outline-primary btn-md mr-1"
+            role="button"
+            aria-pressed="true"
+            >People</a
+          >
+        </div> -->
+
+    <!-- <core-card
+      [actions]="[ 'reload']"
+      [reloadTime]="'1000'"
+    ></core-card> -->
+    <!-- E-commerce Head Section Starts -->
+    <section id="ecommerce-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="ecommerce-header-items">
+            <i
+              class="fa-solid fa-arrow-up mat-button"
+              style="color: #2a4478; font-size: 19px"
+              (click)="backWithLocation()"
+            ></i>
+            <!-- <div class="result-toggler">
+                  <button
+                    class="navbar-toggler shop-sidebar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    (click)="toggleSidebar('ecommerce-sidebar')"
+                  >
+                    <span class="navbar-toggler-icon d-block d-lg-none"
+                      ><i data-feather="menu"></i
+                    ></span>
+                  </button>
+                  <div class="search-results">{{ (fileElements | filter: searchText:'name').length }} results found</div> 
+                </div> -->
+
+            <div class="view-options d-flex">
+              <button mat-button (click)="refresh()">
+                <mat-icon [@rotatedState]="state" style="color: #2a4478"
+                  >refresh</mat-icon
+                >
+              </button>
+
+              <!-- <mat-sidenav-container class="example-container">
+                    <mat-sidenav-content [formGroup]="options">
+                      <div>
+                        <a
+                          class="nav-link modern-nav-toggle d-none d-xl-block pr-0"
+                          mat-button
+                          (click)="drawer.toggle()"
+                          [ngClass]="
+                            drawer.opened === true ? 'icon-circle' : 'icon-disc'
+                          "
+                          class="toggle-icon feather font-medium-4 collapse-toggle-icon text-primary"
+                        ></a>
+                      </div>
+                    </mat-sidenav-content>
+                  </mat-sidenav-container> -->
+
+              <!-- <div class="btn-group">
+                    <a
+                      routerLink="/file/drive"
+                      class="btn btn-outline-primary btn-md mr-1"
+                      role="button"
+                      aria-pressed="true"
+                      >My Drive</a
+                    >
+                  </div> -->
+
+              <div
+                class="btn-group dropdown-sort btn-outline-primary mr-1"
+                style="border-radius: 0.358rem"
+                ngbDropdown
+              >
+                <button
+                  ngbDropdownToggle
+                  type="button"
+                  class="btn btn-outline-primary"
+                  style="border: none !important"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  rippleEffect
+                  (click)="getPeopleList()"
+                  id="dropdownBasic"
+                >
+                  <span class="active-sorting">{{
+                    selectedValue === "People"
+                      ? "People"
+                      : (selectedValue | titlecase)
+                  }}</span>
+                </button>
+                <span
+                  class="btn-sm"
+                  style="margin: auto"
+                  *ngIf="selectedValue !== 'People'"
+                  (click)="cancelSelection()"
+                >
+                  &times;
+                </span>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic">
+                  <div ngbDropdownItem *ngFor="let user of peopleList">
+                    <li (click)="sharedPeopleFileList(user.user)">
+                      {{ user.user | titlecase }}
+                    </li>
+                  </div>
+                </div>
+              </div>
+              <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label
+                  class="btn btn-icon btn-outline-primary view-btn grid-view-btn"
+                  [class.active]="gridViewRef === true"
+                >
+                  <input
+                    type="radio"
+                    name="radio_options"
+                    id="radio_option1"
+                    (click)="gridView()"
+                  />
+                  <i data-feather="grid" class="font-medium-3"></i>
+                </label>
+                <label
+                  class="btn btn-icon btn-outline-primary view-btn list-view-btn"
+                  [class.active]="gridViewRef !== true"
+                >
+                  <input
+                    type="radio"
+                    name="radio_options"
+                    id="radio_option2"
+                    (click)="listView()"
+                  />
+                  <i data-feather="list" class="font-medium-3"></i>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ecommerce-searchbar" class="ecommerce-searchbar">
+      <div class="row mt-1">
+        <div class="col-sm-12">
+          <div class="input-group input-group-merge">
+            <input
+              type="text"
+              class="form-control search-product"
+              id="shop-search"
+              placeholder="Search File"
+              aria-label="Search..."
+              aria-describedby="shop-search"
+              [(ngModel)]="searchValue"
+              name="searchValue"
+              (keyup)="filterUpdate($event)"
+            />
+            <div class="input-group-append">
+              <span class="input-group-text"
+                ><i data-feather="search" class="text-muted"></i
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <app-shared-list
+      (contentHeaderEvent)="updateContentHeader($event)"
+      [gridViewRef]="gridViewRef"
+      (newfileElement)="updatefileElement($event)"
+      [fileElements]="fileElements"
+    ></app-shared-list>
+    <!-- </div>
+    </block-ui> -->
+  </div>
+</div>
+
+<!--/ Ecommerce Item -->

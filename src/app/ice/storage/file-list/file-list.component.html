@@ -1,0 +1,142 @@
+<div class="content-wrapper container-xxxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- File List -->
+    <section class="users-list-wrapper">
+      <div class="card mb-3 lg-3 xs-3">
+        <div class="row m-25 mb-3 lg-3 xs-3">
+          <div class="col-md-6 col-sm-6 col-12">
+            <div
+              class="d-flex justify-content-between align-items-center mx-1"
+            ></div>
+          </div>
+          <div
+            class="col-md-6 col-12 d-flex justify-content-start justify-content-md-end"
+          >
+            <div
+              class="d-flex align-items-center justify-content-end pr-1 pb-1 pb-md-0"
+            >
+              <label class="d-flex align-items-center ml-1 ml-md-0"
+                >Search:<input
+                  [(ngModel)]="searchValue"
+                  name="searchValue"
+                  type="search"
+                  class="form-control ml-25"
+                  (keyup)="filterUpdate($event)"
+              /></label>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-sm" *ngIf="rows !== undefined">
+            <tr class="font-weight-bold">
+              <th scope="col">No</th>
+              <th scope="col">FileName</th>
+              <th scope="col">Download</th>
+              <th scope="col">Size</th>
+              <th scope="col">Delete</th>
+            </tr>
+            <tr
+              *ngFor="
+                let item of rows | slice: (page - 1) * pageSize:page * pageSize;
+                let i = index
+              "
+              scope="row"
+            >
+              <td>{{ (page - 1) * pageSize + i + 1 }}</td>
+              <td>{{ item.fileName }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn icon-btn"
+                  (click)="downloadFile(item.fileName)"
+                >
+                  <span
+                    [data-feather]="'download'"
+                    class="text text-primary"
+                  ></span>
+                </button>
+              </td>
+              <!-- <td>{{item.fileDownloadUri}}</td> -->
+
+              <td *ngIf="item.size >= 1073741824; else elseFirst">
+                <span>{{ item.size / 1073741824 | number: ".2" }} GB</span>
+              </td>
+
+              <ng-template #elseFirst>
+                <td *ngIf="item.size >= 1048576; else elseSecond">
+                  <span>{{ item.size / 1048576 | number: ".2" }} MB</span>
+                </td>
+              </ng-template>
+
+              <ng-template #elseSecond>
+                <td>
+                  <span>{{ item.size / 1024 | number: ".2" }} KB</span>
+                </td>
+              </ng-template>
+
+              <td>
+                <button
+                  type="button"
+                  class="btn icon-btn"
+                  rippleEffect
+                  (click)="ConfirmTextOpen(item.fileName)"
+                >
+                  <span
+                    [data-feather]="'trash'"
+                    class="text text-primary"
+                  ></span>
+                </button>
+              </td>
+            </tr>
+          </table>
+
+          <div class="d-flex justify-content-between align-items-center m-1">
+            <label class="d-flex align-items-center"
+              >Show
+              <select
+                class="form-control mx-25"
+                [(ngModel)]="selectedOption"
+                (ngModelChange)="selected($event)"
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+              </select>
+              entries</label
+            >
+            <ngb-pagination
+              [collectionSize]="rows.length"
+              [pageSize]="pageSize"
+              [rotate]="true"
+              [(page)]="page"
+              [ellipses]="false"
+              [boundaryLinks]="true"
+              *ngIf="rows !== undefined"
+            >
+              <ng-template ngbPaginationFirst>First</ng-template>
+              <ng-template ngbPaginationPrevious
+                ><span
+                  [data-feather]="'chevron-left'"
+                  [class]="'font-weight-bolder'"
+                ></span
+                >Prev
+              </ng-template>
+              <ng-template ngbPaginationNext
+                >Next<span
+                  [data-feather]="'chevron-right'"
+                  [class]="'font-weight-bolder'"
+                ></span>
+              </ng-template>
+              <ng-template ngbPaginationLast>Last</ng-template>
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--/ File List -->
+  </div>
+</div>

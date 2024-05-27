@@ -1,0 +1,1170 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <section class="vertical-wizard">
+      <div id="stepper1" class="bs-stepper vertical vertical-wizard-example">
+        <div class="bs-stepper-header">
+          <div class="step" data-target="#account-details-vertical">
+            <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">1</span>
+              <span class="bs-stepper-label">
+                <span class="bs-stepper-title">Project</span>
+                <span class="bs-stepper-subtitle">Add Project Details</span>
+              </span>
+            </button>
+          </div>
+          <div class="step" data-target="#personal-info-vertical">
+            <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">2</span>
+              <span class="bs-stepper-label">
+                <span class="bs-stepper-title">Sample</span>
+                <span class="bs-stepper-subtitle">Add Sample Details</span>
+              </span>
+            </button>
+          </div>
+          <div class="step" data-target="#address-step-vertical">
+            <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">3</span>
+              <span class="bs-stepper-label">
+                <span class="bs-stepper-title">Sequence</span>
+                <span class="bs-stepper-subtitle">Add Sequence Details</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="bs-stepper-content">
+          <div id="account-details-vertical" class="content">
+            <form [formGroup]="projectForm">
+              <div class="content-header">
+                <h2 class="mb-0">Enter Project Details</h2>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    formControlName="name"
+                    [readonly]="readOnly"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.name?.valid && projectform.name?.touched
+                    "
+                  >
+                    <span *ngIf="projectform.name?.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="type">Type</label>
+                  <ng-select
+                    [items]="types"
+                    formControlName="type"
+                    bindLabel="id"
+                    bindValue="id"
+                    (click)="getEnumType()"
+                    placeholder="Select Type"
+                  >
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="!projectform.type.valid && projectform.type.touched"
+                  >
+                    <span *ngIf="projectform.type.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group form-password-toggle col-md-6">
+                  <label>Start Date</label>
+
+                  <input
+                    class="form-control"
+                    type="datetime-local"
+                    id="date"
+                    name="date"
+                    formControlName="fromDate"
+                    [(ngModel)]="fromDate"
+                    [min]="getCurrentDateTime()"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.fromDate.valid &&
+                      projectform.fromDate.touched
+                    "
+                  >
+                    <span *ngIf="projectform.fromDate.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group form-password-toggle col-md-6">
+                  <label>End Date</label>
+                  <input
+                    class="form-control"
+                    type="datetime-local"
+                    id="todate"
+                    name="date"
+                    formControlName="toDate"
+                    [(ngModel)]="toDate"
+                    [min]="getCurrentDateTime()"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.toDate.valid && projectform.toDate.touched
+                    "
+                  >
+                    <span *ngIf="projectform.toDate.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group form-password-toggle col-md-6">
+                  <label for="organization">Organization</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="organization"
+                    formControlName="organization"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.organization.valid &&
+                      projectform.organization.touched
+                    "
+                  >
+                    <span *ngIf="projectform.organization.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group form-password-toggle col-md-6">
+                  <label for="authorName">Author Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="authorName"
+                    formControlName="authorName"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.authorName.valid &&
+                      projectform.authorName.touched
+                    "
+                  >
+                    <span *ngIf="projectform.authorName.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group form-password-toggle col-md-6">
+                  <label for="vesselName">Vessel Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="vesselName"
+                    formControlName="vesselName"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.vesselName.valid &&
+                      projectform.vesselName.touched
+                    "
+                  >
+                    <span *ngIf="projectform.vesselName.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group form-password-toggle col-md-6">
+                  <label for="location">Location</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="location"
+                    formControlName="location"
+                  />
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.location.valid &&
+                      projectform.location.touched
+                    "
+                  >
+                    <span *ngIf="projectform.location.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group form-password-toggle col-md-6">
+                  <label>Choose status</label>
+                  <ng-select
+                    [items]="statuses"
+                    formControlName="status"
+                    bindLabel="id"
+                    bindValue="id"
+                    (click)="getEnumType()"
+                    placeholder="Select Type"
+                  >
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.status.valid && projectform.status.touched
+                    "
+                  >
+                    <span *ngIf="projectform.status.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+                <div class="form-group form-password-toggle col-md-6">
+                  <label>Choose members</label>
+                  <ng-select
+                    [items]="membersname"
+                    formControlName="members"
+                    bindLabel="id"
+                    bindValue="id"
+                    (click)="getUsersName()"
+                    [multiple]="true"
+                    placeholder="Select members"
+                  >
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !projectform.members.valid && projectform.members.touched
+                    "
+                  >
+                    <span *ngIf="projectform.members.errors.required"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <button
+                  class="btn btn-primary"
+                  type="submit"
+                  [disabled]="isEditMode"
+                  (click)="onSubmit()"
+                >
+                  Submit
+                </button>
+                <span
+                  class="help-block"
+                  *ngIf="!projectForm.valid && projectForm.touched"
+                >
+                  Please enter valid data
+                </span>
+                <button
+                  *ngIf="isEditMode"
+                  class="btn btn-primary"
+                  type="submit"
+                  (click)="updateProjectDetails()"
+                >
+                  Update
+                </button>
+                <button class="btn btn-primary" type="reset">Reset</button>
+              </div>
+            </form>
+          </div>
+          <div id="personal-info-vertical" class="content">
+            <form [formGroup]="sampleForm">
+              <div class="content-header">
+                <h2 class="mb-0">Enter Project Name</h2>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Project Name</label>
+                  <ng-select
+                    [items]="projectnames"
+                    formControlName="projectName"
+                    bindLabel="name"
+                    bindValue="name"
+                    [readonly]="readOnly"
+                    (click)="getProjectNames()"
+                    placeholder="Select projectname"
+                  >
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sampleForm.get('projectName').valid &&
+                      sampleForm.get('projectName').touched
+                    "
+                  >
+                    <span
+                      *ngIf="sampleForm.get('projectName').errors['required']"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div formGroupName="sample">
+                <div class="content-header">
+                  <h2 class="mb-0">Enter Sample Info</h2>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="name">Sample Name</label>
+                    <input
+                      type="text"
+                      id="sampleName"
+                      class="form-control"
+                      placeholder="Sample Name"
+                      [readonly]="readOnly"
+                      formControlName="sampleName"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.sampleName').valid &&
+                        sampleForm.get('sample.sampleName').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.sampleName').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="sampletype">Type</label>
+                    <ng-select
+                      [items]="sampleTypes"
+                      formControlName="type"
+                      bindLabel="id"
+                      bindValue="id"
+                      (click)="getEnumType()"
+                      placeholder="Select Type"
+                    >
+                    </ng-select>
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.type').valid &&
+                        sampleForm.get('sample.type').touched
+                      "
+                    >
+                      <span
+                        *ngIf="sampleForm.get('sample.type').errors['required']"
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="sampledate">Sample Date</label>
+                    <input
+                      class="form-control"
+                      type="datetime-local"
+                      id="date"
+                      name="sampleDate"
+                      formControlName="sampleDate"
+                      [(ngModel)]="sampleDate"
+                      [min]="getCurrentDateTime()"
+                    />
+
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.sampleDate').valid &&
+                        sampleForm.get('sample.sampleDate').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.sampleDate').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="depth">Depth</label>
+                    <input
+                      type="number"
+                      id="depth"
+                      class="form-control"
+                      placeholder="Depth"
+                      formControlName="depth"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.depth').valid &&
+                        sampleForm.get('sample.depth').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.depth').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="longitude">Longitude</label>
+                    <input
+                      type="number"
+                      id="longitude"
+                      class="form-control"
+                      name="longitude"
+                      placeholder="Longitude"
+                      formControlName="longitude"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.longitude').valid &&
+                        sampleForm.get('sample.longitude').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.longitude').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="latitude">Lattitude</label>
+                    <input
+                      type="number"
+                      id="latitude"
+                      class="form-control"
+                      name="latitude"
+                      placeholder="Lattitude"
+                      formControlName="latitude"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.latitude').valid &&
+                        sampleForm.get('sample.latitude').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.latitude').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="location">Location</label>
+                    <input
+                      type="text"
+                      id="location"
+                      class="form-control"
+                      name="location"
+                      placeholder="Location"
+                      formControlName="location"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.location').valid &&
+                        sampleForm.get('sample.location').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.location').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="ph">ph</label>
+                    <input
+                      type="text"
+                      id="ph"
+                      class="form-control"
+                      name="ph"
+                      placeholder="ph"
+                      formControlName="ph"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.ph').valid &&
+                        sampleForm.get('sample.ph').touched
+                      "
+                    >
+                      <span
+                        *ngIf="sampleForm.get('sample.ph').errors['required']"
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="temperature">Temperature</label>
+                    <input
+                      type="number"
+                      id="temperature"
+                      class="form-control"
+                      name="temperature"
+                      placeholder="Temperature"
+                      formControlName="temperature"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.temperature').valid &&
+                        sampleForm.get('sample.temperature').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.temperature').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="pressure">Pressure</label>
+                    <input
+                      type="number"
+                      id="pressure"
+                      class="form-control"
+                      name="pressure"
+                      placeholder="Pressure"
+                      formControlName="pressure"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.pressure').valid &&
+                        sampleForm.get('sample.pressure').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.pressure').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="salinity">Salinity</label>
+                    <input
+                      type="number"
+                      id="salinity"
+                      class="form-control"
+                      name="salinity"
+                      placeholder="Salinity"
+                      formControlName="salinity"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.salinity').valid &&
+                        sampleForm.get('sample.salinity').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.salinity').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+
+                  <div class="form-group col-md-6">
+                    <label for="dissolvedOxygen">Dissolved Oxygen</label>
+                    <input
+                      type="number"
+                      id="dissolvedOxygen"
+                      class="form-control"
+                      name="dissolvedOxygen"
+                      placeholder="Dissolved Oxygen"
+                      formControlName="dissolvedOxygen"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.dissolvedOxygen').valid &&
+                        sampleForm.get('sample.dissolvedOxygen').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.dissolvedOxygen').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="environmentMaterial"
+                      >Environmental Material</label
+                    >
+                    <ng-select
+                      [items]="environmentMaterials"
+                      formControlName="environmentMaterial"
+                      bindLabel="id"
+                      bindValue="id"
+                      (click)="getEnumType()"
+                      placeholder="Select environmentMaterial"
+                    >
+                    </ng-select>
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.environmentMaterial').valid &&
+                        sampleForm.get('sample.environmentMaterial').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.environmentMaterial').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="publications">Publication</label>
+                    <input
+                      type="text"
+                      id="publications"
+                      class="form-control"
+                      name="publications"
+                      placeholder="Publication"
+                      formControlName="publications"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sampleForm.get('sample.publications').valid &&
+                        sampleForm.get('sample.publications').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sampleForm.get('sample.publications').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button
+                    type="submit"
+                    rippleEffect
+                    class="btn btn-primary mr-1"
+                    [disabled]="isEditMode"
+                    (click)="onSampleSubmit()"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    *ngIf="isEditMode"
+                    class="btn btn-primary"
+                    type="submit"
+                    (click)="updateSampleDetails()"
+                  >
+                    Update
+                  </button>
+                  <span
+                    class="help-block"
+                    *ngIf="!sampleForm.valid && sampleForm.touched"
+                  >
+                    Please enter valid data
+                  </span>
+                  <button
+                    type="reset"
+                    rippleEffect
+                    class="btn btn-outline-secondary"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div id="address-step-vertical" class="content">
+            <form [formGroup]="sequenceForm">
+              <div class="content-header">
+                <h2 class="mb-0">Enter Sample Name</h2>
+              </div>
+              <div class="row">
+                <div class="form-group col-md-6">
+                  <label for="name">Sample Name</label>
+                  <ng-select
+                    [items]="samplenames"
+                    formControlName="sampleName"
+                    bindLabel="name"
+                    bindValue="name"
+                    [readonly]="readOnly"
+                    placeholder="Select sampleName"
+                    (click)="getSampleNames()"
+                  >
+                  </ng-select>
+                  <span
+                    class="help-block"
+                    *ngIf="
+                      !sequenceForm.get('sampleName').valid &&
+                      sequenceForm.get('sampleName').touched
+                    "
+                  >
+                    <span
+                      *ngIf="sequenceForm.get('sampleName').errors['required']"
+                      >field is required</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div formGroupName="sequence">
+                <div class="content-header">
+                  <h2 class="mb-0">Enter Sequence Info</h2>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="name">Sequence Header</label>
+                    <input
+                      type="text"
+                      id="sequenceHeader"
+                      class="form-control"
+                      placeholder="SequenceHeader"
+                      formControlName="sequenceHeader"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.sequenceHeader').valid &&
+                        sequenceForm.get('sequence.sequenceHeader').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.sequenceHeader').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="organismType">Organism Type</label>
+                    <ng-select
+                      [items]="organismTypes"
+                      formControlName="organismType"
+                      bindLabel="id"
+                      bindValue="id"
+                      (click)="getEnumType()"
+                      placeholder="Select organismType"
+                    >
+                    </ng-select>
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.organismType').valid &&
+                        sequenceForm.get('sequence.organismType').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.organismType').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="geneName">Gene Name</label>
+                    <input
+                      type="text"
+                      id="geneName"
+                      class="form-control"
+                      placeholder="GeneName"
+                      formControlName="geneName"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.geneName').valid &&
+                        sequenceForm.get('sequence.geneName').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.geneName').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="organismName">organismName</label>
+                    <input
+                      type="text"
+                      id="organismName"
+                      class="form-control"
+                      placeholder="organismName"
+                      formControlName="organismName"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.organismName').valid &&
+                        sequenceForm.get('sequence.organismName').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.organismName').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="description">Description</label>
+                    <input
+                      type="text"
+                      id="description"
+                      class="form-control"
+                      placeholder="Description"
+                      formControlName="description"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.description').valid &&
+                        sequenceForm.get('sequence.description').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.description').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group form-password-toggle col-md-6">
+                    <label>Choose status</label>
+                    <ng-select
+                      [items]="statuses"
+                      formControlName="status"
+                      bindLabel="id"
+                      bindValue="id"
+                      (click)="getEnumType()"
+                      placeholder="Select Type"
+                    >
+                    </ng-select>
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.status').valid &&
+                        sequenceForm.get('sequence.status').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.status').errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="sequencingPlatform">Sequencing Platform</label>
+                    <input
+                      type="text"
+                      id="sequencingPlatform"
+                      class="form-control"
+                      name="sequencingPlatform"
+                      placeholder="Sequencing Platform"
+                      formControlName="sequencingPlatform"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.sequencingPlatform')
+                          .valid &&
+                        sequenceForm.get('sequence.sequencingPlatform').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.sequencingPlatform')
+                            .errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="forwardPrimerSequence"
+                      >Forward Primer Sequence</label
+                    >
+                    <input
+                      type="text"
+                      id="forwardPrimerSequence"
+                      class="form-control"
+                      placeholder="Forward Primer Sequence"
+                      formControlName="forwardPrimerSequence"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.forwardPrimerSequence')
+                          .valid &&
+                        sequenceForm.get('sequence.forwardPrimerSequence')
+                          .touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.forwardPrimerSequence')
+                            .errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-md-6">
+                    <label for="reversePrimerSequence"
+                      >Reverse Primer Sequence</label
+                    >
+                    <input
+                      type="text"
+                      id="reversePrimerSequence"
+                      class="form-control"
+                      name="reversePrimerSequence"
+                      placeholder="Reverse Primer Sequence"
+                      formControlName="reversePrimerSequence"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.reversePrimerSequence')
+                          .valid &&
+                        sequenceForm.get('sequence.reversePrimerSequence')
+                          .touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.reversePrimerSequence')
+                            .errors['required']
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="pressure">Sequence Type</label>
+                    <ng-select
+                      [items]="sequenceTypes"
+                      formControlName="sequenceType"
+                      bindLabel="id"
+                      bindValue="id"
+                      (click)="getEnumType()"
+                      placeholder="Select sequenceType"
+                    >
+                    </ng-select>
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.sequenceType').valid &&
+                        sequenceForm.get('sequence.sequenceType').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.sequenceType').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="quality">Quality</label>
+                    <input
+                      type="text"
+                      id="quality"
+                      class="form-control"
+                      name="quality"
+                      placeholder="quality"
+                      formControlName="quality"
+                    />
+                    <span
+                      class="help-block"
+                      *ngIf="
+                        !sequenceForm.get('sequence.quality').valid &&
+                        sequenceForm.get('sequence.quality').touched
+                      "
+                    >
+                      <span
+                        *ngIf="
+                          sequenceForm.get('sequence.quality').errors[
+                            'required'
+                          ]
+                        "
+                        >field is required</span
+                      >
+                    </span>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between">
+                  <button
+                    type="submit"
+                    rippleEffect
+                    [disabled]="isEditMode"
+                    class="btn btn-primary mr-1"
+                    (click)="onSequenceSubmit()"
+                  >
+                    Submit
+                  </button>
+                  <button
+                    *ngIf="isEditMode"
+                    class="btn btn-primary"
+                    type="submit"
+                    (click)="updateSequenceDetails()"
+                  >
+                    Update
+                  </button>
+                  <span
+                    class="help-block"
+                    *ngIf="!sequenceForm.valid && sequenceForm.touched"
+                  >
+                    Please enter valid data
+                  </span>
+                  <button
+                    type="reset"
+                    rippleEffect
+                    class="btn btn-outline-secondary"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div id="social-links-vertical" class="content">
+            <div class="content-header">
+              <h5 class="mb-0">Social Links</h5>
+              <small>Enter Your Social Links.</small>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="vertical-twitter">Twitter</label>
+                <input
+                  type="text"
+                  id="vertical-twitter"
+                  class="form-control"
+                  placeholder="https://twitter.com/abc"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="vertical-facebook"
+                  >Facebook</label
+                >
+                <input
+                  type="text"
+                  id="vertical-facebook"
+                  class="form-control"
+                  placeholder="https://facebook.com/abc"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="vertical-google">Google+</label>
+                <input
+                  type="text"
+                  id="vertical-google"
+                  class="form-control"
+                  placeholder="https://plus.google.com/abc"
+                />
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="vertical-linkedin"
+                  >Linkedin</label
+                >
+                <input
+                  type="text"
+                  id="vertical-linkedin"
+                  class="form-control"
+                  placeholder="https://linkedin.com/abc"
+                />
+              </div>
+            </div>
+            <div class="d-flex justify-content-between">
+              <button
+                class="btn btn-primary btn-prev"
+                (click)="verticalWizardPrevious()"
+                rippleEffect
+              >
+                <i
+                  data-feather="arrow-left"
+                  class="align-middle mr-sm-25 mr-0"
+                ></i>
+                <span class="align-middle d-sm-inline-block d-none"
+                  >Previous</span
+                >
+              </button>
+              <button
+                class="btn btn-success btn-submit"
+                rippleEffect
+                (click)="onSubmit()"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /Vertical Wizard -->
+  </div>
+</div>

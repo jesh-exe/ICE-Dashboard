@@ -1,0 +1,126 @@
+<div id="resizable-dialog" class="resizable">
+  <div class="dialog-content">
+    <button
+      mat-raised-button
+      type="button"
+      style="float: right"
+      class="btn btn-primary"
+      aria-label="Close"
+      (click)="close()"
+    >
+      <span aria-hidden="true">x</span>
+    </button>
+
+    <!-- <button class="close" mat-button (click)="close()">X</button> -->
+
+    <!--to add input field-->
+    <div>
+      <button
+        mat-raised-button
+        type="button"
+        style="float: right; margin-right: 5px"
+        class="btn btn-primary"
+        aria-label="Add"
+        (click)="toggle()"
+        (click)="checkCurrentFolder()"
+      >
+        <span aria-hidden="true">+</span>
+      </button>
+
+      <h1 mat-dialog-title>Drives</h1>
+    </div>
+
+    <mat-dialog-content>
+      <form [formGroup]="form">
+        <div class="showInputField" *ngIf="show">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter Folder Name"
+              aria-describedby="button-addon2"
+              [(ngModel)]="inputFields"
+              formControlName="inputFields"
+            />
+            <div class="input-group-append" id="button-addon2">
+              <button
+                class="btn btn-outline-primary"
+                type="button"
+                (click)="addFolder(inputFields); toggle()"
+                rippleEffect
+                [disabled]="form.invalid"
+                [disabled]="!inputFields"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+        <div
+          *ngIf="form.controls['inputFields'].errors?.pattern"
+          style="color: red"
+        >
+          * No space permitted
+        </div>
+      </form>
+      <div class="list-container">
+        <!-- Display file list -->
+        <h3>{{ currentFolderName }}</h3>
+
+        <ul>
+          <li
+            class="list"
+            class="list-group-item arrow"
+            *ngFor="let item of fileElements; let i = index"
+          >
+            <i
+              class="{{ iconName[i] }}"
+              style="color: #215285; font-size: 15px; padding-right: 5px"
+              aria-hidden="true"
+            ></i>
+
+            <a
+              class="file-name"
+              *ngIf="item.directory"
+              (click)="onClickCopyPath(item)"
+            >
+              {{ item.fileName }}</a
+            >
+            <a
+              class="file-name"
+              *ngIf="!item.directory"
+              (click)="onClickCopyPath(item)"
+              >{{ item.fileName }}</a
+            >
+            <button
+              type="button"
+              style="float: right"
+              class="btn btn-light btn-sm"
+              (click)="openFolder(item)"
+              *ngIf="item.directory"
+            >
+              <i style="font-size: 15px" class="fa">&#xf105;</i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        type="button"
+        class="btn btn-primary"
+        *ngIf="showBackButton"
+        (click)="goBack()"
+      >
+        Back
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>
+
+<!--||
+                item.fileDownloadUri
+                  .toLowerCase()
+                  .includes('/sharedwithme/'.toLowerCase())
+              " -->

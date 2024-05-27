@@ -1,0 +1,662 @@
+<div class="content-wrapper container-xxxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <form [formGroup]="userEditForm" *ngIf="userEditForm !== undefined">
+      <h2 class="mb-2">Edit</h2>
+      <div class="row" id="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="form-group">
+            <label for="UDuserId">User ID</label>
+            <div
+              class="input-group input-group-merge"
+              [ngClass]="{ 'is-invalid': submitted && form.id.errors }"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text disabledbutton"
+                  ><span [data-feather]="'user'"></span
+                ></span>
+              </div>
+              <input
+                type="text"
+                id="UDuserId"
+                formControlName="id"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && form.id.errors }"
+                disabled
+              />
+            </div>
+            <div *ngIf="submitted && form.id.errors" class="invalid-feedback">
+              <div *ngIf="form.id.errors.required">Id is required</div>
+              <div *ngIf="form.id.errors.minlength">
+                Id must be at least 2 characters
+              </div>
+              <div *ngIf="form.id.errors.maxlength">
+                Id exceeds 225 characters
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="form-group">
+            <label for="UDUserName">User Name</label>
+            <div
+              class="input-group input-group-merge"
+              [ngClass]="{
+                'is-invalid': submitted && userEditForm.get('userName').errors
+              }"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text disabledbutton"
+                  ><span [data-feather]="'user'"></span
+                ></span>
+              </div>
+              <input
+                type="text"
+                id="UDUserName"
+                formControlName="userName"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': submitted && userEditForm.get('userName').errors
+                }"
+                disabled
+              />
+            </div>
+            <div
+              *ngIf="submitted && userEditForm.get('userName').errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="userEditForm.get('userName').errors.required">
+                Username is required
+              </div>
+              <div *ngIf="userEditForm.get('userName').errors.minlength">
+                Username must be at least 2 characters
+              </div>
+              <div *ngIf="userEditForm.get('userName').errors.maxlength">
+                Username exceeds 225 characters
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="form-group">
+            <label for="UDEmail">Email</label>
+            <div
+              class="input-group input-group-merge"
+              [ngClass]="{ 'is-invalid': submitted && form.email.errors }"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><span [data-feather]="'mail'"></span
+                ></span>
+              </div>
+              <input
+                type="text"
+                id="UDEmail"
+                formControlName="email"
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submitted && form.email.errors }"
+              />
+            </div>
+            <div
+              *ngIf="submitted && form.email.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="form.email.errors.required">Email is required</div>
+              <div *ngIf="form.email.errors.emailValidation">
+                Email must be a valid email address
+              </div>
+              <div *ngIf="form.email.errors.minlength">Email too short</div>
+              <div *ngIf="form.email.errors.maxlength">
+                Email exceeds 225 characters
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="form-group">
+        <label for="UDPassword">Password</label>
+        <div class="input-group input-group-merge"
+          [ngClass]="{ 'is-invalid': submitted && form.password.errors }">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><span [data-feather]="'lock'"></span></span>
+          </div>
+          <input type="password" id="UDPassword" formControlName="password" [type]="basicPwdShow ? 'text' : 'password'"
+            class="form-control" [ngClass]="{ 'is-invalid': submitted && form.password.errors }" />
+          <div class="input-group-append" (click)="basicPwdShow = !basicPwdShow">
+            <span class="input-group-text cursor-pointer"><i class="feather" [ngClass]="{
+                    'icon-eye-off': basicPwdShow,
+                    'icon-eye': !basicPwdShow
+                  }"></i></span>
+          </div>
+        </div>
+        <div *ngIf="submitted && form.password.errors" class="invalid-feedback">
+          <div *ngIf="form.password.errors.required">Password is required</div>
+          <div *ngIf="form.password.errors.minlength">Password must be at least 6 characters</div>
+          <div *ngIf="form.password.errors.maxlength">Password exceeds 225 characters</div>
+        </div>
+      </div>
+    </div> -->
+        <!-- <div class="col-lg-6 col-md-6 col-sm-6">
+      <div class="form-group">
+        <label for="UDConfPassword">Confirm Password</label>
+        <div class="input-group input-group-merge"
+          [ngClass]="{ 'is-invalid': submitted && form.confPassword.errors }">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><span [data-feather]="'lock'"></span></span>
+          </div>
+          <input type="password" id="UDConfPassword" formControlName="confPassword"
+            [type]="basicPwdShow1 ? 'text' : 'password'" class="form-control"
+            [ngClass]="{ 'is-invalid': submitted && form.confPassword.errors }" />
+          <div class="input-group-append" (click)="basicPwdShow1 = !basicPwdShow1">
+            <span class="input-group-text cursor-pointer"><i class="feather" [ngClass]="{
+                    'icon-eye-off': basicPwdShow1,
+                    'icon-eye': !basicPwdShow1
+                  }"></i></span>
+          </div>
+        </div>
+        <div *ngIf="submitted && form.confPassword.errors" class="invalid-feedback">
+          <div *ngIf="form.confPassword.errors.required">Confirm Password is required</div>
+          <div *ngIf="form.confPassword.errors.minlength">Confirm Password must be at least 6 characters
+          </div>
+          <div *ngIf="form.confPassword.errors.mustMatch">Passwords Don't Match</div>
+          <div *ngIf="form.confPassword.errors.maxlength">Confirm Password exceeds 225 characters</div>
+        </div>
+      </div>
+    </div> -->
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <form formGroupName="name">
+            <div class="form-group">
+              <label for="UDFirstName">FirstName</label>
+              <div
+                class="input-group input-group-merge"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && userEditForm.get('name.firstName').errors
+                }"
+              >
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><span [data-feather]="'user'"></span
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  id="UDFirstName"
+                  formControlName="firstName"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && userEditForm.get('name.firstName').errors
+                  }"
+                />
+              </div>
+              <div
+                *ngIf="submitted && userEditForm.get('name.firstName').errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="userEditForm.get('name.firstName').errors.required">
+                  Firstname is required
+                </div>
+                <div
+                  *ngIf="userEditForm.get('name.firstName').errors.minlength"
+                >
+                  Firstname must be at least 2 characters
+                </div>
+                <div
+                  *ngIf="userEditForm.get('name.firstName').errors.maxlength"
+                >
+                  Firstname exceeds 225 characters
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <form formGroupName="name">
+            <div class="form-group">
+              <label for="UDLastName">LastName</label>
+              <div
+                class="input-group input-group-merge"
+                [ngClass]="{
+                  'is-invalid':
+                    submitted && userEditForm.get('name.lastName').errors
+                }"
+              >
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><span [data-feather]="'user'"></span
+                  ></span>
+                </div>
+                <input
+                  type="text"
+                  id="UDLastName"
+                  formControlName="lastName"
+                  class="form-control"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && userEditForm.get('name.lastName').errors
+                  }"
+                />
+              </div>
+              <div
+                *ngIf="userEditForm.get('name.lastName').errors"
+                class="invalid-feedback"
+              >
+                <div *ngIf="userEditForm.get('name.lastName').errors.required">
+                  Lastname is required
+                </div>
+                <div *ngIf="userEditForm.get('name.lastName').errors.minlength">
+                  Lastname must be at least 2 characters
+                </div>
+                <div *ngIf="userEditForm.get('name.lastName').errors.maxlength">
+                  Lastname exceeds 225 characters
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <label for="UDDateOfBirth">Date of Birth</label>
+          <div class="form-group">
+            <div class="input-group">
+              <input
+                class="form-control"
+                name="Basic Date Picker"
+                [maxDate]="maxDate"
+                [minDate]="minDate"
+                [startDate]="startDate"
+                formControlName="dateOfBirth"
+                ngbDatepicker
+                #basicDP="ngbDatepicker"
+                [ngClass]="{
+                  'is-invalid': submitted && form.dateOfBirth.errors
+                }"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-primary feather icon-calendar"
+                  (click)="basicDP.toggle()"
+                  type="button"
+                  rippleEffect
+                ></button>
+              </div>
+            </div>
+            <div
+              *ngIf="submitted && form.dateOfBirth.errors"
+              class="text text-danger"
+            >
+              <small *ngIf="form.dateOfBirth.errors.response"
+                >Date is Greater than current date</small
+              >
+              <small *ngIf="form.dateOfBirth.errors.required"
+                >Date of Birth is required</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <div class="row">
+              <div *ngFor="let gender of genderList" class="col-lg-3">
+                <div
+                  class="custom-control custom-control-primary custom-radio gender"
+                >
+                  <input
+                    id="gender-{{ gender.id }}"
+                    type="radio"
+                    value="{{ gender.value }}"
+                    name="{{ gender.name }}"
+                    formControlName="{{ gender.name }}"
+                    class="custom-control-input"
+                    (change)="onRadioChange(gender)"
+                  />
+                  <label
+                    for="gender-{{ gender.id }}"
+                    class="custom-control-label"
+                    >{{ gender.label }}</label
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              *ngIf="submitted && form.gender.errors"
+              class="text text-danger"
+            >
+              <small *ngIf="form.gender.errors.required"
+                >Gender is required.</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="form-group">
+            <label for="UDPhoneNumber">Phone Number</label>
+            <div
+              class="input-group input-group-merge"
+              [ngClass]="{
+                'is-invalid': submitted && form.contactNumber.errors
+              }"
+            >
+              <div class="input-group-prepend">
+                <span class="input-group-text disabledbutton"
+                  ><span [data-feather]="'phone'"></span
+                ></span>
+              </div>
+              <input
+                type="text"
+                id="UDPhoneNumber"
+                formControlName="contactNumber"
+                class="form-control"
+                [ngClass]="{
+                  'is-invalid': submitted && form.contactNumber.errors
+                }"
+                disabled
+              />
+            </div>
+            <div
+              *ngIf="submitted && form.contactNumber.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="form.contactNumber.errors.required">
+                Phone Number is required
+              </div>
+              <!-- <div *ngIf="form.contactNumber.errors.minlength">Phone Number must be at least 10 numbers</div> -->
+              <div *ngIf="form.contactNumber.errors.pattern">
+                Phone Number should be valid number
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <form formGroupName="address">
+            <!-- <div id="address-step-vertical-modern" class="content"> -->
+            <div class="form-group">
+              <label for="UDAddress">Address</label>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="vertical-modern-address"
+                  >Address Line1</label
+                >
+                <div
+                  class="input-group input-group-merge"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      userEditForm.get('address.addressLine1').errors
+                  }"
+                >
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><span [data-feather]="'home'"></span
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    id="addressLine1"
+                    class="form-control"
+                    formControlName="addressLine1"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted &&
+                        userEditForm.get('address.addressLine1').errors
+                    }"
+                  />
+                </div>
+
+                <div
+                  *ngIf="
+                    submitted && userEditForm.get('address.addressLine1').errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="
+                      userEditForm.get('address.addressLine1').errors.required
+                    "
+                  >
+                    Address is required
+                  </div>
+                  <div
+                    *ngIf="
+                      userEditForm.get('address.addressLine1').errors.minlength
+                    "
+                  >
+                    Address must be at least 10 characters
+                  </div>
+                  <div
+                    *ngIf="
+                      userEditForm.get('address.addressLine1').errors.maxlength
+                    "
+                  >
+                    Address exceeds 225 characters
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label class="form-label" for="vertical-modern-address"
+                  >Address Line2</label
+                >
+                <div
+                  class="input-group input-group-merge"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted &&
+                      userEditForm.get('address.addressLine2').errors
+                  }"
+                >
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><span [data-feather]="'home'"></span
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    id="addressLine2"
+                    class="form-control"
+                    formControlName="addressLine2"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="vertical-modern-landmark"
+                  >Landmark</label
+                >
+                <div class="input-group input-group-merge">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><span [data-feather]="'home'"></span
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    id="landmark"
+                    class="form-control"
+                    formControlName="landmark"
+                  />
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="city4">City</label>
+                <div
+                  class="input-group input-group-merge"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && userEditForm.get('address.city').errors
+                  }"
+                >
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><span [data-feather]="'home'"></span
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    id="city"
+                    class="form-control"
+                    formControlName="city"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && userEditForm.get('address.city').errors
+                    }"
+                  />
+                </div>
+                <div
+                  *ngIf="submitted && userEditForm.get('address.city').errors"
+                  class="invalid-feedback"
+                >
+                  <div *ngIf="userEditForm.get('address.city').errors.required">
+                    City is required
+                  </div>
+                  <div
+                    *ngIf="userEditForm.get('address.city').errors.minlength"
+                  >
+                    City must be at least 3 characters
+                  </div>
+                  <div
+                    *ngIf="userEditForm.get('address.city').errors.maxlength"
+                  >
+                    City exceeds 225 characters
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label class="form-label" for="pincode4">State</label>
+                <div
+                  class="input-group input-group-merge"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && userEditForm.get('address.state').errors
+                  }"
+                >
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><span [data-feather]="'home'"></span
+                    ></span>
+                  </div>
+                  <input
+                    type="text"
+                    id="state"
+                    class="form-control"
+                    formControlName="state"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && userEditForm.get('address.state').errors
+                    }"
+                  />
+                </div>
+                <div
+                  *ngIf="submitted && userEditForm.get('address.state').errors"
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="userEditForm.get('address.state').errors.required"
+                  >
+                    State is required
+                  </div>
+                  <div
+                    *ngIf="userEditForm.get('address.state').errors.minlength"
+                  >
+                    State must be at least 3 characters
+                  </div>
+                  <div
+                    *ngIf="userEditForm.get('address.state').errors.maxlength"
+                  >
+                    State exceeds 225 characters
+                  </div>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label class="form-label" for="city4">ZipCode</label>
+                <div
+                  class="input-group input-group-merge"
+                  [ngClass]="{
+                    'is-invalid':
+                      submitted && userEditForm.get('address.zipCode').errors
+                  }"
+                >
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"
+                      ><span [data-feather]="'home'"></span
+                    ></span>
+                  </div>
+                  <input
+                    type="number"
+                    id="zipCode"
+                    class="form-control"
+                    formControlName="zipCode"
+                    [ngClass]="{
+                      'is-invalid':
+                        submitted && userEditForm.get('address.zipCode').errors
+                    }"
+                  />
+                </div>
+                <div
+                  *ngIf="
+                    submitted && userEditForm.get('address.zipCode').errors
+                  "
+                  class="invalid-feedback"
+                >
+                  <div
+                    *ngIf="userEditForm.get('address.zipCode').errors.required"
+                  >
+                    Zipcode is required
+                  </div>
+                  <div
+                    *ngIf="userEditForm.get('address.zipCode').errors.minlength"
+                  >
+                    Zipcode must be at least 4 numbers
+                  </div>
+                  <div
+                    *ngIf="userEditForm.get('address.zipCode').errors.maxlength"
+                  >
+                    Zipcode exceeds 10 numbers
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="col-12 text-center">
+      <div class="form-group">
+        <button class="btn btn-primary" rippleEffect (click)="formOnUpdate()">Update
+
+        </button>
+
+      </div>
+    </div> -->
+      </div>
+      <div class="row">
+        <div class="form-group col-6 text-center">
+          <button
+            class="btn btn-primary"
+            id="cancel"
+            rippleEffect
+            (click)="back()"
+          >
+            Cancel
+          </button>
+        </div>
+        <div class="form-group col-6 text-center">
+          <button
+            class="btn btn-primary"
+            id="update"
+            rippleEffect
+            (click)="formOnUpdate()"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

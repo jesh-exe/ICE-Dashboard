@@ -1,0 +1,112 @@
+<section class="chat-app-window">
+  <div class="start-chat-area" [ngClass]="{ 'd-none': activeJob === true }">
+    <div class="mb-1 start-chat-icon">
+      <i data-feather="message-square"></i>
+    </div>
+    <h4 class="sidebar-toggle start-chat-text">Start Exploring</h4>
+  </div>
+  <div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title">{{ Jobs.analysisName }}</h4>
+      <div style="float: right">
+        <ng-container *ngIf="Jobs.status === 'COMPLETED'; else enable">
+          <button class="btn btn-outline-success" #disable rippleEffect>
+            {{ Jobs.status }}
+          </button>
+        </ng-container>
+
+        <ng-template #enable
+          ><button class="btn btn-outline-warning" #disable rippleEffect>
+            {{ Jobs.status }}
+          </button>
+        </ng-template>
+      </div>
+    </div>
+    <div class="card-body">
+      {{ Jobs.description }}
+    </div>
+  </div>
+
+  <div class="card card-revenue-budget">
+    <div class="row mx-0">
+      <div class="col-12 revenue-report-wrapper">
+        <div class="d-sm-flex justify-content-between mb-3">
+          <h4 class="card-title mb-50 mb-sm-0">Input Values</h4>
+        </div>
+
+        <div class="row">
+          <div class="col-4"><p>Collection:</p></div>
+          <div class="col-8">
+            <p>{{ Jobs.collection }}</p>
+          </div>
+
+          <div class="col-4"><p>Type:</p></div>
+          <div class="col-8">
+            <p>{{ Jobs.type }}</p>
+          </div>
+
+          <div
+            class="col-4"
+            *ngIf="
+              Jobs.type === 'Custom_TAG_By_POPCODE' ||
+              Jobs.type === 'Common SNP'
+            ">
+            <p>Population Code:</p>
+          </div>
+          <div
+            class="col-8"
+            *ngIf="
+              Jobs.type === 'Custom_TAG_By_POPCODE' ||
+              Jobs.type === 'Common SNP'
+            ">
+            <table class="table table-striped">
+              <tr *ngFor="let recipient of Jobs.popcode | keyvalue">
+                <td>{{ recipient.key }}</td>
+
+                <td class="multiline-cell">
+                  {{ recipient.value }}
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="col-4"><p>Start Date:</p></div>
+          <div class="col-8">
+            <p>{{ Jobs.startDate | date }}</p>
+          </div>
+
+          <div class="col-4" *ngIf="Jobs.endate !== null"><p>End Date:</p></div>
+          <div class="col-8" *ngIf="Jobs.endate !== null">
+            <p>{{ Jobs.endDate | date }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="card"
+    *ngIf="Jobs.results?.length > 0 || Jobs.jsonResponse != null">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h4 class="card-title">Results</h4>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <div *ngFor="let result of Jobs.results">
+            <button
+              class="btn btn-outline-primary"
+              (click)="navigateTo()"
+              rippleEffect>
+              {{ result | texttransform }}</button
+            ><br />
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6" *ngIf="Jobs.jsonResponse != null && msgJSON">
+    <app-custom [msgJSON]="msgJSON"></app-custom>
+  </div>
+</section>

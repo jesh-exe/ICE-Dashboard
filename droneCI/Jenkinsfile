@@ -1,0 +1,73 @@
+pipeline {
+
+  options {
+    ansiColor('xterm')
+  }
+
+  agent {
+    kubernetes {
+      yamlFile 'jenkins/builder.yaml'
+    }
+  }
+  
+  
+
+  stages {
+  
+   
+
+    stage('Kaniko Build & Push Image') {
+      steps {
+        container('kaniko') {
+          script {
+            sh '''
+            /kaniko/executor --skip-tls-verify --cache=true --verbosity debug --dockerfile `pwd`/Dockerfile \
+                             --context `pwd` \
+                             --destination=bio-hub.pune.cdac.in/dbt/ice-ui-service:${BUILD_NUMBER}
+            '''
+          }
+        }
+      }
+    }
+
+    stage('Deploy App to Kubernetes') {     
+      steps {
+        container('kubectl') {
+          withCredentials([file(credentialsId: 'mykubeconfig', variable: 'KUBECONFIG')]) {
+            sh 'sed -i "s/latest/${BUILD_NUMBER}/" k8s/ui-deployment.yaml'
+            sh 'kubectl apply -f k8s/ui-service.yaml'
+            sh 'kubectl delete deploy ui-deployment || ls'
+            sh 'sleep 10'
+            sh 'kubectl apply -f k8s/ui-deployment.yaml'
+          }
+        }
+      }
+    }
+
+
+    stage('Email Notification') {
+      steps {
+   
+        mail bcc: '', body: """
+        Dear Team, 
+
+        DBT ICE UI Service Deployment Success.
+
+        Jenkins Console : http://bio-ci.pune.cdac.in/job/ice-ui/${BUILD_NUMBER}/console
+
+        Thanks
+        DevOps""",
+        // cc: 'sandeepm@cdac.in',
+        cc:'',
+        from: 'bio-ci@cdac.in',
+        replyTo: '',
+        subject: 'Jenkins : DBT ICE UI Service Deployment Success',
+        to: 'rkrishnan@cdac.in'
+
+      }
+        
+    }
+   
+  
+  }
+}

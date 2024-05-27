@@ -1,0 +1,240 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <section id="description-list-alignment">
+      <div class="row match-height">
+        <!-- Description lists horizontal -->
+        <div class="col-sm-12 col-md-12">
+          <div class="card">
+            <div class="row">
+              <div class="col-6">
+                <div class="card-header" style="clear: both">
+                  <h1
+                    style="float: left; font-weight: 500; font-size: 35px"
+                    class="color">
+                    Sample
+                    <h1
+                      style="
+                        float: right;
+                        font-weight: 450;
+                        padding-left: 10px;
+                        color: rgb(222, 56, 56);
+                      "
+                      *ngIf="sample">
+                      {{ sample.sampleName }}
+                    </h1>
+                  </h1>
+                </div>
+              </div>
+            </div>
+
+            <hr />
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6" *ngIf="sample">
+                  <dl class="row">
+                    <dt class="col-sm-5">Name :</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">{{ sample.sampleName }}</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Type :</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ sample.type }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Latitude :</dt>
+
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">{{ sample.latitude }}</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Longitude :</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6 ml-auto">{{ sample.longitude }}</dd>
+                  </dl>
+          
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Location :</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ sample.location }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Sampling Date :</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ sample.sampleDate }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Depth:</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">{{ sample.depth }}m</dd>
+                  </dl>
+                </div>
+
+                <div class="col-6">
+                  <div id="sampleMap"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" style="clear: both">
+              <h1
+                style="float: left; font-weight: 500; font-size: 30px"
+                class="color">
+                Sequences
+                <div class="badge badge-pill badge-light-primary">
+                  {{ sequenceLength }}
+                </div>
+              </h1>
+            </div>
+            <div>
+              <table class="table table-bordered table-striped mb-0">
+                <thead>
+                  <tr>
+                    <th>Sequence tempAccession Number</th>
+                    <th>Sequence Type</th>
+                    <th>Organism Name</th>
+                    <th>Organism Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sequence of itemsOnCurrentPage">
+                    <td>
+                      <a
+                        style="color: #804000"
+                        class="underline"
+                        (click)="viewSequenceDetails(sequence.sequenceId)">
+                        <span class="font-weight-bold">{{
+                          sequence.tempAccessionNumber
+                        }}</span></a
+                      >
+                    </td>
+
+                    <td>
+                      <span style="color: #800040" class="font-weight-bold">{{
+                        sequence.sequenceType
+                      }}</span>
+                    </td>
+                    <td>
+                      <span style="color: teal">{{
+                        sequence.organismName
+                      }}</span>
+                    </td>
+                    <td>
+                      <span style="color: #804000">{{
+                        sequence.organismType
+                      }}</span>
+                    </td>
+                    <!-- <td><span class="badge badge-pill badge-light-primary mr-1">
+                                                  {{project.project.status}}
+                                                </span></td> -->
+                    <!-- <td >
+                                        <a
+                                        (click)="navigateToComponent(sequence.sequenceId)">
+                                        <i data-feather="eye" class="mr-50"></i>
+                                      </a>
+                                      </td> -->
+                  </tr>
+                </tbody>
+              </table>
+              <ngb-pagination
+                [collectionSize]="totalItems"
+                [(page)]="page"
+                [pageSize]="pageSize"
+                (pageChange)="onPageChange($event)">
+                <ng-template ngbPaginationPrevious
+                  ><span
+                    [data-feather]="'chevron-left'"
+                    [class]="'font-weight-bolder'"></span
+                  >Prev
+                </ng-template>
+                <ng-template ngbPaginationNext
+                  >Next<span
+                    [data-feather]="'chevron-right'"
+                    [class]="'font-weight-bolder'"></span>
+                </ng-template>
+              </ngb-pagination>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header" style="clear: both">
+              <h1
+                style="float: left; font-weight: 500; font-size: 30px"
+                class="color">
+                WGS Sequences
+                <div class="badge badge-pill badge-light-primary">
+                  {{ ngsSequenceLength }}
+                </div>
+              </h1>
+            </div>
+            <div>
+              <table class="table table-bordered table-striped mb-0">
+                <thead>
+                  <tr>
+                    <th>WGS Submission tempAccession Number</th>
+                    <th>Type</th>
+                    <th>Header</th>
+                    <th>Organism Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let ngssequence of ngsitemsOnCurrentPage">
+                    <td>
+                      <a
+                        style="color: #804000"
+                        class="underline"
+                        (click)="viewNgsSequenceDetails(ngssequence.id)">
+                        <span class="font-weight-bold">{{
+                          ngssequence.tempAccessionNumber
+                        }}</span></a
+                      >
+                    </td>
+
+                    <td>
+                      <span style="color: #800040" class="font-weight-bold">{{
+                        ngssequence.type
+                      }}</span>
+                    </td>
+                    <td>
+                      <span style="color: teal">{{ ngssequence.header }}</span>
+                    </td>
+                    <td>
+                      <span style="color: #804000">{{
+                        ngssequence.organismType
+                      }}</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <ngb-pagination
+                [collectionSize]="totalNgsItems"
+                [(page)]="ngsPage"
+                [pageSize]="ngspageSize"
+                (pageChange)="onNgsPageChange($event)">
+                <ng-template ngbPaginationPrevious
+                  ><span
+                    [data-feather]="'chevron-left'"
+                    [class]="'font-weight-bolder'"></span
+                  >Prev
+                </ng-template>
+                <ng-template ngbPaginationNext
+                  >Next<span
+                    [data-feather]="'chevron-right'"
+                    [class]="'font-weight-bolder'"></span>
+                </ng-template>
+              </ngb-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+
+.heightstatus{
+    height: calc(100vh/2.1);
+}
+
+// .card-img-top{
+//     height: 150px;
+//    // width:300px;
+// }
+.callus{
+    //background-image: url("assets/images/carousel/Callus.png");
+    height: 265px;
+   // margin: 42px;
+    background-color: #1d4a81;
+}
+
+// .mailus{
+//     //background-image: url("assets/images/carousel/Mail.png");
+//     //margin: 0px 19px;
+//     height: 265px;
+//     margin: 42px;
+//     background-color: #1d4a81;
+// }
+
+.centered{
+//     position: absolute;
+//     top: 55%;
+//     left: 51%;
+//   transform: translate(-50%, -50%);
+  color: white;
+  //font-weight: bolder;
+  font-size: 18px;
+  //height: 200px;
+  padding-top: 25px;
+}
+
+@media screen and (min-width:576px) and (max-width: 771px) {
+    .border {
+        height:50vh
+    }
+}
+
+.mb-2{
+    margin-top: -2rem;
+}
+
+@media screen and  (max-width: 450px) {
+.callus{
+    height: 365px;
+}
+
+.centered{
+    top: 51%;
+}
+}
+

@@ -1,0 +1,21 @@
+@import '@core/scss/base/core/menu/menu-types/horizontal-menu.scss';
+@import '@core/scss/base/core/menu/menu-types/vertical-overlay-menu.scss';
+
+// Dropdown position for horizontal layout only
+.horizontal-layout .horizontal-header-navbar .navbar-container ul.navbar-nav li.dropdown .dropdown-menu {
+  top: 41px !important;
+}
+// li {
+//   &[ng-reflect-router-link-active="active"]  {
+   
+//       background: linear-gradient(118deg, #01386a, rgba(1, 56, 106, .7));
+//       color: wheat;
+//       box-shadow: 0 0 6px 1px #01386a99;
+//       border-radius: 4px;
+//       margin-left: 10px;
+//       margin-right: 10px;
+    
+   
+//     }
+
+// }

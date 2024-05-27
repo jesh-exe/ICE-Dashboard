@@ -1,0 +1,202 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <section id="description-list-alignment">
+      <div class="row match-height">
+        <!-- Description lists horizontal -->
+        <div class="col-sm-12 col-md-12">
+          <div class="card">
+            <div class="card-header" style="clear: both">
+              <h1
+                style="float: left; font-weight: 450; font-size: 32px"
+                class="color"
+              >
+                Sequence
+                <h1
+                  style="
+                    float: right;
+                    padding-left: 10px;
+                    color: rgb(222, 56, 56);
+                    font-weight: 450;
+                  "
+                >
+                  {{ item.permanentAccessionNumber }}
+                </h1>
+              </h1>
+            </div>
+            <hr />
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <dl class="row">
+                    <dt class="col-sm-5">Sequence ID</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">{{ item.sequenceId }}</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Description</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <!-- <dd class="col-sm-6">
+                      {{ item.description }}
+                    </dd> -->
+                    <dd class="col-sm-6" *ngIf="item.description">
+                      {{ item.description }}
+                    </dd>
+                    <dd class="col-sm-6" *ngIf="!item.description">-</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Forward Primer Sequence</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <!-- <dd class="col-sm-6 ml-auto">
+                      {{ item.forwardPrimerSequence }}
+                    </dd> -->
+                    <dd class="col-sm-6" *ngIf="item.forwardPrimerSequence">
+                      {{ item.forwardPrimerSequence }}
+                    </dd>
+                    <dd class="col-sm-6" *ngIf="!item.forwardPrimerSequence">
+                      -
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Gene Name</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">{{ item.geneName }}</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Organism Type</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ item.organismType }}
+                    </dd>
+                  </dl>
+                  <!-- <dl class="row">
+                    <dt class="col-sm-3 text-truncate">Quality :</dt>
+                    <dd class="col-sm-6">
+                      {{ item.quality }}
+                    </dd>
+                  </dl> -->
+                  <dl class="row">
+                    <dt class="col-sm-5">Reverse Primer Sequence</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <!-- <dd class="col-sm-6">
+                      {{ item.reversePrimerSequence }}
+                    </dd> -->
+                    <dd class="col-sm-6" *ngIf="item.reversePrimerSequence">
+                      {{ item.reversePrimerSequence }}
+                    </dd>
+                    <dd class="col-sm-6" *ngIf="!item.reversePrimerSequence">
+                      -
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Files</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      <div *ngFor="let filepath of items">
+                        <a
+                          class="underline"
+                          [download]="filepath"
+                          target="_blank"
+                          [href]="fileDownloadUri + '/' + filepath"
+                          >{{ filepath }}</a
+                        >
+                      </div>
+                      <!-- <a>{{ item.sequenceFilePathl }}</a> -->
+                    </dd>
+                  </dl>
+                </div>
+                <div class="col-6">
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Header</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ item.sequenceHeader }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Type</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ item.sequenceType }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Sequencing Platform</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ item.sequencingPlatform }}
+                    </dd>
+                  </dl>
+
+                  <!-- <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Status</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ item.status }}
+                    </dd>
+                  </dl> -->
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Organism Name</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ item.organismName }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Accession No</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <!-- <dd class="col-sm-6">
+                      {{ item.permanentAccessionNumber }}
+                    </dd> -->
+                    <dd class="col-sm-6" *ngIf="item.permanentAccessionNumber">
+                      {{ item.permanentAccessionNumber }}
+                    </dd>
+                    <dd class="col-sm-6" *ngIf="!item.permanentAccessionNumber">
+                      -
+                    </dd>
+                  </dl>
+                </div>
+                <div class="col-12">
+                  <!-- <dl class="row">
+                    <dt class="col-sm-3 text-truncate">Sequence</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-8 col-sm-8">
+                      <pre>{{ item.sequence }}</pre>
+                      <button
+                        class="btn btn-primary"
+                        *ngIf="!isContentToggled"
+                        (click)="toggleContent()"
+                      >
+                        Read More
+                      </button>
+                      <button
+                        class="btn btn-primary"
+                        *ngIf="isContentToggled"
+                        (click)="toggleContent()"
+                        i18n
+                      >
+                        Read Less
+                      </button>
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-3 text-truncate">Files</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-8">
+                      <div *ngFor="let filepath of items">
+                        <a class="underline" [download]="filepath" target="_blank" [href]="fileDownloadUri+accessionNumber+'/'+filepath">{{
+                          filepath
+                        }}</a>
+                      </div>
+                      <a>{{ item.sequenceFilePathl }}</a>
+                    </dd>
+                  </dl> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

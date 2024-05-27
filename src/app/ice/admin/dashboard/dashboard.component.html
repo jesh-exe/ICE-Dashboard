@@ -1,0 +1,242 @@
+<div class="content-wrapper container-xxxl p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="content-body">
+    <div class="row my-2">
+
+      <!-- Welcome Card -->
+      <div class="col-xl-3 col-md-2 col-12 my-1">
+        <app-welcome-card ></app-welcome-card>
+      </div>
+      <!-- Statistics Card -->
+      <div class="col-xl-9 col-md-10 col-12 my-1">
+        <app-statistics-card></app-statistics-card>
+      </div>
+
+      <!-- Medal Card -->
+      <!-- <div class="col-xl-4 col-md-6 col-12">
+        <div class="card earnings-card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-6">
+                <h4 class="card-title">Storage Usage</h4>
+                <div class="font-small-2">Total Storage</div>
+                <h5 class="mb-1">256 TB</h5>
+                <p class="card-text text-muted font-small-2">
+                  <span class="font-weight-bolder">%</span><span> more earnings than last month.</span>
+                </p> 
+              </div>
+              <div class="col-6">
+                <div id="earnings-donut-chart" #earningChartRef>
+                  <apx-chart
+                    [chart]="{
+                      type: 'donut',
+                      width:
+                        isMenuToggled === false
+                          ? earningChartRef.offsetWidth
+                          : storageUseChartoptions.chart.width,
+                      height: 120,
+                      toolbar: {
+                        show: false
+                      }
+                    }"
+                    [dataLabels]="storageUseChartoptions.dataLabels"
+                    [series]="storageUseChartoptions.series"
+                    [legend]="storageUseChartoptions.legend"
+                    [labels]="storageUseChartoptions.labels"
+                    [stroke]="storageUseChartoptions.stroke"
+                    [colors]="storageUseChartoptions.colors"
+                    [grid]="storageUseChartoptions.grid"
+                    [plotOptions]="
+                      storageUseChartoptions.plotOptions
+                    "></apx-chart>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Medal Card -->
+      <!-- Statistics Card -->
+      <!-- <div class="col-xl-8 col-md-6 col-12" *ngIf="data">
+        <div class="card card-statistics">
+          <div class="card-header">
+            <h4 class="card-title">Users Statistics</h4>
+            <div class="d-flex align-items-center">
+              <p class="card-text font-small-2 mr-25 mb-0">Updated 1 month ago</p>
+            </div>
+          </div>
+          <div class="card-body statistics-body">
+            <div class="row">
+              <div class="col-sm-6 col-xl-3 mb-2 mb-xl-0">
+                <a [routerLink]="['/admin/list']">
+                  <div class="media">
+                    <div class="avatar bg-light-primary mr-2">
+                      <div class="avatar-content">
+                        <i data-feather="users" class="avatar-icon"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">
+                        {{ data.totalUsers }}
+                      </h4>
+                      <h4 class="card-text font-small-3 mb-0">Total Users</h4>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-xl-3 mb-2 mb-xl-0">
+                <a
+                  [routerLink]="['/admin/list']"
+                  [queryParams]="{ value: 'active' }">
+                  <div class="media">
+                    <div class="avatar bg-light-success mr-2">
+                      <div class="avatar-content">
+                        <i data-feather="user-check" class="avatar-icon"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">
+                        {{ data.activeUsers }}
+                      </h4>
+                      <h4 class="card-text font-small-3 mb-0">Active Users</h4>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-xl-3 mb-2 mb-sm-0">
+                <a
+                  [routerLink]="['/admin/list']"
+                  [queryParams]="{ value: 'unVerified' }">
+                  <div class="media">
+                    <div class="avatar bg-light-info mr-2">
+                      <div class="avatar-content">
+                        <i data-feather="user-minus" class="avatar-icon"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">
+                        {{ data.numberOfemailUnVerifiedUsers }}
+                      </h4>
+                      <h4 class="card-text font-small-3 mb-0">
+                        UnVerified Users
+                      </h4>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="col-sm-6 col-xl-3">
+                <a
+                  [routerLink]="['/admin/list']"
+                  [queryParams]="{ value: 'disabled' }">
+                  <div class="media">
+                    <div class="avatar bg-light-danger mr-2">
+                      <div class="avatar-content">
+                        <i data-feather="user-x" class="avatar-icon"></i>
+                      </div>
+                    </div>
+                    <div class="media-body my-auto">
+                      <h4 class="font-weight-bolder mb-0">
+                        {{ data.disabledUser }}
+                      </h4>
+                      <h4 class="card-text font-small-3 mb-0">
+                        Disabled Users
+                      </h4>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <!--/ Statistics Card -->
+    </div>
+
+    <div class="row match-height">
+      <!-- Browser States Card -->
+      <div class="col-lg-8 col-12">
+        <div class="card">
+          <ngx-datatable [rows]="timeline" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="selectedOption"
+            [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
+            <ngx-datatable-column name="User Name" prop="userName" [width]="10">
+            </ngx-datatable-column>
+
+            <!-- <ngx-datatable-column name="Path" prop="path" [width]="50">
+            </ngx-datatable-column> -->
+
+            <ngx-datatable-column name="Message" prop="message" [width]="350">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Type" prop="type" [width]="10">
+              <ng-template let-row="row" let-balance="value" ngx-datatable-cell-template>
+                <div class="badge badge-pill" [ngClass]="{
+                    'badge-light-success': row.type == 'iam',
+                    'badge-light-danger': row.type == 'compute',
+                    'badge-light-warning': row.type == 'blast',
+                    'badge-light-primary': row.type == 'storage'
+                  }" style="font-size: 1.1rem; font-weight: 500; padding: 8px">
+                  {{ row.type }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Date" prop="timestamp" [width]="10">
+              <ng-template let-row="row" let-name="value" ngx-datatable-cell-template>
+                <span placement="right">{{ row.timestamp | date }}</span>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </div>
+
+      <!-- Goal Overview Card -->
+      <div class="col-lg-4 col-md-6 col-12">
+        <div class="card card-browser-states">
+          <div class="card-header">
+            <div class="broweser-states-header">
+              <div class="broweser-states-heade">
+                <h4 class="card-title">Storage Used</h4>
+                <p class="card-text font-small-2">Per Person</p>
+              </div>
+            </div>
+          </div>
+          <div class="card-body" *ngIf="storageStats !== undefined">
+            <div class="browser-states" *ngFor="
+                let item of storageStats
+                  | slice
+                    : (page - 1) * pageSize
+                    : (page - 1) * pageSize + pageSize
+              ">
+              <h2 class="align-self-center mb-0">{{ item.userName }}</h2>
+              <div class="d-flex align-items-center">
+                <div class="font-weight-bold text-body-heading mr-1">
+                  {{ item.size }}{{ item.sizeType }}
+                </div>
+                <div class="state-chart-primary" #statePrimaryChartRef>
+                  <apx-chart [chart]="statePrimaryChartoptions.chart" [grid]="statePrimaryChartoptions.grid"
+                    [colors]="statePrimaryChartoptions.colors" [series]="[item.percentageUsed]"
+                    [plotOptions]="statePrimaryChartoptions.plotOptions" [stroke]="statePrimaryChartoptions.stroke">
+                  </apx-chart>
+                </div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-center">
+              <ngb-pagination [collectionSize]="storageStats.length" [pageSize]="pageSize" [rotate]="true"
+                [(page)]="page" [ellipses]="false" [boundaryLinks]="true" *ngIf="storageStats !== undefined">
+                <ng-template ngbPaginationPrevious><span [data-feather]="'chevron-left'" [class]="'font-weight-bolder'"
+                    [size]="18"></span>
+                </ng-template>
+                <ng-template ngbPaginationFirst><span [data-feather]="'chevrons-left'" [class]="'font-weight-bolder'"
+                    [size]="18"></span>
+                </ng-template>
+                <ng-template ngbPaginationNext><span [data-feather]="'chevron-right'" [class]="'font-weight-bolder'"
+                    [size]="18"></span></ng-template>
+                <ng-template ngbPaginationLast><span [data-feather]="'chevrons-right'" [class]="'font-weight-bolder'"
+                    [size]="18"></span>
+                </ng-template>
+              </ngb-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <div class="content-body">
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+      <section class="invoice-list-wrapper">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6 col-12">
+              <div
+                class="d-flex justify-content-between align-items-center m-1">
+                <div class="d-flex align-items-center" class="card-header">
+                  <label class="d-flex align-items-center">
+                    Show
+                    <select
+                      class="form-control mx-25"
+                      [(ngModel)]="selectedOption">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </label>
+
+                  <a
+                    class="btn"
+                    container="body"
+                    placement="top"
+                    ngbTooltip="Refresh"
+                    (click)="refresh()">
+                    <i
+                      data-feather="refresh-cw"
+                      size="18"
+                      class="cursor-pointer"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-md-6 col-lg-4 col-12 d-flex justify-content-start justify-content-md-end align-items-center offset-lg-2">
+              <div class="row pr-1 pb-1 pb-md-0 align-items-center w-100">
+                <div class="col-10 col-md-6 pr-0"></div>
+                <div class="col-10 col-md-6 mt-2 ml-1 ml-md-0 mt-md-0">
+                  <label class="d-flex align-items-center mb-0 ml-1 ml-md-0"
+                    ><input
+                      [(ngModel)]="searchValue"
+                      name="searchValue"
+                      type="search"
+                      class="form-control"
+                      placeholder="Search..."
+                      (keyup)="filterUpdate($event)"
+                      (search)="filterUpdate($event)" />
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ngx-datatable
+            [rows]="rows"
+            [rowHeight]="50"
+            class="bootstrap core-bootstrap"
+            [limit]="selectedOption"
+            [columnMode]="ColumnMode.force"
+            [headerHeight]="50"
+            [footerHeight]="50"
+            [scrollbarH]="true">
+            <ngx-datatable-column
+              name="Container Name"
+              prop="containerName"
+              [width]="10">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Type" prop="type" [width]="5">
+            </ngx-datatable-column>
+            <ngx-datatable-column
+              name="Image Name"
+              prop="imageName"
+              [width]="10">
+              <ng-template
+                let-row="row"
+                let-name="value"
+                ngx-datatable-cell-template>
+                <div class="d-flex align-items-center">
+                  <span
+                    ngbTooltip="{{ row.imageName }}"
+                    placement="right"
+                    class="font-weight-bold d-block text-nowrap font-medium-1"
+                    >{{
+                      row.imageName.lastIndexOf("/") > 0
+                        ? row.imageName.substring(
+                            row.imageName.lastIndexOf("/") + 1
+                          )
+                        : row.imageName
+                    }}</span
+                  >
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <!-- <ngx-datatable-column
+              name="Submitted Date"
+              prop="submittedDate"
+              [width]="4">
+              <ng-template
+                let-row="row"
+                let-name="value"
+                ngx-datatable-cell-template>
+                {{ row.submittedDate | date : "short" : "UTC" }}</ng-template
+              >
+            </ngx-datatable-column> -->
+            <ngx-datatable-column
+              name="Start Date"
+              prop="startDate"
+              [width]="4">
+              <ng-template
+                let-row="row"
+                let-name="value"
+                ngx-datatable-cell-template>
+                {{ row.startDate | date : "short" : "UTC" }}</ng-template
+              >
+            </ngx-datatable-column>
+            <ngx-datatable-column name="End Date" prop="endDate" [width]="4">
+              <ng-template
+                let-row="row"
+                let-name="value"
+                ngx-datatable-cell-template>
+                {{ row.endDate | date : "short" : "UTC" }}</ng-template
+              >
+            </ngx-datatable-column>
+            <ngx-datatable-column name="CPU" prop="cpus" [width]="1">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Memory" prop="memory" [width]="1">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Cost" prop="cost" [width]="1">
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Status" prop="status" [width]="10">
+              <ng-template
+                let-row="row"
+                let-balance="value"
+                ngx-datatable-cell-template>
+                <div
+                  class="badge badge-pill"
+                  [ngClass]="{
+                    'badge-light-success': row.status == 'Running',
+                    'badge-danger': row.status == 'Failed',
+                    'badge-warning': row.status == 'Pending',
+                    'badge-light-primary': row.status == 'Completed'
+                  }"
+                  style="font-size: 1.1rem; font-weight: 500; padding: 8px">
+                  {{ row.status }}
+                </div>
+              </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column name="Detail" [width]="1">
+              <ng-template ngx-datatable-cell-template let-row="row">
+                <a
+                  *ngIf="row.type === 'pipeline'"
+                  class="btn"
+                  container="body"
+                  placement="top"
+                  ngbTooltip="Details"
+                  (click)="openActivity(row.containerName)">
+                  <i
+                    data-feather="terminal"
+                    size="18"
+                    class="cursor-pointer"></i>
+                </a>
+              </ng-template>
+            </ngx-datatable-column>
+          </ngx-datatable>
+        </div>
+      </section>
+    </div>
+  </div>
+</block-ui>

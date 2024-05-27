@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_Upload all</name>
+   <tag></tag>
+   <elementGuidId>d9f4b344-02fd-4ae4-95e7-b78162b50268</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(//button[@type='button'])[5]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>button.btn.mr-1.btn-primary.mb-1.mb-sm-0.waves-effect.waves-float.waves-light</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>6fefb859-fb62-40e5-87d8-3fd9c352c807</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>type</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>5dc08d2f-8b7c-4dcc-9b8a-d2b877c402d6</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>btn mr-1 btn-primary mb-1 mb-sm-0 waves-effect waves-float waves-light</value>
+      <webElementGuid>469d06d9-8f62-4e84-b00b-4e4330c574e8</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value> Upload all </value>
+      <webElementGuid>85673537-1ef4-4295-8849-5d0aa2b76b66</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;file-upload&quot;)/div[@class=&quot;card&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;col-lg-10 overflow-auto&quot;]/div[2]/button[@class=&quot;btn mr-1 btn-primary mb-1 mb-sm-0 waves-effect waves-float waves-light&quot;]</value>
+      <webElementGuid>ba089665-866e-48c6-88c7-1df1f92a9b37</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>(//button[@type='button'])[5]</value>
+      <webElementGuid>4beb34c0-6065-469a-88ed-e7150b38363a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//section[@id='file-upload']/div/div[2]/div[2]/div[2]/button</value>
+      <webElementGuid>001fdbfa-ec1b-431d-a775-cb44e2aaae67</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Add Info'])[1]/following::button[1]</value>
+      <webElementGuid>9c1e7542-f173-4006-b7bf-0c5a1c80333d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Delete'])[1]/following::button[2]</value>
+      <webElementGuid>30d5e42b-123b-40d3-a315-8675b7a5f0c7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Cancel all'])[1]/preceding::button[1]</value>
+      <webElementGuid>eef52998-27cc-4011-b092-c31d4168c90b</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Remove all'])[1]/preceding::button[2]</value>
+      <webElementGuid>e5b94e10-a192-4f3e-bec1-7c6655fd7184</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>//*/text()[normalize-space(.)='Upload all']/parent::*</value>
+      <webElementGuid>a0343376-b82f-42f8-b351-c1d4bac781c0</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[2]/button</value>
+      <webElementGuid>235b1d88-2bad-48c4-9fbd-f78e87d06189</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[@type = 'button' and (text() = ' Upload all ' or . = ' Upload all ')]</value>
+      <webElementGuid>01e92248-80f5-4999-8d2e-2dd96bff5660</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

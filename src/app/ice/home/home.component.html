@@ -1,0 +1,358 @@
+<div class="content-wrapper container-xxxl p-0">
+  <div class="content-body">
+    <!-- content-header component -->
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+    <!-- Basic Alerts start -->
+    <section id="home-page">
+      <div class="row">
+        <div class="col-12">
+          <app-carousel></app-carousel>
+        </div>
+      </div>
+      <swiper
+        class="swiper-centered-slides swiper-container p-1"
+        [config]="swiperCenteredSlides"
+        [(index)]="centeredSlideIndex">
+        <div
+          class="swiper-slide rounded swiper-shadow"
+          style="background-color: #008080; color: aliceblue"
+          (click)="goToAdmin()">
+          <i data-feather="framer" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">Admin Service</div>
+        </div>
+        <div
+          class="swiper-slide rounded swiper-shadow"
+          style="background-color: #0b9ea2; color: aliceblue"
+          (click)="goToUsers()">
+          <i data-feather="user" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">User Service</div>
+        </div>
+
+        <div
+          class="swiper-slide rounded swiper-shadow"
+          style="background-color: #0b92a2; color: aliceblue"
+          (click)="goToUpload()">
+          <i data-feather="database" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">File Upload</div>
+        </div>
+        <div
+          class="swiper-slide rounded swiper-shadow"
+          style="background-color: #0b85a2; color: aliceblue"
+          (click)="goToVcf()">
+          <i data-feather="bar-chart-2" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">VCF Analysis</div>
+        </div>
+        <div
+          class="swiper-slide rounded swiper-shadow"
+          style="background-color: #0d8aba; color: aliceblue"
+          (click)="goToFileDrive()">
+          <i data-feather="package" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">File Drive</div>
+        </div>
+        <div
+          class="swiper-slide rounded swiper-shadow"
+          style="background-color: #0d7bba; color: aliceblue"
+          (click)="goToAboutUs()">
+          <i data-feather="info" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">About Us</div>
+        </div>
+        <div
+          class="swiper-slide rounded swiper-shadow"
+          style="background-color: #0d6dba; color: aliceblue"
+          (click)="goToContactUs()">
+          <i data-feather="phone" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">Contact Us</div>
+        </div>
+        <!-- <div class="swiper-slide rounded swiper-shadow">
+          <i data-feather="github" class="font-large-1"></i>
+          <div class="swiper-text pt-md-1 pt-sm-50">General Guide</div>
+        </div> -->
+      </swiper>
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="row my-2">
+                <div
+                  class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                  <div
+                    plyr
+                    plyrTitle="Video"
+                    [plyrPlaysInline]="true"
+                    [plyrPoster]="poster1"
+                    [plyrSources]="videoSources1"
+                    [plyrOptions]="plyrOptions"></div>
+                </div>
+                <div class="col-12 col-md-6">
+                  <h2>Big Data in Biology</h2>
+                  <span class="card-text item-company"
+                    >Bottleneck in genome sequencing is no longer data
+                    generation-but the challenges are around data analysis,
+                    display and integration
+                    <ul>
+                      <li>
+                        Data analysis: Computational tools are becoming
+                        inadequate to handle the volume of data
+                      </li>
+                      <li>
+                        Data integration: Data types like molecular, phenotypic,
+                        clinical etc must be linked and correlated to derive
+                        models.
+                      </li>
+                      <li>
+                        Visualization: Multidimensional data from different
+                        studies must be correlated and visualized
+                      </li>
+                      <li>
+                        Computational tools: Computational infrastructure
+                        (storage, CPU power, networks) is required along with
+                        tools for rapid analysis
+                      </li>
+                      <li>
+                        Training: Scientists with expertise in biology and
+                        informatics, containerr, mathematics, statistics are
+                        required.
+                      </li>
+                    </ul>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row my-2">
+                <div class="col-12 col-md-6">
+                  <h2>Anvaya NGS</h2>
+                  <span class="card-text item-company"
+                    >AnvayaNGS is an automated workflows, with user friendly UI
+                    and Predefined pipelines to carry out analysis of NGS
+                    data.It also provides drag and drop facility to build custom
+                    workflows. Rule Engine incorporated.Can use a backend
+                    parallel supercontainerrs for rapid execution.<br />
+                    <strong>Key Features</strong>
+                    <ul>
+                      <li>Create, Save, Run, Stop, Re-run workflow</li>
+                      <li>
+                        Rules Engine to ensure logical connectivity of tools
+                      </li>
+                      <li>Provision of Custom Tools and Custom Parsers</li>
+                      <li>
+                        13 Pre-defined Workflows for frequently used pipelines
+                        in genome annotation and comparative genomics
+                      </li>
+                      <li>
+                        Easy to use, standalone Anvaya Client which is supported
+                        on Windows as well as Linux
+                      </li>
+                    </ul>
+                  </span>
+                </div>
+                <div
+                  class="col-12 col-md-6 d-flex align-items-center justify-content-center">
+                  <div
+                    plyr
+                    plyrTitle="Video"
+                    [plyrPlaysInline]="true"
+                    [plyrPoster]="poster"
+                    [plyrSources]="videoSources"
+                    [plyrOptions]="plyrOptions"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row my-2">
+                <div
+                  class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+                  <div class="d-flex align-items-center justify-content-center">
+                    <img
+                      [src]="images[0]"
+                      class="img-fluid product-img"
+                      alt="ice image" />
+                  </div>
+                </div>
+                <div class="col-12 col-md-7">
+                  <h2>About Us</h2>
+                  <span class="card-text item-company"
+                    >Centre for Development of Advanced Computing (C-DAC) is the
+                    premier R&D organization of the Ministry of Electronics and
+                    Information Technology (MeitY) for carrying out R&D in IT,
+                    Electronics and associated areas. Different areas of C-DAC,
+                    had originated at different times, many of which came out as
+                    a result of identification of opportunities.</span
+                  >
+                  <div class="d-flex flex-column flex-sm-row pt-1">
+                    <a
+                      (click)="aboutus()"
+                      class="btn btn-primary btn-cart mr-0 mr-sm-1 mb-1 mb-sm-0"
+                      >Know More</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br />
+          <!-- Footer -->
+          <footer class="text-lg-start text-muted icons">
+            <!-- Section: Links  -->
+            <section
+              class="d-flex justify-content-center justify-content-lg-between border-bottom">
+              <div class="container text-md-start">
+                <!-- Grid row -->
+                <div class="row mt-3">
+                  <!-- Grid column -->
+                  <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                    <!-- Content -->
+                    <h3 class="text-uppercase fw-bold color">C-DAC</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 60px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <h3 class="color">
+                      <b>C-DAC Innovation Park,</b>
+                      Panchavati, Pashan, Pune - 411 008, Maharashtra (India)
+                    </h3>
+                  </div>
+
+                  <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-2">
+                    <!-- Links -->
+                    <h3 class="fw-bold mb-2 color">Get connected with us:</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 107px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <p>
+                      <a class="li-ic">
+                        <a
+                          href="https://in.linkedin.com/company/cdac"
+                          target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/linkedin.svg"
+                        /></a>
+                      </a>
+                    </p>
+                    <p>
+                      <!-- Twitter -->
+                      <a class="tw-ic">
+                        <a href="https://twitter.com/cdacindia" target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/twitter.svg"
+                        /></a>
+                      </a>
+                    </p>
+                    <p>
+                      <!-- Facebook -->
+                      <a class="fb-ic">
+                        <a
+                          href="https://www.facebook.com/CDACINDIA"
+                          target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/icons8-facebook.svg"
+                        /></a>
+                      </a>
+                    </p>
+                    <p>
+                      <!--Kooapp-->
+                      <a class="pin-ic">
+                        <a
+                          href="https://www.kooapp.com/profile/cdac"
+                          target="_blank"
+                          ><img
+                            class="social"
+                            src="assets/images/carousel/koo-app-white.svg"
+                        /></a>
+                      </a>
+                    </p>
+                  </div>
+                  <!-- Grid column -->
+                  <!-- Grid column -->
+
+                  <!-- Grid column -->
+                  <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-2 color">
+                    <!-- Links -->
+                    <h3 class="font fw-bold mb-2 color">Useful links</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 60px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <h3 class="color">
+                      <a (click)="aboutus()" class="text-reset font"
+                        >About Us</a
+                      >
+                    </h3>
+                    <h3 class="color">
+                      <a (click)="contactus()" class="text-reset font"
+                        >Contact Us</a
+                      >
+                    </h3>
+                    <h3 class="color">
+                      <a href="#!" class="text-reset font">Faq</a>
+                    </h3>
+                    <h3 class="color">
+                      <a href="#!" class="text-reset font">Help</a>
+                    </h3>
+                  </div>
+                  <!-- Grid column -->
+
+                  <!-- Grid column -->
+                  <div class="col-md-2 col-lg-4 col-xl-3 mx-auto mb-2 color">
+                    <!-- Links -->
+                    <h3 class="fw-bold mb-2 color">Contact US</h3>
+                    <hr
+                      class="mt-0 d-inline-block mx-auto"
+                      style="
+                        width: 60px;
+                        background-color: #7c4dff;
+                        height: 2px;
+                      " />
+                    <h3 class="color">
+                      Mail us :
+                      <a href="mailto:braf-help@cdac.in" class="color">
+                        ice@cdac.in</a
+                      >
+                    </h3>
+
+                    <h3 class="color">
+                      Phone :
+                      <a href="tel: 020-25503272" style="color: white"
+                        >020-25503272</a
+                      >
+                    </h3>
+                  </div>
+                  <!-- Grid column -->
+                </div>
+                <!-- Grid row -->
+              </div>
+            </section>
+            <!-- Section: Links  -->
+            <!-- Copyright -->
+            <div
+              class="text-center p-2 color"
+              style="background-color: rgba(0, 0, 0, 0.05)">
+              © 2022 C-DAC. All rights reserved
+            </div>
+            <!-- Copyright -->
+          </footer>
+        </div>
+        <!-- </div> -->
+      </div>
+    </section>
+    <!-- Basic Alerts end -->
+  </div>
+</div>

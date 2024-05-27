@@ -1,0 +1,220 @@
+<div class="content-wrapper container-xxxl p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="content-body">
+    <!-- app e-commerce details start -->
+    <section class="app-ecommerce-details">
+      <div class="card">
+        <!-- Product Details starts -->
+        <div class="card-body">
+          <div class="row my-2">
+            <div
+              class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+              <div class="d-flex align-items-center justify-content-center">
+                <img
+                  src="assets/images/gatkImage.png"
+                  class="img-fluid product-img"
+                  alt="GATK" />
+              </div>
+            </div>
+
+            <div class="col-12 col-md-7">
+              <h2>GATK</h2>
+              <form [formGroup]="GatkForm">
+                <div class="form-group">
+                  <label class="form-label" for="command">Command</label>
+                  <ng-select
+                    id="command"
+                    formControlName="command"
+                    required
+                    [items]="CommandList"
+                    bindLabel="command"
+                    bindValue="command"
+                    [ngClass]="{
+                      'is-invalid': submitted && form.command.errors
+                    }">
+                  </ng-select>
+
+                  <div
+                    *ngIf="submitted && form.command.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="form.command.errors.required">
+                      Command is required
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="input">Input</label>
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="text"
+                      id="input"
+                      items="input"
+                      class="form-control"
+                      formControlName="input"
+                      [(ngModel)]="receivedData" />
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-primary"
+                        (click)="openMyDriveDialog()"
+                        type="button"
+                        rippleEffect>
+                        <i class="fa fa-folder-open-o"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="submitted && form.input.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="form.input.errors.required">
+                      Input is required
+                    </div>
+                    <div *ngIf="form.input.errors.minlength">
+                      Input must be at least 3 characters
+                    </div>
+                    <div *ngIf="form.input.errors.maxlength">
+                      Input exceeds 225 characters
+                    </div>
+                  </div>
+
+                  <!-- <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary mr-1"
+                      (click)="openMyDriveDialog()">
+                      <span class="active-sorting">Select</span>
+                    </button>
+                  </div> -->
+                  <!-- <button (click)="openModal()">Open Modal</button> -->
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="output">Output</label>
+                  <div class="input-group input-group-merge">
+                    <input
+                      type="text"
+                      id="output"
+                      items="output"
+                      class="form-control"
+                      formControlName="output"
+                      [(ngModel)]="receivedOutputData" />
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-primary"
+                        (click)="openMyDriveDialogOutput()"
+                        type="button"
+                        rippleEffect>
+                        <i class="fa fa-folder-open-o"></i>
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    *ngIf="submitted && form.output.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="form.output.errors.required">
+                      Output is required
+                    </div>
+                    <div *ngIf="form.output.errors.minlength">
+                      Output must be at least 3 characters
+                    </div>
+                    <div *ngIf="form.output.errors.maxlength">
+                      Output exceeds 225 characters
+                    </div>
+                  </div>
+                  <!-- <div class="btn-group">
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary mr-1"
+                      (click)="openMyDriveDialogOutput()">
+                      <span class="active-sorting">Select</span>
+                    </button>
+                  </div> -->
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cmd">More Options</label>
+                  <textarea
+                    id="options"
+                    formControlName="options"
+                    class="form-control"
+                    aria-label="With textarea"
+                    bindLabel="options"
+                    bindValue="options"></textarea>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="memory"
+                    >Memory Allocation</label
+                  >
+                  <ng-select
+                    id="memory"
+                    formControlName="memory"
+                    required
+                    [items]="Memory"
+                    bindLabel="memory"
+                    bindValue="memory"
+                    [ngClass]="{
+                      'is-invalid': submitted && form.memory.errors
+                    }">
+                  </ng-select>
+                  <div
+                    *ngIf="submitted && form.memory.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="form.memory.errors.required">
+                      Memory is required
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="cores">CPU core</label>
+                  <ng-select
+                    id="cores"
+                    formControlName="cores"
+                    required
+                    [items]="CpuCores"
+                    bindLabel="cores"
+                    bindValue="cores"
+                    [ngClass]="{
+                      'is-invalid': submitted && form.cores.errors
+                    }">
+                  </ng-select>
+                  <div
+                    *ngIf="submitted && form.cores.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="form.cores.errors.required">
+                      Cpu Cores is required
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="instances">Instances</label>
+                  <ng-select
+                    id="instances"
+                    formControlName="instances"
+                    required
+                    [items]="Instances"
+                    bindLabel="instances"
+                    bindValue="instances"
+                    [ngClass]="{
+                      'is-invalid': submitted && form.instances.errors
+                    }">
+                  </ng-select>
+                  <div
+                    *ngIf="submitted && form.instances.errors"
+                    class="invalid-feedback">
+                    <div *ngIf="form.instances.errors.required">
+                      Instances is required
+                    </div>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary btn-submit"
+                  id="Submit"
+                  rippleEffect
+                  (click)="formOnSubmit()">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

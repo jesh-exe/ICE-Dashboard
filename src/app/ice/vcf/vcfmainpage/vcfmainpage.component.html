@@ -1,0 +1,219 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- <div class="card">
+
+        <div class="card-body">
+          <div class="row my-2">
+            <div
+              class="col-12 col-md-3 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+              <div class="d-flex align-items-center justify-content-center">
+                <img
+                  class="img-fluid product-img"
+                  src="assets/images/VCFmain.png"
+                  alt="vcf main page"
+                  style="width: 300px; height: 300px" />
+              </div>
+            </div>
+            <div class="col-12 col-md-9">
+              <h4 class="card-title">1000 genomes project</h4>
+              <p class="card-text">
+                1000 Genomes Project was initiated in 2008 with an objective to
+                provide in-depth understanding and characterization of human
+                genome sequence variation for investigating relationship between
+                genotype and phenotype. The goal of the 1000 Genomes Project is
+                to find most genetic variants that have frequencies of at least
+                1% in the populations studied. The reference human genome
+                sequence provides a foundation for the study of human genetics,
+                but systematic investigation of human variation requires full
+                knowledge of DNA sequence variation across the entire spectrum
+                of allele frequencies and types of DNA differences. Substantial
+                progress has been already made in the development of dbSNP
+                database which includes approximately 11 million SNPs and 3
+                million short indels. Recent studies revealed genetic variants
+                across 26 populations having 2504 individuals. In this work, a
+                total of 4 super populations have been taken into account viz.,
+                African (AFR), East Asian (EAS), European (EUR) and South Asian
+                (SAS). ~88 million variants (single nucleotide polymorphisms,
+                insertions/deletions and structural variants across global
+                samples) have been catalogued so far by 1000 genomes project. It
+                also provided a key component for human genetic studies, by
+                enabling array design, genotype imputation, cataloging of
+                variants in regions of interest, and filtering of likely neutral
+                variants
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    <div class="row match-height">
+      <div class="col-lg-12 col-md-6 col-12">
+        <div class="row kb-search-content-info match-height">
+          <div
+            *ngFor="let item of data"
+            class="col-md-3 col-sm-6 col-12 kb-search-content">
+            <div class="card">
+              <a routerLink="/vcfanalysis/{{ item.href }}">
+                <!-- <img
+                  src="{{ item.img }}"
+                  class="card-img-top"
+                  alt="knowledge-base-image" /> -->
+
+                <div class="card-body text-center">
+                  <h2>{{ item.title }}</h2>
+
+                  <div
+                    class="row justify-content-center match-height"
+                    *ngIf="item.button">
+                    <div
+                      class="col-6 col-md-4 col-sm-6 col-12"
+                      *ngFor="let one of item.children"
+                      style="padding: 10px"
+                      class="button">
+                      <!-- <button type="button" class="btn btn-primary" rippleEffect>
+                        {{ one.title }}
+                      </button> -->
+                      <a
+                        routerLink="/vcfanalysis/{{ one.href }}"
+                        class="btn btn-primary"
+                        rippleEffect>
+                        {{ one.title }}</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <core-card
+        *ngIf="statusArray"
+        [actions]="['reload']"
+        [isReload]="isReload"
+        (events)="refresh($event)"
+        class="card col-lg-12 col-md-6 col-12">
+        <h4 class="card-title">File Upload Status</h4>
+        <div class="card-body">
+          <table>
+            <tr>
+              <th>Status</th>
+              <th>File Name</th>
+              <th>Total Record Count</th>
+            </tr>
+            <tr class="transaction-item" *ngFor="let item of statusArray">
+              <td>
+                <div
+                  [ngClass]="{
+                    'bg-light-success': item.status == 'COMPLETED',
+
+                    'bg-light-warning': item.status == 'PROGRESS',
+                    'bg-light-primary': item.status == 'RUNNING',
+                    'bg-light-danger': item.status == 'FAIED'
+                  }"
+                  class="avatar bg-light-primary rounded">
+                  <div class="avatar-content">
+                    <i
+                      class="feather avatar-icon font-medium-1"
+                      [ngClass]="{
+                        'icon-x-circle': item.status == 'FAIED',
+                        'icon-check-circle': item.status == 'COMPLETED',
+                        'icon-refresh-cw': item.status == 'PROGRESS',
+                        'icon-rotate-cw': item.status == 'RUNNING'
+                      }"></i>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <h3 class="transaction-title">{{ item.collection }}</h3>
+              </td>
+              <td>{{ item.count }}</td>
+            </tr>
+          </table>
+        </div>
+      </core-card>
+    </div>
+    <div class="content-area-wrapper" style="height: auto">
+      <div class="sidebar-left">
+        <div class="sidebar">
+          <core-sidebar
+            class="sidebar-content"
+            name="chat-sidebar"
+            overlayClass="body-content-overlay"
+            collapsibleSidebar="bs-gt-lg">
+            <app-job-sidebar class="chat-sidebar-wrapper"></app-job-sidebar>
+          </core-sidebar>
+        </div>
+      </div>
+
+      <div class="content-right">
+        <div class="content-wrapper">
+          <div class="content-body">
+            <app-job-content></app-job-content>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br />
+
+    <!-- <div class="card">
+
+        <div class="card-body">
+          <div class="row my-2">
+            <div class="col-12 col-md-5">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Next Generation Sequencing Data</h4>
+                  <p class="card-text">
+                    Next Generation Sequencing experiments are generating
+                    millions of short sequence reads with a high throughput
+                    resulting in huge amounts of raw data. One of the main goals
+                    of DNA sequencing is to discover genomic variants i.e.,
+                    single nucleotide polymorphisms (SNPs) and
+                    insertions/deletions (indels) and associate these variations
+                    to phenotype as understanding the relationship between
+                    genotype and phenotype is one of the central goals in
+                    biology and medicine.
+                  </p>
+                  <h4 class="card-title">Genomic Analysis</h4>
+                  <p class="card-text">
+                    <b>GENOTYPING:</b> Genotyping is the process of determining
+                    differences in the genetic make-up (genotype) of an
+                    individual by examining the individual's DNA sequence using
+                    biological assays and comparing it to another individual's
+                    sequence or a reference sequence. It reveals the alleles an
+                    individual has inherited from their parents. Traditionally
+                    genotyping is the use of DNA sequences to define biological
+                    populations by use of molecular tools. Genotyping enables
+                    researchers to explore genetic variants such as single
+                    nucleotide polymorphisms (SNPs) and large structural changes
+                    in DNA. High-throughput genomic technologies such as
+                    next-generation sequencing (NGS) and microarrays enable a
+                    deeper understanding of disease etiology on a molecular
+                    level. With multiple genomic targets potentially
+                    contributing to disease, analysis requires flexibility and
+                    accuracy. SNP genotyping and copy number variation (CNV)
+                    data analysis tools can analyze results for millions of
+                    markers and probes and detect sample outliers, providing
+                    insight into the functional consequences of genetic
+                    variation.<br />
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div
+              class="col-12 col-md-7 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+              <div class="d-flex align-items-center justify-content-center">
+                <img
+                  class="img-fluid product-img"
+                  src="assets/images/vcf.drawio.png"
+                  alt="vcf main page"
+                  style="width: fit-content; height: fit-content" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+  </div>
+</block-ui>

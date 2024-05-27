@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+spec:
+  hostAliases:
+  - ip: "10.108.86.120"
+    hostnames:
+    - "bio-hub.pune.cdac.in"
+    - "bio-hub"
+  - ip: "10.108.72.2"
+    hostnames:
+    - "git.pune.cdac.in"
+
+  containers:
+  
+  - name: kubectl
+    image: joshendriks/alpine-k8s
+    command:
+    - /bin/cat
+    tty: true
+    
+  - name: maven
+    image: maven:3-openjdk-11
+    volumeMounts:
+      - name: maven-storage
+        mountPath: /root/
+    command:
+    - /bin/cat
+    tty: true    
+
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:debug
+    command:
+    - /busybox/cat
+    tty: true
+    volumeMounts:
+      - name: kaniko-secret
+        mountPath: /kaniko/.docker
+      - name: kaniko-storage
+        mountPath: /cache/
+  volumes:
+    - name: kaniko-secret
+      secret:
+        secretName: regcred
+        items:
+          - key: .dockerconfigjson
+            path: config.json
+    - name: maven-storage
+      persistentVolumeClaim:
+          claimName: maven-storage-claim
+    - name: kaniko-storage
+      persistentVolumeClaim:
+          claimName: kaniko-cache-claim

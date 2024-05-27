@@ -1,0 +1,40 @@
+.color{
+    color: #01386a;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+    a{
+        text-decoration: underline;
+        color:#01386a
+      }
+      
+      /* mouse over link */
+      a:hover {
+        color: green;
+        text-decoration: underline;
+      }
+
+      dt {
+        font-size: larger;
+    }
+    dd{
+      font-size: larger;
+    }
+
+    a{
+      text-decoration: underline;
+      color:#2078ca
+    }
+    
+    /* mouse over link */
+    a:hover {
+      color: green;
+      text-decoration: underline;
+    }
+  

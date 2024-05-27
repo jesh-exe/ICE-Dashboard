@@ -1,0 +1,25 @@
+.col-2.gender {
+    padding: 0px 45px;
+    margin-left: auto;
+}
+@media screen and (max-width:406) {
+    #row{
+      //position: relative;
+      //text-align:justify;
+      align-items: flex-start;
+    //   margin: 10px 28px;
+    //       top: -35%;
+    //       left: 48%;
+    }
+   }
+  
+   
+   .input-group-merge .form-control:not(:first-child) {
+    padding-left: 10px;
+    border-left: 0;
+}
+.disabledbutton {
+
+  background-color: #efefef;
+  opacity:1;
+}

@@ -1,0 +1,25 @@
+###  k apply -f jenkins/kaniko-warmer.yaml -n jenkins
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko-warmer
+spec:
+  containers:
+  - name: kaniko-warmer
+    image: gcr.io/kaniko-project/warmer:latest
+    args: ["--cache-dir=/cache",
+           "--image=openjdk:11",
+           "--image=openjdk:11-jre-slim",
+           "--image=node:lts-alpine",
+           "--image=nginx:mainline"
+           ]
+    volumeMounts:      
+      - name: kaniko-cache
+        mountPath: /cache   
+  restartPolicy: Never
+  volumes:  
+    - name: kaniko-cache
+      persistentVolumeClaim:
+        claimName: kaniko-cache-claim

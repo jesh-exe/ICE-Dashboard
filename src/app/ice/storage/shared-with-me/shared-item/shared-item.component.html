@@ -1,0 +1,242 @@
+<!-- Ecommerce Item -->
+<!-- <mat-toolbar>
+  <mat-icon *ngIf="canNavigateUp" class="pointer" (click)="navigateUp()">
+    arrow_back
+  </mat-icon>
+   <mat-icon *ngIf="canNavigateUp" class="pointer" (click)="navigateUp()">
+  </mat-icon> 
+  <span style="margin-left: 8px"> {{path || 'Files'}} </span>
+  <span class="spacer"></span>
+</mat-toolbar> -->
+<div>
+  <a
+    (contextmenu)="open($event, file); $event.preventDefault()"
+    (dblclick)="navigate(file)"
+    (click)="showElementClick(file)"
+  >
+    <div
+      class="card ecommerce-card"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="{{ name }}"
+    >
+      <div class="item-img text-center">
+        <!-- <a [routerLink]="'/apps/e-commerce/details/' + product.id"> -->
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 24 24" fill="none" stroke="#7367f0"
+        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+        <polyline points="13 2 13 9 20 9"></polyline>
+      </svg> -->
+        <!-- <mat-icon
+      color="primary"
+      class="file-or-folder-icon pointer card-img-top"
+      *ngIf="file.directory"
+    >
+      folder
+    </mat-icon>
+    <mat-icon
+      color="primary"
+      class="file-or-folder-icon pointer card-img-top"
+      *ngIf="!file.directory"
+    >
+      insert_drive_file
+    </mat-icon> -->
+    <i class="{{iconName}}" [ngClass]="{
+      'badge-primary': iconName == 'fa fa-folder',
+      'badge-success': iconName == 'fa fa-file',
+      'badge-danger': iconName == 'fa fa-file-pdf-o',
+      'badge-light':iconName == 'fa fa-file-code-o',
+      'badge-secondary':iconName == 'fa fa-file-archive-o',
+      'badge-warning':iconName == 'fa fa-html5',
+      'badge-dark':iconName == 'fa fa-picture-o',
+      'badge-info':iconName == 'fa fa-file-image-o'
+    }"
+  style="font-size: 2.1rem; font-weight: 500; padding: 8px;    border-radius: 7px;"
+   ></i>
+        <!-- <i
+          class="{{ iconName }}"
+          style="color: #215285; font-size: 40px"
+          aria-hidden="true"
+        ></i> -->
+        <!-- </a> -->
+      </div>
+      <div class="card-body">
+        <h3 class="item-name">
+          <div class="text-body btn">{{ name }}</div>
+        </h3>
+      </div>
+
+      <ng-template #userMenu let-file>
+        <section class="user-menu">
+          <div (click)="downloadElement(file)">
+            <mat-icon class="icon">download</mat-icon>
+            <span>Download</span>
+          </div>
+          <!-- <div (click)="deleteElement(file)">
+            <mat-icon class="icon">delete</mat-icon>
+            <span>Delete</span>
+          </div> -->
+          <div (click)="showElementClick(file)" *ngIf="!file.directory">
+            <mat-icon class="icon">folder_open</mat-icon>
+            <span>Properties</span>
+          </div>
+          <!-- <div (click)="modalOpenVC(modalVC); fetchShareList(filename)">
+            <mat-icon class="icon">share</mat-icon>
+            <span>Share</span>
+          </div> -->
+
+          <div (click)="copy(filename)">
+            <mat-icon class="icon">content_copy</mat-icon>
+            <span>Copy Path</span>
+          </div>
+
+          <ng-template #modalcopypath let-modal>
+            <mat-form-field>
+              <input
+                matInput
+                #inputUrl
+                placeholder="Copy from Clipboard URL"
+                value="{{ filename }}"
+              />
+            </mat-form-field>
+            <button mat-button color="primary" (click)="copy(inputUrl, $event)">
+              Copy
+            </button>
+
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="modal.close('Accept click')"
+                rippleEffect
+              >
+                Close
+              </button>
+            </div>
+          </ng-template>
+
+          <!-- <ng-template #modalVC let-modal>
+            <div class="modal-header">
+              <h5
+                class="modal-title"
+                id="exampleModalCenterTitle"
+                style="font-size: medium"
+              >
+                Share "{{ name }}"
+              </h5>
+              <button
+                type="button"
+                class="close"
+                (click)="modal.dismiss('Cross click')"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body" tabindex="0" ngbAutofocus>
+              <form [formGroup]="fg" (submit)="submit()">
+                <label><b>Email: </b></label>
+                <div class="form-group">
+                  <ng-select
+                    id="email"
+                    formControlName="email"
+                    required
+                    [items]="users"
+                    bindLabel="name"
+                    [multiple]="true"
+                    [(ngModel)]="email"
+                    (add)="addShare(email)"
+                    (remove)="removeShare(email)"
+                    [addTag]="addCustomUser"
+                    [ngClass]="{
+                      'is-invalid': submitted && fg.get('email').errors
+                    }"
+                  >
+                  </ng-select>
+                </div>
+                <div>
+                  <label><b> Sharing with </b></label>
+                  <div class="row">
+                    <li class="owner-header inline-block-child">
+                      {{ oneShareObject }}
+                    </li>
+                    <div class="column">
+                      <div
+                        class="row form-control"
+                        style="padding-right: 2.999rem; margin-bottom: 1rem"
+                      >
+                        Owner
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row" *ngFor="let sh of share; let i = index">
+                    <li class="inline-block-child">
+                      {{ sh.username }}
+                    </li>
+                    <div class="column">
+                      <div class="row">
+                        <form [formGroup]="frm">
+                          <div class="form-group inline-block-child">
+                            <select
+                              [value]="sh.accesstype"
+                              class="form-control"
+                              (click)="changeWebsite($event, sh.username)"
+                            >
+                              <option value="select" disabled>
+                                Select Accesstype
+                              </option>
+                              <option value="view">View</option>
+                              <option value="download">Download</option>
+                            </select>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <form (submit)="onSubmit()">
+                  <label for="date"><b> Expiration Date: </b></label>
+                  <input
+                    class="form-control"
+                    type="datetime-local"
+                    id="date"
+                    name="date"
+                    [(ngModel)]="selectedDate"
+                    [min]="getCurrentDateTime()"
+                  />
+                  <div
+                    *ngIf="
+                      myForm.controls['dateTime'].invalid &&
+                      (myForm.controls['dateTime'].dirty ||
+                        myForm.controls['dateTime'].touched)
+                    "
+                  >
+                    <div *ngIf="myForm.controls['dateTime'].errors.required">
+                      Date and time are required.
+                    </div>
+                    <div
+                      *ngIf="myForm.controls['dateTime'].errors.invalidDateTime"
+                    >
+                      Date and time must be at least one hour in the future.
+                    </div>
+                  </div>
+                </form>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                (click)="sendShareList()"
+                rippleEffect
+              >
+                Ok
+              </button>
+            </div>
+          </ng-template> -->
+        </section>
+      </ng-template>
+    </div>
+  </a>
+</div>

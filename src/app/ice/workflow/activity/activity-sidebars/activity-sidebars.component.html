@@ -1,0 +1,85 @@
+<div class="chat-user-list-wrapper list-group" [perfectScrollbar]>
+  <h2>Processes</h2>
+  <div class="d-flex align-items-center">
+    <div class="input-group input-group-merge">
+      <div class="input-group-prepend">
+        <span class="input-group-text round"
+          ><i data-feather="search" class="text-muted"></i
+        ></span>
+      </div>
+      <input
+        type="text"
+        class="form-control round"
+        id="chat-search"
+        placeholder="Search "
+        aria-label="Search..."
+        aria-describedby="chat-search"
+        [(ngModel)]="searchText" />
+      <div class="input-group-append round" (click)="clear()">
+        <span class="input-group-text cursor-pointer round"
+          ><i data-feather="delete" class="text-muted"></i
+        ></span>
+      </div>
+    </div>
+  </div>
+  <ng-container
+    *ngIf="
+      (jobs | filter : searchText : 'imageName').length;
+      else noResults
+    "></ng-container>
+  <ul class="chat-users-list">
+    <li
+      *ngFor="let job of jobs | filter : searchText : 'imageName'"
+      (click)="openJob(job)">
+      <div class="rounded mr-1 ml-0">
+        <div
+          [ngClass]="{
+            'bg-light-secondary': job.status == 'Pending',
+            'bg-light-success': job.status == 'Completed',
+            'bg-light-primary': job.status == 'Succeeded',
+            'bg-light-warning': job.status == 'Running',
+            'bg-light-info': job.status == 'Downloaded',
+            'bg-light-danger': job.status == 'Failed'
+          }"
+          class="rounded p-1">
+          <span style="vertical-align: middle">
+            <i
+              class="feather avatar-icon font-medium-1"
+              [ngClass]="{
+                'icon-refresh-cw': job.status == 'Pending',
+                'icon-check-circle': job.status == 'Completed',
+                'icon-info': job.status == 'Succeeded',
+                'icon-crosshair': job.status == 'Running',
+                'icon-arrow-down-circle': job.status == 'Downloaded',
+                'icon-x-circle': job.status == 'Failed'
+              }"></i
+          ></span>
+        </div>
+      </div>
+      <div class="chat-info flex-grow-1">
+        <h3 class="mb-0">{{ job.processName }}</h3>
+        <p
+          class="card-text"
+          [ngClass]="{
+            'text-secondary': job.status == 'Pending',
+            'text-success': job.status == 'Completed',
+            'text-primary': job.status == 'Succeeded',
+            'text-warning': job.status == 'Running',
+            'text-info': job.status == 'Downloaded',
+            'text-danger': job.status == 'Failed'
+          }">
+          {{ job.status }}
+        </p>
+      </div>
+    </li>
+    <ng-template #noResults>
+      <li
+        class="no-results"
+        [ngClass]="{
+          show: jobs != null
+        }">
+        <h6 class="mb-0">No Records Found</h6>
+      </li>
+    </ng-template>
+  </ul>
+</div>

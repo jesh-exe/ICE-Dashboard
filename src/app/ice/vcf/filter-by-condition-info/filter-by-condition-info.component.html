@@ -1,0 +1,65 @@
+<div class="content-wrapper container-xxxl p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="content-body">
+    <!-- app e-commerce details start -->
+    <section class="app-ecommerce-details">
+      <div class="card">
+        <!-- Product Details starts -->
+        <div class="card-body">
+          <div class="row my-2">
+            <div
+              class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+              <div class="d-flex align-items-center justify-content-center">
+                <img
+                  src="assets/images/vcf4.png"
+                  class="img-fluid product-img"
+                  alt="product image" />
+              </div>
+            </div>
+            <div class="col-12 col-md-7">
+              <h2>Variant Prioritization</h2>
+              <!-- <span class="card-text item-company"
+                >By
+                <a href="javascript:void(0)" class="company-name">
+                  BIOINFOMATICS
+                </a></span
+              >
+              <div class="ecommerce-details-price d-flex flex-wrap mt-1">
+                <h3 class="item-price mr-1">ICE</h3>
+                <div class="rating rating-sm pl-1 border-left mb-1"></div>
+                <h3 class="item-price mr-1">CDAC PUNE</h3>
+              </div> -->
+              <!-- <p class="card-text">
+                  Available - <span class="text-success">In stock</span>
+                </p> -->
+              <h4 class="card-text">
+                VCF carry so many informations about genomic variants. The info
+                column includes position-level information for that data row and
+                can be thought as aggregate data that includes all of the
+                sample-level information specified such as AC, AF, AN, DP, NS
+                etc. These specified information can be used for filtering /
+                Querying the VCF file on basis of either AF or DP value cut-off.
+                If genotype information is present, then the same types of data
+                must be present for all samples. If info field missing the
+                information of AC, AF, AN and DP then using genotype field these
+                information can be updated in info field on user choice. User
+                can can set these values for for customised population set
+              </h4>
+
+              <hr />
+              <a
+                routerLink="/vcfanalysis/filterbycondition"
+                class="btn btn-primary btn-cart mr-0 mr-sm-1 mb-1 mb-sm-0"
+                rippleEffect>
+                <span class="add-to-cart">Analysis</span>
+                <i data-feather="arrow-right" class="mr-25"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Product Details ends -->
+      </div>
+    </section>
+    <!-- app e-commerce details end -->
+  </div>
+</div>

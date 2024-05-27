@@ -1,0 +1,181 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <div class="content-body">
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+      <div class="row" *ngIf="fullData">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10 card ribbon-box" style="padding: 15px">
+          <div
+            class="ribbon ribbon-shape"
+            [ngClass]="{
+              'ribbon-success':
+                fullData.status == 'OPENED' && userName === fullData?.curatorId,
+              'ribbon-danger': fullData.status == 'REJECTED',
+              'ribbon-warning': fullData.status == 'PENDING',
+              'ribbon-primary':
+                fullData.status == 'OPENED' &&
+                !(userName === fullData?.curatorId)
+            }">
+            <span
+              *ngIf="
+                fullData.status == 'OPENED' &&
+                  !(userName === fullData?.curatorId);
+                else elseBlock
+              ">
+              IN PROGESS
+            </span>
+            <ng-template #elseBlock> {{ fullData.status }}</ng-template>
+            <!-- {{ fullData.status }} -->
+          </div>
+          <h2 class="card-title h2" style="text-align: center">
+            Curation ID: {{ urlLastValue }}
+          </h2>
+
+          <h3>Sequence ID: {{ fullData.ngsSequence.id }}</h3>
+          <h3 *ngIf="fullData.remarks">
+            <span style="color: #ea5455">REMARK:</span> {{ fullData.remarks }}
+          </h3>
+          <div class="row">
+            <div class="col-11">
+              <button
+                *ngIf="fullData.status == 'PENDING'"
+                class="btn btn-primary"
+                type="button"
+                rippleEffect
+                (click)="openForWGSCuration(fullData)">
+                Open for curation
+              </button>
+            </div>
+            <div class="col-1">
+              <button
+                *ngIf="
+                  userName === fullData?.curatorId &&
+                  fullData.status == 'OPENED'
+                "
+                type="button"
+                class="btn btn-warning"
+                rippleEffect
+                (click)="
+                  AcceptOrRejectOrRevokeWGSCuration(fullData, 'Pending')
+                ">
+                Revoke
+              </button>
+            </div>
+          </div>
+          <hr />
+          <div *ngIf="fullData.status == 'OPENED'">
+            <div class="row" *ngIf="userName === fullData?.curatorId">
+              <div class="col-6">
+                <label>Add a remark <span class="required">*</span></label>
+                <input type="text" class="form-control" [(ngModel)]="remark" />
+              </div>
+
+              <div class="col-3 center">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  rippleEffect
+                  (click)="
+                    AcceptOrRejectOrRevokeWGSCuration(fullData, 'Accept')
+                  ">
+                  Accept
+                </button>
+              </div>
+
+              <div class="col-3 center">
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  rippleEffect
+                  (click)="
+                    AcceptOrRejectOrRevokeWGSCuration(fullData, 'Reject')
+                  ">
+                  Reject
+                </button>
+              </div>
+            </div>
+          </div>
+          <br />
+
+          <ngb-accordion
+            class="accordion collapse-border"
+            #acc="ngbAccordion"
+            activeIds="ngb-panel-0">
+            <ngb-panel [cardClass]="'collapse-border-item'">
+              <ng-template ngbPanelTitle>
+                <span class="lead collapse-title" style="color: black">
+                  <i data-feather="align-justify" style="color: #ea5455"> </i>
+                  &nbsp;Sequence Details</span
+                >
+              </ng-template>
+              <ng-template ngbPanelContent>
+                <table id="customers">
+                  <tr *ngFor="let list3 of fullData.ngsSequence | keyvalue">
+                    <td
+                      style="font-size: larger"
+                      *ngIf="list3.key != 'sample' && list3.value">
+                      {{ list3.key }}
+                    </td>
+                    <td *ngIf="list3.key != 'sample' && list3.value">
+                      <pre>{{ list3.value }}</pre>
+                    </td>
+                  </tr>
+                </table>
+              </ng-template>
+            </ngb-panel>
+            <ngb-panel [cardClass]="'collapse-border-item'">
+              <ng-template ngbPanelTitle>
+                <span class="lead collapse-title" style="color: black">
+                  <i data-feather="bookmark" style="color: #ea5455"> </i>
+                  &nbsp;Sample Details</span
+                >
+              </ng-template>
+              <ng-template ngbPanelContent
+                ><table id="customers">
+                  <tr
+                    *ngFor="
+                      let list2 of fullData.ngsSequence.sample | keyvalue
+                    ">
+                    <td
+                      style="font-size: larger"
+                      *ngIf="list2.key != 'project' && list2.value">
+                      {{ list2.key }}
+                    </td>
+                    <td *ngIf="list2.key != 'project' && list2.value">
+                      {{ list2.value }}
+                    </td>
+                  </tr>
+                </table></ng-template
+              ></ngb-panel
+            >
+            <ngb-panel [cardClass]="'collapse-border-item'">
+              <ng-template ngbPanelTitle>
+                <span class="lead collapse-title" style="color: black"
+                  ><i data-feather="database" style="color: #ea5455"> </i>
+                  &nbsp;Project Details
+                </span></ng-template
+              >
+              <ng-template ngbPanelContent
+                ><table id="customers">
+                  <tr
+                    *ngFor="
+                      let list1 of fullData.ngsSequence.sample.project
+                        | keyvalue
+                    ">
+                    <td style="font-size: larger" *ngIf="list1.value">
+                      {{ list1.key }}
+                    </td>
+                    <td *ngIf="list1.value">
+                      {{ list1.value }}
+                    </td>
+                  </tr>
+                </table></ng-template
+              >
+            </ngb-panel>
+          </ngb-accordion>
+        </div>
+        <div class="col-lg-1"></div>
+      </div>
+    </div>
+  </div>
+</block-ui>

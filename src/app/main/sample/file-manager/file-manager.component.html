@@ -1,0 +1,18 @@
+
+<div *ngIf="done===true" style="height: 100%; box-sizing: border-box;" >
+    <mat-card style="height: 100%; box-sizing: border-box; padding:0">
+      
+      <app-file-explorer
+        [fileElements]="fileElements"
+        [path]="currentPathValue"
+        [canNavigateUp]="canNavigateUp"
+        (elementRemoved)="removeElement($event)"
+        (navigatedDown)="navigateToFolder($event)"
+        (navigatedUp)="navigateUp()"
+        (elementMoved)="moveElement($event)"
+        (elementShowed)="viewElement($event)"
+      >
+      </app-file-explorer>
+    </mat-card>
+  </div> 
+  <!-- <router-outlet></router-outlet> -->

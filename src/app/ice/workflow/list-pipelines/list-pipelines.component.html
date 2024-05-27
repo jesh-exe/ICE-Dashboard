@@ -1,0 +1,28 @@
+<div class="content-wrapper container-xxxl p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="row">
+    <div class="col-1"></div>
+    <div class="col-10">
+      <ul
+        ngbNav
+        #navCenter="ngbNav"
+        [(activeId)]="active"
+        class="nav-tabs justify-content-center">
+        <li ngbNavItem [ngbNavItem]="1">
+          <a ngbNavLink class="h4">Launchpad</a>
+          <ng-template ngbNavContent>
+            <app-launchpad></app-launchpad>
+          </ng-template>
+        </li>
+        <li ngbNavItem [ngbNavItem]="2">
+          <a class="h4" ngbNavLink>Runs</a>
+          <ng-template ngbNavContent>
+            <app-runs></app-runs>
+          </ng-template>
+        </li>
+      </ul>
+      <div [ngbNavOutlet]="navCenter" class="mt-2"></div>
+    </div>
+    <div class="col-1"></div>
+  </div>
+</div>

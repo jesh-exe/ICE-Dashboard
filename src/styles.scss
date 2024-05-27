@@ -1,0 +1,188 @@
+@import '@core/scss/core.scss';
+@import './assets/scss/styles';
+@import '@core/scss/base/bootstrap-extended/include';
+
+
+// @media screen and (max-width: 739px) {
+//     .loading-logo {
+//         position: absolute;
+//         left: calc(30% - 35px);
+//         top: 30%;
+//         width:40vh;
+//       }
+// }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+// @import '~bootstrap/scss/bootstrap';
+
+.required{
+color:red;
+}
+$colors: (
+  white: $white,
+  black: $black,
+  dark: $dark,
+  light: $light,
+  primary: $primary,
+  secondary: $secondary,
+  success: $success,
+  info: $info,
+  warning: $warning,
+  danger: $danger,
+
+);
+.ribbon-box {
+    position: relative;
+    .ribbon {
+        padding: 5px 12px;
+         box-shadow: 2px 5px 10px rgba($dark, 0.15);
+        color: white;
+        font-size: 1.25rem;
+        font-weight: 5rem;
+        position: absolute;
+        left: -1px;
+        top: 10px;
+        z-index: 0;
+        &.round-shape {
+            border-radius: 0 30px 30px 0;
+        }
+        &.ribbon-shape {
+            display: inline-block;
+            &::before,
+            &::after {
+                content: "";
+                position: absolute;
+                border-radius: 5px 0 0 5px;
+            }
+            &::before {
+                width: 7px;
+                height: 124%;
+                top: 0;
+                left: -6.5px;
+                padding: 0 0 7px;
+            }
+            &::after {
+                width: 5px;
+                height: 5px;
+                bottom: -5px;
+                left: -4.5px;
+            }
+        }
+        &.vertical-shape {
+            position: absolute;
+            color: $white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 36px;
+            width: 70px;
+            top: -2px;
+            transform: rotate(-90deg) translateX(-27%);
+            font-weight:2rem;
+            &:after {
+                content: "";
+                border-top: 18px solid transparent;
+                border-bottom: 18px solid transparent;
+                border-right: 11px solid transparent;
+                border-left: 11px solid transparent;
+                position: absolute;
+                left: -11px;
+                top: 0;
+            }
+        }
+    }
+    &.right {
+        .ribbon {
+            position: absolute;
+            left: auto;
+            right: 0;
+
+            &.round-shape {
+                border-radius: 30px 0 0 30px;
+            }
+
+            &.ribbon-shape {
+                text-align: right;
+
+                &::before {
+                    right: -6.5px;
+                    left: auto;
+                    border-radius: 0 5px 5px 0;
+                }
+
+                &::after {
+                    right: -4.5px;
+                    left: auto;
+                    border-radius: 0 5px 5px 0;
+                }
+            }
+        }
+
+        &.ribbon-circle {
+            .ribbon {
+                left: auto;
+                right: 20px;
+            }
+        }
+
+        .icon-ribbon {
+            right: 24px;
+            left: auto;
+        }
+
+        &.ribbon-fill {
+            .ribbon {
+                transform: rotate(45deg);
+                right: -38px;
+                left: auto;
+            }
+        }
+
+        &.ribbon-box {
+            .ribbon-two {
+                left: auto;
+                right: -5px;
+
+                span {
+                    left: auto;
+                    right: -21px;
+                    transform: rotate(45deg);
+                }
+            }
+        }
+
+    }
+    @each $state in map-keys($colors) {
+        .ribbon-#{""+$state} {
+            background: map-get($colors, $state)!important;
+
+            &.vertical-shape {
+                &:after {
+                    border-top-color: map-get($colors, $state);
+                    border-bottom-color: map-get($colors, $state);
+                }
+            }
+
+            &:before {
+                border-color: transparent transparent transparent;
+            }
+
+            &.ribbon-shape {
+                &::before {
+                    background-color: map-get($colors, $state);
+                    border-right-color:map-get($colors, $state);
+                    border-top-color: map-get($colors, $state);
+                }
+
+                &::after {
+                    background-color: map-get($colors, $state);
+                    border-right-color: map-get($colors, $state);
+                    border-bottom-color: map-get($colors, $state);
+                }
+            }
+        }
+    }
+
+  }

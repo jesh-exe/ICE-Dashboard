@@ -1,0 +1,171 @@
+<div class="content-wrapper container-xxxl p-0">
+  <app-content-header [contentHeader]="contentHeader"></app-content-header>
+  <div class="content-body">
+    <section class="app-ecommerce-details">
+      <div class="card">
+        <img
+          src="assets/images/Creating_container_Banner_Image_scaled.jpg"
+          class="card-img-top"
+          alt="Create Container IMAGE" />
+        <div class="card-body">
+          <!-- <div class="row my-2">
+             <div
+              class="col-12 col-md-5 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+              <div class="d-flex align-items-center justify-content-center">
+                <img
+                  src="assets/images/docker.webp"
+                  class="img-fluid product-img"
+                  alt="Docker imageName" />
+              </div>
+            </div> 
+
+            <div class="col-12 col-md-7"> -->
+          <div class="d-flex justify-content-between align-items-center m-1">
+            <h2>Job Creation</h2>
+            <button
+              class="btn btn-primary ml-2"
+              routerLink="/container/images"
+              rippleEffect>
+              Images
+            </button>
+          </div>
+          <form [formGroup]="ContainerForm">
+            <div class="form-group">
+              <label for="containerName"
+                >Job Name <span class="required">*</span></label
+              >
+              <input
+                id="containerName"
+                class="form-control"
+                formControlName="containerName"
+                [ngClass]="{
+                  'is-invalid': submitted && form.containerName.errors
+                }" />
+
+              <!-- <div *ngIf="form.containerName.errors" class="invalid-feedback">
+                <div *ngIf="form.containerName.errors?.required">
+                  imageName is required
+                </div>
+              </div> -->
+            </div>
+            <div class="form-group">
+              <label for="jobDescription">Job Description</label>
+              <input
+                id="jobDescription"
+                class="form-control"
+                formControlName="jobDescription"
+                [ngClass]="{
+                  'is-invalid': submitted && form.jobDescription.errors
+                }" />
+
+              <!-- <div *ngIf="form.jobDescription.errors" class="invalid-feedback">
+                <div *ngIf="form.jobDescription.errors?.required">
+                  jobDescription is required
+                </div>
+              </div> -->
+            </div>
+            <div class="form-group">
+              <label for="imageName"
+                >Image Name <span class="required">*</span></label
+              >
+              <input
+                list="imageNames"
+                name="opt"
+                class="form-control"
+                formControlName="imageName"
+                [ngClass]="{
+                  'is-invalid': submitted && form.imageName.errors
+                }" />
+              <datalist id="imageNames">
+                <option *ngFor="let opt of dockerImage" [value]="opt.imageName">
+                  {{ opt.type }}
+                </option>
+              </datalist>
+
+              <div *ngIf="form.imageName.errors" class="invalid-feedback">
+                <div *ngIf="form.imageName.errors?.required">
+                  imageName is required
+                </div>
+                <div *ngIf="form.imageName.errors?.minlength">
+                  imageName must be at least 5 characters
+                </div>
+                <div *ngIf="form.imageName.errors?.maxlength">
+                  imageName exceeds 225 characters
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="memory">
+                Memory Allocation for Image <span class="required">*</span>
+              </label>
+              <ng-select
+                id="memory"
+                formControlName="memory"
+                required
+                [ngClass]="{
+                  'is-invalid': submitted && form.memory.errors
+                }"
+                [items]="Memory"
+                bindValue="key"
+                bindLabel="value"
+                [searchable]="true">
+              </ng-select>
+
+              <div
+                *ngIf="submitted && form.memory.errors"
+                class="invalid-feedback">
+                <div *ngIf="form.memory.errors.required">
+                  memory is required
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="cpu">
+                CPU Utilization of Image <span class="required">*</span>
+              </label>
+              <ng-select
+                id="cpu"
+                formControlName="cpu"
+                required
+                [items]="Cpu"
+                bindLabel="cpu"
+                bindValue="cpu"
+                [ngClass]="{
+                  'is-invalid': submitted && form.cpu.errors
+                }">
+              </ng-select>
+
+              <div
+                *ngIf="submitted && form.cpu.errors"
+                class="invalid-feedback">
+                <div *ngIf="form.cpu.errors.required">cpu is required</div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                <input
+                  type="checkbox"
+                  formControlName="notebook"
+                  class="custom-control-input"
+                  id="notebook" />
+                <label class="custom-control-label" for="notebook"
+                  >Notebook</label
+                >
+              </div>
+            </div>
+
+            <button
+              class="btn btn-primary btn-submit"
+              rippleEffect
+              (click)="formOnSubmit()">
+              Create Container
+            </button>
+          </form>
+          <!-- </div>
+          </div> -->
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

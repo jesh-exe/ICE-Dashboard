@@ -1,0 +1,17 @@
+.my_rounded_corners{
+    border: 1px solid #ccc;
+
+    /* each value for each corner clockwise starting from top left */
+    -webkit-border-radius: 5px;
+            border-radius: 5px ;
+            padding:7px
+ }
+// iframe{
+//     width: 100%;
+//     height: fit-content
+// }
+// #iframe{ 
+//     width: 300px; 
+//     height: 1000px; 
+//     resize: both; 
+// } 

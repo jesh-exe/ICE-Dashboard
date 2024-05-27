@@ -1,0 +1,67 @@
+<div class="content-wrapper p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="row">
+      <div class="col-3">
+        <a routerLink="/submit/manage-project-list"
+          ><div class="card text-white class-project">
+            <div class="card-body">
+              <h2 class="card-title font-weight-bold text-white heading">
+                Projects
+              </h2>
+              <p class="card-text">List of all the Projects.</p>
+              <!-- <a routerLink="/submit/manage-project-list" class="btn btn-primary"
+              >Navigate to see Project List</a
+            > -->
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-3">
+        <a routerLink="/submit/manage-sample-list">
+          <div class="card text-white class-sample">
+            <div class="card-body">
+              <h2 class="card-title font-weight-bold text-white heading">
+                Samples
+              </h2>
+              <p class="card-text">List of all the Samples in Project.</p>
+              <!-- <a routerLink="/submit/manage-sample-list" class="btn btn-primary"
+                >Navigate to see Sample List</a
+              > -->
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-3">
+        <a routerLink="/submit/manage-sequence-list"
+          ><div class="card text-white class-sequence">
+            <div class="card-body">
+              <h2 class="card-title font-weight-bold text-white heading">
+                Sequences
+              </h2>
+              <p class="card-text">List of all the Sequences in Sample.</p>
+              <!-- <a routerLink="/submit/manage-sequence-list" class="btn btn-primary"
+              >Navigate to see Sequence List</a
+            > -->
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-3">
+        <a routerLink="/submit/manage-ngs-sequence-list"
+          ><div class="card text-white class-project">
+            <div class="card-body">
+              <h2 class="card-title font-weight-bold text-white heading">
+                WGS Submission
+              </h2>
+              <p class="card-text">List of all the WGS Submission in Sample.</p>
+              <!-- <a routerLink="/submit/manage-sequence-list" class="btn btn-primary"
+              >Navigate to see Sequence List</a
+            > -->
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

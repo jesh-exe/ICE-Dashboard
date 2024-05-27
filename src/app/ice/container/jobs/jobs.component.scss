@@ -1,0 +1,119 @@
+@import '@core/scss/angular/libs/datatables.component.scss';
+@import '@core/scss/base/pages/app-invoice.scss';
+@import '@core/scss/base/bootstrap-extended/_include'; // Components includes
+@import '@core/scss/base/components/_include';
+$color_1: #FFF;
+$color_2: transparent;
+$font-family_1: courier-new, courier, monospace;
+$background-color_1: #000;
+
+.xterm {
+	font-family: $font-family_1;
+	font-feature-settings: "liga" 0;
+	position: relative;
+	user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	cursor: text;
+	&:focus {
+		outline: none;
+	}
+	.xterm-helpers {
+		position: absolute;
+		top: 0;
+		z-index: 10;
+	}
+	.xterm-helper-textarea {
+		position: absolute;
+		opacity: 0;
+		left: -9999em;
+		top: 0;
+		width: 0;
+		height: 0;
+		z-index: -10;
+		white-space: nowrap;
+		overflow: hidden;
+		resize: none;
+	}
+	.composition-view {
+		background: #000;
+		color: $color_1;
+		display: none;
+		position: absolute;
+		white-space: nowrap;
+		z-index: 1;
+	}
+	.composition-view.active {
+		display: block;
+	}
+	.xterm-viewport {
+		background-color: $background-color_1;
+		overflow-y: scroll;
+		cursor: default;
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+		bottom: 0;
+	}
+	.xterm-screen {
+		position: relative;
+		canvas {
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+	}
+	.xterm-scroll-area {
+		visibility: hidden;
+	}
+	.xterm-accessibility {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 100;
+		color: $color_2;
+	}
+	.xterm-message {
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		z-index: 100;
+		color: $color_2;
+	}
+	.live-region {
+		position: absolute;
+		left: -9999px;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+	}
+}
+.xterm.focus {
+	outline: none;
+}
+.xterm-char-measure-element {
+	display: inline-block;
+	visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: -9999em;
+	line-height: normal;
+}
+.xterm.enable-mouse-events {
+	cursor: default;
+}
+.xterm.xterm-cursor-pointer {
+	cursor: pointer;
+}
+.xterm.xterm-cursor-crosshair {
+	cursor: crosshair;
+}
+
+#xterm-container {
+	height: 663px;
+}

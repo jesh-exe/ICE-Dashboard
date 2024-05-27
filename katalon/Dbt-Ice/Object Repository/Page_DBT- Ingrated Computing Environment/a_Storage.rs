@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>a_Storage</name>
+   <tag></tag>
+   <elementGuidId>86c2abdb-d7bc-462f-8836-ff2c0b19ba25</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(.//*[normalize-space(text()) and normalize-space(.)='Admin'])[1]/following::a[1]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>a</value>
+      <webElementGuid>7c80b9e6-1b8a-42ad-be2b-9426de36f3fa</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>d-flex align-items-center ng-star-inserted</value>
+      <webElementGuid>85d64e07-027c-4740-91cb-5367525ec0ef</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>target</name>
+      <type>Main</type>
+      <value>_self</value>
+      <webElementGuid>a7596380-3185-4f16-bedd-f530e57c3daa</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>href</name>
+      <type>Main</type>
+      <value>/file-uploading</value>
+      <webElementGuid>778889ab-a1fd-41c0-9c63-02a4088baa05</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Storage</value>
+      <webElementGuid>12669538-8b69-4227-a8cb-de83567b1436</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography ng-tns-0-0 default-layout&quot;]/app-root[@class=&quot;vertical-layout navbar-floating footer-static menu-expanded vertical-overlay-menu menu-open&quot;]/vertical-layout[@class=&quot;ng-star-inserted&quot;]/core-sidebar[@class=&quot;main-menu menu-fixed menu-accordio menu-shadow menu-light ng-star-inserted&quot;]/app-menu[@class=&quot;vertical-menu&quot;]/vertical-menu[@class=&quot;ng-star-inserted&quot;]/div[@class=&quot;main-menu-content ps&quot;]/ul[@class=&quot;navigation navigation-main&quot;]/li[@class=&quot;ng-star-inserted&quot;]/a[@class=&quot;d-flex align-items-center ng-star-inserted&quot;]</value>
+      <webElementGuid>859e5c77-3cc2-4359-977d-78dd2bc69fdc</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Admin'])[1]/following::a[1]</value>
+      <webElementGuid>a1558e18-c747-45d0-be0b-6e2b9fe15fc9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Home'])[1]/following::a[2]</value>
+      <webElementGuid>44f41a18-cc25-4465-a0bf-beb182c58ed6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Users'])[1]/preceding::a[1]</value>
+      <webElementGuid>72c72174-7ab3-4e18-8afb-a3d107d8d924</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:href</name>
+      <type>Main</type>
+      <value>//a[contains(@href, '/file-uploading')]</value>
+      <webElementGuid>3aaf7457-3ccb-4683-8145-51b48e0c35fd</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[3]/ul/li[3]/a</value>
+      <webElementGuid>e952f26b-4f16-426b-bfa3-b03cf254955d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//a[@href = '/file-uploading' and (text() = 'Storage' or . = 'Storage')]</value>
+      <webElementGuid>e9b1e9f3-2ab1-4777-8230-539f76f7a3d4</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -1,0 +1,39 @@
+<!-- Chat Sidebar area -->
+<div class="chat-sidebar bg-white">
+  <div
+    id="users-list"
+    class="chat-user-list-wrapper list-group"
+    [perfectScrollbar]
+    *ngIf="jobs">
+    <h2 class="chat-list-title">Analysis</h2>
+    <ng-container
+      *ngIf="
+        (jobs | filter : searchText : 'analysisName').length;
+        else noResultsContacts
+      "></ng-container>
+    <ul class="chat-users-list contact-list media-list">
+      <li
+        *ngFor="let job of jobs | filter : searchText : 'analysisName'"
+        (click)="openJob(job)">
+        <div class="chat-info">
+          <h3 class="mb-0">{{ job.analysisName }}</h3>
+          <p class="card-text text-truncate">
+            {{ job.user }}
+          </p>
+        </div>
+      </li>
+
+      <ng-template #noResultsContacts>
+        <li
+          class="no-results"
+          [ngClass]="{
+            show: jobs.length <= 0
+          }">
+          <h6 class="mb-0">No Records Found</h6>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+  <!-- Sidebar Users end -->
+</div>
+<!--/ Chat Sidebar area -->

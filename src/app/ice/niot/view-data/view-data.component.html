@@ -1,0 +1,444 @@
+<div class="content-wrapper p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <!-- Collapse start -->
+    <div class="container-md">
+      <section id="collapsible">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- <core-card-snippet [snippetCode]="_snippetCodeCollapset"> -->
+
+            <div class="card-body collapse-icon">
+              <ngb-accordion #acc="ngbAccordion" activeIds="ngb-panel-0">
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <h4>
+                      <span class="lead collapse-title"> Project Details </span>
+                    </h4>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="row">
+                      <!-- <div class="col-3">
+                        <p>
+                          <b>Project Name : {{ projectItem.name }}</b>
+                        </p>
+                      </div> -->
+                      <!-- <div *ngFor="let project of projectItem">
+                    {{ project.name }}
+                  </div> -->
+                      <!-- <table>
+                    <tr>
+                      <th>Month</th>
+                      <th>Savings</th>
+                    </tr>
+                    <tr>
+                      <td>January</td>
+                      <td>$100</td>
+                    </tr>
+                  </table> -->
+                      <div class="col-12">
+                        <div class="row">
+                          <div class="col-6">
+                            <dl class="row">
+                              <dt class="col-sm-4">Project Name :</dt>
+                              <dd class="col-sm-8">{{ projectItem.name }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Project Type :</dt>
+                              <dd class="col-sm-8">{{ projectItem.type }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Start Date :</dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.fromDate }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">End Date :</dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.toDate }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4 text-truncate">
+                                Organization Name :
+                              </dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.organization }}
+                              </dd>
+                            </dl>
+                          </div>
+                          <div class="col-6">
+                            <dl class="row">
+                              <dt class="col-sm-4 text-truncate">
+                                Author Name :
+                              </dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.authorName }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4 text-truncate">
+                                Vessel Name :
+                              </dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.vesselName }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4 text-truncate">Location :</dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.location }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Status :</dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.status }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4 text-truncate">Members :</dt>
+                              <dd class="col-sm-8 ml-auto">
+                                {{ projectItem.members }}
+                              </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <span class="lead collapse-title"> Samples </span>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="row">
+                      <div class="col-2">
+                        <!-- <button
+                          class="btn btn-primary"
+                          (click)="
+                            callSampleDetailsByProjectId(projectItem.projectId)
+                          "
+                        >
+                          Open Dropdown
+                        </button>
+                        <div class="dropdown">
+                          <select
+                            class="btn btn-primary"
+                            [(ngModel)]="selectedSampleId"
+                            (change)="callSampleDetails()"
+                          >
+                            <option
+                              *ngFor="let value of sample.samples"
+                              [value]="value.id"
+                            >
+                              {{ value.sampleName }}
+                            </option>
+                          </select>
+                        </div> -->
+                        <div class="btn-group">
+                          <div ngbDropdown>
+                            <button
+                              ngbDropdownToggle
+                              class="btn btn-primary"
+                              type="button"
+                              id="dropdownMenuButton"
+                              rippleEffect
+                              (click)="
+                                callSampleDetailsByProjectId(
+                                  projectItem.projectId
+                                )
+                              "
+                            >
+                              {{ selectedSampleName || "Select Sample" }}
+                            </button>
+                            <div
+                              ngbDropdownMenu
+                              aria-labelledby="dropdownMenuButton"
+                              [(ngModel)]="selectedSampleId"
+                            >
+                              <a
+                                ngbDropdownItem
+                                href="javascript:void(0)"
+                                (click)="updateSampleDetails(value)"
+                                (change)="callSampleDetails()"
+                                *ngFor="let value of sample.samples"
+                                [value]="value.id"
+                                (click)="selectedSampleName = value.sampleName"
+                              >
+                                {{ value.sampleName }}</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="col-10">
+                        <div class="row">
+                          <div class="col-6">
+                            <dl class="row">
+                              <dt class="col-sm-4">Sample Name :</dt>
+                              <dd class="col-sm-8">{{ sample.sampleName }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Code :</dt>
+                              <dd class="col-sm-8">{{ sample.code }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Sample Type :</dt>
+                              <dd class="col-sm-8">{{ sample.type }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Sample Date :</dt>
+                              <dd class="col-sm-8">{{ sample.sampleDate }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Depth :</dt>
+                              <dd class="col-sm-8">{{ sample.depth }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Longitude :</dt>
+                              <dd class="col-sm-8">{{ sample.longitude }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Latitude :</dt>
+                              <dd class="col-sm-8">{{ sample.latitude }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Location :</dt>
+                              <dd class="col-sm-8">{{ sample.location }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Status :</dt>
+                              <dd class="col-sm-8">{{ sample.status }}</dd>
+                            </dl>
+                          </div>
+                          <div class="col-6">
+                            <dl class="row">
+                              <dt class="col-sm-4">Temperature :</dt>
+                              <dd class="col-sm-8">{{ sample.temperature }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Pressure :</dt>
+                              <dd class="col-sm-8">{{ sample.pressure }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Salinity :</dt>
+                              <dd class="col-sm-8">{{ sample.salinity }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Dissolved Oxygen :</dt>
+                              <dd class="col-sm-8">
+                                {{ sample.dissolvedOxygen }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Environmental Material :</dt>
+                              <dd class="col-sm-8">
+                                {{ sample.environmentMaterial }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Created At :</dt>
+                              <dd class="col-sm-8">{{ sample.createdAt }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Last Update :</dt>
+                              <dd class="col-sm-8">{{ sample.lastUpdate }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Publications :</dt>
+                              <dd class="col-sm-8">
+                                {{ sample.publications }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">pH :</dt>
+                              <dd class="col-sm-8">{{ sample.ph }}</dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+                <ngb-panel>
+                  <ng-template ngbPanelTitle>
+                    <span class="lead collapse-title"> Sequence </span>
+                  </ng-template>
+                  <ng-template ngbPanelContent>
+                    <div class="row">
+                      <div class="col-2">
+                        <!-- <button
+                          class="btn btn-primary"
+                          (click)="showSequenceDetailsBySampleId(sample.id)"
+                        >
+                          Open Dropdown
+                        </button>
+                        <div class="dropdown">
+                          <select
+                            class="btn btn-primary"
+                            [(ngModel)]="selectedSequenceId"
+                            (change)="callSequenceDetails()"
+                          >
+                            <option
+                              *ngFor="let item of sequence.sequences"
+                              [value]="item.sequenceId"
+                            >
+                              {{ item.sequenceId }}
+                            </option>
+                          </select>
+                        </div> -->
+                        <div class="btn-group">
+                          <div ngbDropdown>
+                            <button
+                              ngbDropdownToggle
+                              class="btn btn-primary"
+                              type="button"
+                              id="dropdownMenuButton"
+                              rippleEffect
+                              (click)="showSequenceDetailsBySampleId(sample.id)"
+                            >
+                              {{ selectedSequenceName || "Select Sequence" }}
+                            </button>
+                            <div
+                              ngbDropdownMenu
+                              aria-labelledby="dropdownMenuButton"
+                              [(ngModel)]="selectedSequenceId"
+                            >
+                              <a
+                                ngbDropdownItem
+                                href="javascript:void(0)"
+                                (click)="updateSequenceDetails(item)"
+                                (change)="callSequenceDetails()"
+                                *ngFor="let item of sequence.sequences"
+                                [value]="item.sequenceId"
+                                (click)="selectedSequenceName = item.sequenceId"
+                              >
+                                {{ item.sequenceId }}</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-10">
+                        <div class="row">
+                          <div class="col-6">
+                            <dl class="row">
+                              <dt class="col-sm-4">Sequence Id :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.sequenceId }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Description :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.description }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">
+                                Forward Primer Sequence :
+                              </dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.forwardPrimerSequence }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">
+                                Reverse Primer Sequence :
+                              </dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.reversePrimerSequence }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Organism Type :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.organismType }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Organism Name :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.organismName }}
+                              </dd>
+                            </dl>
+                          </div>
+                          <div class="col-6">
+                            <dl class="row">
+                              <dt class="col-sm-4">Quality :</dt>
+                              <dd class="col-sm-8">{{ sequence.quality }}</dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Sequence :</dt>
+                              <dd class="col-sm-8">{{ sequence.sequence }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Sequence Header :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.sequenceHeader }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Gene Name :</dt>
+                              <dd class="col-sm-8">{{ sequence.geneName }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Sequence Type :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.sequenceType }}
+                              </dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">Sequencing Platform :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.sequencingPlatform }}
+                              </dd>
+                            </dl>
+
+                            <dl class="row">
+                              <dt class="col-sm-4">Status :</dt>
+                              <dd class="col-sm-8">{{ sequence.status }}</dd>
+                            </dl>
+                            <dl class="row">
+                              <dt class="col-sm-4">TempAccession Number :</dt>
+                              <dd class="col-sm-8">
+                                {{ sequence.tempAccessionNumber }}
+                              </dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>

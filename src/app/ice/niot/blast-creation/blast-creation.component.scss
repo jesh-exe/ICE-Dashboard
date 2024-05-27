@@ -1,0 +1,12 @@
+.my_rounded_corners{
+    border: 1px solid #ccc;
+
+    /* each value for each corner clockwise starting from top left */
+    -webkit-border-radius: 5px;
+            border-radius: 5px ;
+            padding:7px
+ }
+
+ button.btn.btn-primary {
+    margin: auto;
+  }

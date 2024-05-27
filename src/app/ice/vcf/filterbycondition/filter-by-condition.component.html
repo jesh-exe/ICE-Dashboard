@@ -1,0 +1,259 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="card">
+      <div class="card-body">
+        <div class="row my-2">
+          <div class="col-12 col-md-12 align-items-center">
+            <h1 class="content-header-title" style="text-align: center">
+              Variant Prioritization
+            </h1>
+            <div class="row">
+              <div class="col-8">
+                <p class="card-text">
+                  Variants are often prioritized in genetic studies based on
+                  their minimum allele frequency (MAF) and depth. Minimum allele
+                  frequency refers to the proportion of individuals in a
+                  population who carry a particular variant allele. Variants
+                  with higher MAFs are generally considered more common in the
+                  population and may be of less interest for certain types of
+                  analyses. On the other hand, variants with lower MAFs may be
+                  of greater interest as they could represent rare or
+                  potentially disease-associated genetic variations. Depth
+                  refers to the number of times a specific position in the
+                  genome has been sequenced or covered by sequencing reads.
+                  Higher depth suggests a more reliable measurement of the
+                  variant and increases confidence in its detection. <br />
+                  By prioritizing variants based on MAF and depth, researchers
+                  can focus on those that are less common and have been
+                  accurately measured, allowing for more meaningful genetic
+                  analyses and potential insights into disease mechanisms or
+                  genetic associations.<br />
+                  Variant prioritization in genomics is a critical step in the
+                  analysis of genomic data, especially in the context of
+                  identifying disease-causing genetic variants or understanding
+                  the genetic basis of certain traits or conditions. Genomic
+                  data, typically obtained through next-generation sequencing
+                  technologies, can yield millions of genetic variants within an
+                  individual's genome. However, not all of these variants are
+                  relevant to the research or clinical question at hand<br />Variant
+                  prioritization involves filtering and ranking these genetic
+                  variants to focus on those that are most likely to have
+                  functional significance or contribute to the phenotype of
+                  interest. The goal is to reduce the number of variants to a
+                  manageable set that can be further investigated and validated
+                  through functional studies or association analyses.<br />
+                  By different criteria, researchers and clinicians can
+                  effectively prioritize genetic variants and focus on those
+                  most likely to be relevant to the particular research or
+                  clinical question at hand. It's important to note that variant
+                  prioritization is an iterative process, and validation of the
+                  top-prioritized variants through functional studies or
+                  additional evidence is crucial to confirm their significance.
+                </p>
+              </div>
+              <div class="col-4">
+                <img
+                  src="assets/images/vcf/VP.png"
+                  class="card-img-top"
+                  alt="VCF-Filter-by-tag" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Variant Prioritization</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <label
+              ngbTooltip="Project Name should not include spaces or any special characters"
+              placement="right"
+              >Project Name <span class="required">*</span></label
+            >
+            <div class="input-group input-group-merge">
+              <div class="input-group-prepend">
+                <span class="input-group-text"
+                  ><span [data-feather]="'file'"></span
+                ></span>
+              </div>
+              <input
+                appNoSpace
+                type="text"
+                class="form-control"
+                [(ngModel)]="analysisName"
+                pattern="[a-zA-Z]" />
+            </div>
+          </div>
+          <div class="form-group col-md-12">
+            <label ngbTooltip="Description" placement="right"
+              >Description
+            </label>
+            <fieldset>
+              <textarea
+                class="form-control"
+                id="description"
+                rows="3"
+                placeholder="Textarea"
+                [(ngModel)]="description"></textarea>
+            </fieldset>
+          </div>
+          <div class="form-group col-md-12">
+            <div>
+              <label
+                ngbTooltip="Collection Name contains files thats are uploaded for analysis"
+                placement="right"
+                >File Name <span class="required">*</span></label
+              >
+              <ng-select
+                [items]="Collection"
+                [(ngModel)]="selectCollection"
+                bindLabel="name"
+                (blur)="keyBlur()"
+                (change)="keyBlur()">
+                <ng-template ng-footer-tmp>
+                  <button
+                    (click)="addFileForAnalysis()"
+                    class="btn btn-primary"
+                    rippleEffect>
+                    Add File for Analysis
+                  </button>
+                </ng-template>
+              </ng-select>
+            </div>
+          </div>
+          <br />
+        </div>
+        <label
+          ngbTooltip="Output File Format is the format of anaylsis output file"
+          placement="right"
+          for="outputfileformat"
+          >Output File Format <span class="required">*</span></label
+        >
+        <div class="row">
+          <div
+            *ngFor="let outputfileformat of outputFileFormatList"
+            class="col-lg-3">
+            <div
+              class="custom-control custom-control-primary custom-radio outputfileformat">
+              <input
+                id="outputfileformat-{{ outputfileformat.id }}"
+                type="radio"
+                [checked]="outputfileformat.selected"
+                (change)="radioChecked(outputfileformat.id, i)"
+                class="custom-control-input" />
+              <label
+                class="h6"
+                for="outputfileformat-{{ outputfileformat.id }}"
+                class="custom-control-label"
+                >{{ outputfileformat.label }}</label
+              >
+            </div>
+          </div>
+        </div>
+        <br />
+        <div class="row" *ngFor="let item of items; let i = index">
+          <div class="form-group col-md-3">
+            <label ngbTooltip="Info field tags" placement="right"
+              >Info Tags</label
+            >
+            <ng-select
+              [items]="Key"
+              [(ngModel)]="item.key"
+              placeholder="Select Key"
+              ngModel
+              bindLabel="name"
+              id="key{{ i }}"
+              name="key{{ i }}">
+            </ng-select>
+            <br />
+          </div>
+          <div class="form-group col-md-4">
+            <label ngbTooltip="Operation" placement="right">Operation</label>
+            <ng-select
+              [items]="Operator"
+              [(ngModel)]="item.operator"
+              placeholder="Select Operator"
+              ngModel
+              bindLabel="value"
+              bindValue="id"
+              id="operator{{ i }}"
+              name="operator{{ i }}">
+            </ng-select>
+            <br />
+          </div>
+          <div class="form-group col-md-4">
+            <label ngbTooltip="value" placement="right">Value</label>
+            <input
+              type="text"
+              class="form-control"
+              id="value{{ i }}"
+              name="value{{ i }}"
+              [(ngModel)]="item.value" />
+            <br />
+          </div>
+
+          <div class="form-group col-md-1">
+            <label ngbTooltip="Delete" placement="right">Delete</label>
+            <button
+              class="btn btn-outline-danger text-nowrap px-1 form-control"
+              (click)="deleteItem(i)"
+              rippleEffect>
+              <i data-feather="trash" class="mr-25"></i>
+            </button>
+            <br />
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-12">
+            <button
+              ngbTooltip="Add Item"
+              placement="left"
+              class="btn btn-primary float-right"
+              rippleEffect
+              (click)="addNewItem()">
+              Add Item
+            </button>
+          </div>
+
+          <div class="form-group col-12">
+            <button
+              class="btn btn-success btn-submit float-right"
+              rippleEffect
+              (click)="onSubmit()">
+              Submit
+            </button>
+          </div>
+        </div>
+
+        <div class="card shadow-none bg-transparent border-warning">
+          <div class="card-body">
+            <h4 class="card-title">Note</h4>
+            <ul>
+              <li>
+                <p class="card-text">
+                  Project Name should not include spaces or any special
+                  characters
+                </p>
+              </li>
+              <li>
+                <p class="card-text">
+                  Collection Name conatins files thats are uploaded for analysis
+                </p>
+              </li>
+              <li>
+                <p class="card-text">
+                  Output File Format is the format of anaylsis output file
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block-ui>

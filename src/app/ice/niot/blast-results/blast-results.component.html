@@ -1,0 +1,140 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <div class="content-body">
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+      <div class="row" *ngIf="oneUnit">
+        <div class="card ribbon-box right">
+          <div class="row">
+            <div class="col-8">
+              <div class="card-header">
+                <h1 class="heading">
+                  {{ oneUnit.jobname }}
+                </h1>
+              </div>
+            </div>
+            <div class="col-4 float-right" style="padding: 5px">
+              <i
+                data-feather="clock"
+                class="font-medium-3 text-muted cursor-pointer"></i>
+              &nbsp;{{ oneUnit.durationMessage }}&nbsp;
+              <i
+                data-feather="calendar"
+                class="font-medium-3 text-muted cursor-pointer"></i>
+              &nbsp;{{ oneUnit.startDate | date : "short" : "UTC" }} &nbsp;-
+              <i
+                data-feather="calendar"
+                class="font-medium-3 text-muted cursor-pointer"></i>
+              &nbsp;{{ oneUnit.endDate | date : "short" : "UTC" }}
+              <!-- 
+              <div
+                class="badge badge-pill"
+                [ngClass]="{
+                  'badge-success': oneUnit.status == 'Completed',
+                  'badge-light-success': oneUnit.status == 'Succeeded',
+                  'badge-danger': oneUnit.status == 'Failed',
+                  'badge-warning': oneUnit.status == 'Pending',
+                  'badge-light-primary': oneUnit.status == ''
+                }"
+                style="font-size: 1.1rem; font-weight: 500; padding: 8px">
+                {{ oneUnit.status }}
+              </div> -->
+            </div>
+          </div>
+          <div
+            class="ribbon ribbon-primary round-shape"
+            [ngClass]="{
+              'ribbon-success': oneUnit.status == 'Completed',
+              'ribbon-info': oneUnit.status == 'Succeeded',
+              'ribbon-danger': oneUnit.status == 'Failed',
+              'ribbon-warning': oneUnit.status == 'Pending',
+              'ribbon-primary': oneUnit.status == ''
+            }">
+            {{ oneUnit.status }}
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <dl class="row" *ngIf="oneUnit.paramMap.accessionId">
+                  <dt class="col-sm-1">Accession Id :</dt>
+                  <dd class="col-sm-11">{{ oneUnit.paramMap.accessionId }}</dd>
+                </dl>
+                <dl class="row" *ngIf="oneUnit.paramMap.db">
+                  <dt class="col-sm-1">Database :</dt>
+                  <dd class="col-sm-11">
+                    {{ oneUnit.paramMap.db }}
+                  </dd>
+                </dl>
+                <dl class="row" *ngIf="oneUnit.paramMap.expect_threshold">
+                  <dt class="col-sm-1">Expect Threshold :</dt>
+                  <dd class="col-sm-11 ml-auto">
+                    {{ oneUnit.paramMap.expect_threshold }}
+                  </dd>
+                </dl>
+                <dl class="row" *ngIf="oneUnit.paramMap.toolName">
+                  <dt class="col-sm-1">Tool Name :</dt>
+                  <dd class="col-sm-11">{{ oneUnit.paramMap.toolName }}</dd>
+                </dl>
+                <dl class="row" *ngIf="oneUnit.paramMap.word_size">
+                  <dt class="col-sm-1">Word Size :</dt>
+                  <dd class="col-sm-11">
+                    {{ oneUnit.paramMap.word_size }}
+                  </dd>
+                </dl>
+                <dl class="row" *ngIf="oneUnit.paramMap.sequence">
+                  <dt class="col-sm-1">Sequence :</dt>
+                  <dd class="col-sm-11">
+                    <pre> {{ oneUnit.paramMap.sequence }}</pre>
+                    <button
+                      class="btn btn-primary"
+                      *ngIf="!isContentToggled"
+                      (click)="toggleContent()">
+                      Read More
+                    </button>
+                    <button
+                      class="btn btn-primary"
+                      *ngIf="isContentToggled"
+                      (click)="toggleContent()"
+                      i18n>
+                      Read Less
+                    </button>
+                  </dd>
+                  <!-- <dd class="col-sm-11">
+                    {{ oneUnit.paramMap.sequence }}
+                  </dd> -->
+                </dl>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-10"></div>
+              <div
+                class="col-sm-2"
+                *ngIf="
+                  oneUnit.status == 'Completed' || oneUnit.status == 'Succeeded'
+                ">
+                <button class="btn btn-primary" (click)="downloadFile()">
+                  Download Result file
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <app-parameters
+          class="newClass"
+          [param]="params"
+          *ngIf="oneUnit.paramMap.output_format != 8">
+        </app-parameters>
+      </div>
+      <div
+        class="card container"
+        *ngIf="params && oneUnit.paramMap.output_format == 8">
+        <iframe
+          *ngIf="oneUnit.paramMap.output_format == 8"
+          [srcdoc]="params"
+          #iframe
+          src="data:text/html;charset=UTF-8"
+          class="responsive-iframe"
+          frameBorder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</block-ui>

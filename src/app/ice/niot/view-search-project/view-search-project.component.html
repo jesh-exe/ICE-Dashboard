@@ -1,0 +1,199 @@
+<div class="content-wrapper container-xxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <section id="description-list-alignment">
+      <div class="row match-height">
+        <!-- Description lists horizontal -->
+        <div class="col-sm-12 col-md-12">
+          <div class="card">
+            <div class="card-header" style="clear: both">
+              <h1
+                style="float: left; font-weight: 500; font-size: 32px"
+                class="color"
+              >
+                Project
+                <h1
+                  style="
+                    float: right;
+                    padding-left: 10px;
+                    font-weight: 450;
+                    color: rgb(222, 56, 56);
+                  "
+                >
+                  <!-- {{ project.name }} -->
+                  {{ project.projectCode }}
+                </h1>
+              </h1>
+            </div>
+            <hr />
+            <div class="card-body">
+              <div class="row">
+                <div class="col-6">
+                  <dl class="row">
+                    <dt class="col-sm-5">Name</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">{{ project.name }}</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Type</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ project.type }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Start Date</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6 ml-auto">{{ project.fromDate }}</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">End Date</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <!-- <dd class="col-sm-6">{{ project.toDate }}</dd> -->
+                    <dd class="col-sm-6" *ngIf="project.toDate">
+                      {{ project.toDate }}
+                    </dd>
+                    <dd class="col-sm-6" *ngIf="!project.toDate">-</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5">Organization Name</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ project.organization }}
+                    </dd>
+                  </dl>
+                </div>
+
+                <div class="col-6">
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Author Name</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ project.authorName }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Vessel Name</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <!-- <dd class="col-sm-6">
+                      {{ project.vesselName }}
+                    </dd> -->
+                    <dd class="col-sm-6" *ngIf="project.vesselName">
+                      {{ project.vesselName }}
+                    </dd>
+                    <dd class="col-sm-6" *ngIf="!project.vesselName">-</dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Location</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ project.location }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Keywords</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <dd class="col-sm-6">
+                      {{ project.keywords }}
+                    </dd>
+                  </dl>
+                  <dl class="row">
+                    <dt class="col-sm-5 text-truncate">Members</dt>
+                    <dt class="col-sm-1 text-truncate">:</dt>
+                    <!-- <dd class="col-sm-6">
+                      {{ project.members }}
+                    </dd> -->
+                    <dd class="col-sm-6" *ngIf="project.members">
+                      {{ project.members }}
+                    </dd>
+                    <dd class="col-sm-6" *ngIf="!project.members">-</dd>
+                  </dl>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header" style="clear: both">
+              <h1
+                style="float: left; font-weight: 500; font-size: 32px"
+                class="color"
+              >
+                Samples
+                <div class="badge badge-pill badge-light-primary">
+                  {{ sampleLength }}
+                </div>
+              </h1>
+            </div>
+            <div>
+              <table class="table table-bordered table-striped mb-0">
+                <thead>
+                  <tr>
+                    <th>Sample Name</th>
+                    <th>Sample type</th>
+                    <th>longitude</th>
+                    <th>latitude</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let sample of itemsOnCurrentPage">
+                    <td>
+                      <a
+                        style="color: #800040"
+                        class="underline"
+                        (click)="viewSampleDetails(sample.id)"
+                      >
+                        <span class="font-weight-bold">{{
+                          sample.sampleName
+                        }}</span></a
+                      >
+                    </td>
+                    <td>
+                      <span style="color: teal" class="font-weight-bold">{{
+                        sample.type
+                      }}</span>
+                    </td>
+                    <td>
+                      <span style="color: #804000">{{ sample.longitude }}</span>
+                    </td>
+                    <td>
+                      <span style="color: #800040">{{ sample.latitude }}</span>
+                    </td>
+                    <!-- <td><span class="badge badge-pill badge-light-primary mr-1">
+                                                  {{project.project.status}}
+                                                </span></td> -->
+                    <!-- <td >
+                                        <a
+                                        (click)="navigateToComponent(sequence.sequenceId)">
+                                        <i data-feather="eye" class="mr-50"></i>
+                                      </a>
+                                      </td> -->
+                  </tr>
+                </tbody>
+              </table>
+              <ngb-pagination
+                [collectionSize]="totalItems"
+                [(page)]="page"
+                [pageSize]="pageSize"
+                (pageChange)="onPageChange($event)"
+              >
+                <ng-template ngbPaginationPrevious
+                  ><span
+                    [data-feather]="'chevron-left'"
+                    [class]="'font-weight-bolder'"
+                  ></span
+                  >Prev
+                </ng-template>
+                <ng-template ngbPaginationNext
+                  >Next<span
+                    [data-feather]="'chevron-right'"
+                    [class]="'font-weight-bolder'"
+                  ></span>
+                </ng-template>
+              </ngb-pagination>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

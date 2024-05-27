@@ -1,0 +1,86 @@
+// @import '@core/scss/base/pages/app-invoice.scss';
+@import '@core/scss/angular/libs/datatables.component.scss';
+// @import '@core/scss/angular/libs/select.component.scss';
+// @import '@core/scss/base/bootstrap-extended/_include'; // Components includes
+// @import '@core/scss/base/pages/app-email';
+// @import '@core/scss/angular/libs/select.component';
+// @import '@core/scss/angular/libs/quill-editor.component';
+// @import '@core/scss/base/components/_include'; // Components includes
+
+
+.mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+  background-color: #28c76f; 
+}
+.mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+//    background-color: green;
+background-color: rgba(0,0,0,.38);
+ }
+ .mat-slide-toggle-thumb {
+ 
+  background-color:#ea5455;
+}
+// // invoice list
+// .invoice-list-wrapper {
+//   .col-actions {
+//     a {
+//       &:not(.dropdown-item) {
+//         color: $body-color;
+//       }
+//     }
+//   }
+// }
+
+// // Email Application
+// .email-application {
+//   //  ng Select
+//   .ng-select {
+//     .ng-select-container {
+//       border: none;
+//     }
+//   }
+//   //  quill editor
+//   .ql-container {
+//     .ql-snow {
+//       border: none;
+//     }
+//   }
+//   .modal {
+//     animation: none !important;
+//   }
+
+//   .email-app-list {
+//     height: 100% !important;
+//   }
+
+//   .email-media-list {
+//     email-list-item {
+//       &:not(:first-child) {
+//         li {
+//           border-top: 1px solid $border-color;
+//         }
+//       }
+//     }
+//   }
+
+//   input {
+//     &[type='checkbox'] {
+//       z-index: 1;
+//     }
+//   }
+
+//   .compose-mail-form-field {
+//     .form-group {
+//       margin-bottom: 0;
+//     }
+//     .ng-select-focused {
+//       box-shadow: none;
+//     }
+//   }
+// }
+
+// // Dark Layout
+// .dark-layout {
+//   .ng-select-container {
+//     background-color: $theme-dark-input-bg;
+//   }
+// }

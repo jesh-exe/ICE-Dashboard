@@ -1,0 +1,255 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="card">
+      <div class="card-body">
+        <div class="row my-2">
+          <div class="col-12 col-md-12 align-items-center">
+            <h1 class="content-header-title" style="text-align: center">
+              Filter By Info Tags
+            </h1>
+            <div class="row">
+              <div class="col-8">
+                <p class="card-text">
+                  Tags in the INFO field of a VCF (Variant Call Format) file
+                  provide important information about genetic variants,
+                  including allele frequency, allele count, and depth. These
+                  tags serve as standardized labels that indicate specific
+                  annotations or measurements associated with each variant. When
+                  a tag is not available in the INFO field for a particular
+                  variant, it means that the corresponding information is
+                  missing or not provided for that variant.<br /><br />
+                  Tags such as AF (Allele Frequency), AC (Allele Count), and DP
+                  (Depth) are crucial for population-level analyses in VCF
+                  files. The allele frequency represents the proportion of
+                  alleles in a population that carry a specific variant. It
+                  provides insights into the prevalence of the variant within
+                  the population. The allele count indicates the number of
+                  alleles carrying the variant in the population, allowing for
+                  the calculation of allele frequencies. Depth refers to the
+                  number of sequencing reads covering a specific variant,
+                  providing an estimation of the confidence in the variant
+                  call.<br /><br />
+                  Having these tags available in the INFO field of a VCF file is
+                  essential for population genetic studies, association
+                  analyses, and variant filtering. These metrics enable
+                  researchers to identify rare or common variants, assess the
+                  impact of variants on the population, and prioritize variants
+                  for downstream analyses. Without the availability of these
+                  tags, it becomes challenging to accurately estimate allele
+                  frequencies, allele counts, and depth, limiting the
+                  comprehensive understanding of genetic variation within the
+                  population.<br /><br />
+                  It is important for researchers and data providers to ensure
+                  that VCF files contain the necessary tags in the INFO field to
+                  facilitate population-level analyses and allow for a
+                  comprehensive exploration of genetic variation in the studied
+                  population.
+                </p>
+              </div>
+              <div class="col-4">
+                <img
+                  src="assets/images/vcf/FilterByTag.jpg"
+                  height="400"
+                  class="card-img-top"
+                  alt="VCF-Filter-by-tag" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Filter By Info Tags</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="form-group col-md-12">
+            <div>
+              <label
+                ngbTooltip="Project Name should not include spaces or any special characters"
+                placement="right"
+                >Project Name <span class="required">*</span>
+              </label>
+              <div class="input-group input-group-merge">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"
+                    ><span [data-feather]="'file'"></span
+                  ></span>
+                </div>
+                <input
+                  appNoSpace
+                  type="text"
+                  id="analysisName"
+                  class="form-control"
+                  [(ngModel)]="analysisName" />
+              </div>
+              <br />
+              <label ngbTooltip="Description" placement="right"
+                >Description
+              </label>
+              <fieldset>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  rows="3"
+                  placeholder="Textarea"
+                  [(ngModel)]="description"></textarea>
+              </fieldset>
+              <br />
+              <label
+                ngbTooltip="Collection Name conatins files thats are uploaded for analysis"
+                placement="right"
+                >Collection <span class="required">*</span></label
+              >
+              <ng-select
+                [items]="Collection"
+                [(ngModel)]="selectCollection"
+                bindLabel="name"
+                (change)="keyBlur()">
+                <ng-template ng-footer-tmp>
+                  <button
+                    (click)="addFileForAnalysis()"
+                    class="btn btn-primary"
+                    rippleEffect>
+                    Add File for Analysis
+                  </button>
+                </ng-template>
+              </ng-select>
+            </div>
+          </div>
+          <!-- Selected: {{ selectCollection }} -->
+        </div>
+
+        <!-- <div *ngIf="!infotags[0]" class="h4">
+          There are no tags in this file. Kindly Check the file or Reupload
+        </div> -->
+
+        <div *ngIf="infotags[0]">
+          <br />
+          <label ngbTooltip="Tags to filter" placement="right"
+            >Choose Tags to filter <span class="required">*</span></label
+          >
+          <ul class="list-unstyled">
+            <li>
+              <div class="row">
+                <div class="col-3" *ngFor="let item of infotags">
+                  <div class="custom-control custom-checkbox">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="{{ item.value }}"
+                      value="{{ item.value }}"
+                      [checked]="item.check == 'true'"
+                      (change)="onSelect($event, item.value)" />
+                    <label
+                      class="custom-control-label"
+                      for="{{ item.value }}"
+                      >{{ item.value }}</label
+                    >
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <!-- <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            class="custom-control-input"
+            id="checkGTValue"
+            value="checkGT"
+            [checked]="checkGT"
+            (change)="onSelectCheckGT($event)" />
+
+          <label class="custom-control-label" for="checkGTValue"
+            >Do you want to calculate AC/AF/AN</label
+          > -->
+
+        <ul class="list-unstyled">
+          <li>
+            <div class="row">
+              <div class="col-3" *ngFor="let atom of differenceValue">
+                <div class="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    class="custom-control-input"
+                    id="{{ atom.value }}"
+                    value="{{ atom.value }}"
+                    [checked]="atom.check == 'true'"
+                    (change)="onSelectACAFANDP($event, atom.value)" />
+                  <label class="custom-control-label" for="{{ atom.value }}">
+                    Do you want to calculate {{ atom.value }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <br />
+        <label
+          ngbTooltip="Output File Format is the format of anaylsis output file"
+          placement="right"
+          >Output File Format <span class="required">*</span></label
+        >
+        <div class="row">
+          <div
+            *ngFor="let outputfileformat of outputFileFormatList"
+            class="col-lg-3">
+            <div
+              class="custom-control custom-control-primary custom-radio outputfileformat">
+              <input
+                id="outputfileformat-{{ outputfileformat.id }}"
+                type="radio"
+                [checked]="outputfileformat.selected"
+                (change)="radioChecked(outputfileformat.id, i)"
+                class="custom-control-input" />
+              <label
+                for="outputfileformat-{{ outputfileformat.id }}"
+                class="custom-control-label"
+                >{{ outputfileformat.label }}</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <br />
+        <div class="d-flex justify-content-between">
+          <button
+            class="btn btn-success btn-submit"
+            rippleEffect
+            (click)="onSubmit()">
+            Submit
+          </button>
+        </div>
+        <br />
+        <div class="card shadow-none bg-transparent border-warning">
+          <div class="card-body">
+            <h4 class="card-title">Note</h4>
+            <ul>
+              <li>
+                <p class="card-text">
+                  Project Name should not include spaces or any special
+                  characters
+                </p>
+              </li>
+              <li>
+                <p class="card-text">
+                  Collection Name conatins files thats are uploaded for analysis
+                </p>
+              </li>
+              <li>
+                <p class="card-text">
+                  Output File Format is the format of anaylsis output file
+                </p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block-ui>

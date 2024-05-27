@@ -1,0 +1,179 @@
+<!-- 
+<app-content-header [contentHeader]="contentHeader"></app-content-header> -->
+<section
+  id="ecommerce-products"
+  [ngClass]="gridViewRef === true ? 'grid-view' : 'list-view'"
+>
+  <app-shared-item
+    [file]="file"
+    *ngFor="
+      let file of fileElements | slice : (page - 1) * pageSize : page * pageSize
+    "
+    (elementRemoved)="removeElement($event)"
+    (elementDownload)="downloadedElement($event)"
+    (navigatedDown)="navigateToFolder($event)"
+    (showElement)="showElement($event)"
+    (navigatedUp)="navigateUp()"
+    [canNavigateUp]="canNavigateUp"
+  ></app-shared-item>
+</section>
+
+<section id="ecommerce-pagination">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="d-flex justify-content-center">
+        <label class="d-flex"
+          >Show
+          <select
+            class="form-control mx-25"
+            [(ngModel)]="selectedOption"
+            (ngModelChange)="selected($event)"
+          >
+            <option value="12">12</option>
+            <option value="16">16</option>
+            <option value="20">20</option>
+            <option value="28">28</option>
+          </select>
+          entries</label
+        >
+        <ngb-pagination
+          [collectionSize]="fileElements.length"
+          [pageSize]="pageSize"
+          [rotate]="true"
+          [(page)]="page"
+          [ellipses]="false"
+          [boundaryLinks]="true"
+          *ngIf="fileElements !== undefined"
+        >
+          <ng-template ngbPaginationPrevious="ngbPaginationPrevious">
+            <span
+              [data-feather]="'chevron-left'"
+              [class]="'font-weight-bolder'"
+              [size]="18"
+            ></span>
+          </ng-template>
+          <ng-template ngbPaginationFirst="ngbPaginationFirst">
+            <span
+              [data-feather]="'chevrons-left'"
+              [class]="'font-weight-bolder'"
+              [size]="18"
+            ></span>
+          </ng-template>
+          <ng-template ngbPaginationNext="ngbPaginationNext">
+            <span
+              [data-feather]="'chevron-right'"
+              [class]="'font-weight-bolder'"
+              [size]="18"
+            ></span>
+          </ng-template>
+          <ng-template ngbPaginationLast="ngbPaginationLast">
+            <span
+              [data-feather]="'chevrons-right'"
+              [class]="'font-weight-bolder'"
+              [size]="18"
+            ></span>
+          </ng-template>
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</section>
+
+<core-sidebar
+  class="modal modal-slide-in fade event-sidebar"
+  name="properties-sidebar"
+  overlayClass="modal-backdrop"
+  hideOnEsc="true"
+>
+  <div class="modal-dialog sidebar-lg">
+    <div class="modal-content p-0">
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="toggleEventSidebar()"
+      >
+        ×
+      </button>
+      <div class="modal-header mb-1">
+        <h3 class="modal-title">
+          <b>Properties</b>
+        </h3>
+      </div>
+      <span *ngIf="selectedElement === undefined">{{ selectedElement }}</span>
+      <div
+        class="modal-body flex-grow-1 pb-sm-0 pb-3"
+        *ngIf="selectedElement !== undefined"
+      >
+        <form>
+          <h3>
+            <b>Object Info</b>
+          </h3>
+          <div>
+            <p>
+              <b>Name : </b>
+              {{ propfilename }}
+            </p>
+            <p>
+              <b>Location : </b>
+              {{ selectedElement.fileName }}
+            </p>
+
+            <p>
+              <b>Type : </b>
+              {{ filetype }}
+            </p>
+          </div>
+          <p>
+            <b>File size : </b>
+            {{ propfilesize }}
+          </p>
+          <p>
+            <b>Creation Date : </b>
+            {{ filecreationdate }}
+          </p>
+          <p>
+            <b>Last Modified : </b>
+            {{ filelastmodificationdate }}
+          </p>
+          <p>
+            <b>Expiration Date : </b>
+            {{ expirationDate }}
+          </p>
+          <p>
+            <b>Version : </b>
+            {{ version }}
+          </p>
+          <p>
+            <b>File Owner : </b>
+            {{ fileOwner }}
+          </p>
+          <hr />
+          <div>
+            <h3>
+              <b>Metadata Info</b>
+            </h3>
+            <p>
+              <b>Content Type : </b>
+              {{ ext }}
+            </p>
+
+            <div *ngIf="!dataSourceEmpty">
+              <b>MetaData : </b>
+              <table style="width: 100%; text-align: center">
+                <tr>
+                  <th *ngFor="let header of columnsArr">{{ header }}</th>
+                </tr>
+                <tr *ngFor="let item of metadata | keyvalue">
+                  <td>{{ item.key }}</td>
+                  <td>{{ item.value }}</td>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</core-sidebar>

@@ -1,0 +1,244 @@
+@import "@core/scss/angular/libs/swiper.component.scss";
+img.social {
+  padding: 0px 10px;
+}
+
+.icons {
+  //background-color:#314f8b;
+  background-color: #1f216e;
+  //  background-color: #6610f2;
+  // text-align: center;
+  font-size: 20px;
+}
+
+.color {
+  color: white;
+}
+
+.pillars{
+  padding: 30px;
+  text-align: center;
+  font-size: xx-large;
+  background-color: #96d0ee;
+}
+
+.bg-gray-100 {
+  background-color: #f5f5f5;
+}
+
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+.quote-classic {
+  position: relative;
+  text-align: left;
+  padding-top: 31px;
+}
+
+.quote-classic-text {
+  font-size: 20px;
+  line-height: 1.375;
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: .075em;
+  color: #151515
+}
+.quote-classic-text::before {
+    position: absolute;
+    left: -54px;
+    top: 10px;
+    content: '\201C';
+    font-size: 140px;
+    line-height: .88;
+    font-style: normal;
+    font-weight: 500;
+    letter-spacing: 0;
+    font-family: "Raleway", -apple-system, "Helvetica Neue", sans-serif;
+    color: rgba(21, 21, 21, 0.2);
+}
+
+.q{
+  line-height: 2.6rem;
+}
+
+.section-md, .section-lg, .section-xl, .section-xxl {
+  padding: 50px 0;
+}
+
+.wow{
+  letter-spacing: .1em;
+  font-size: 55px;
+}
+
+// .quote-tara-caption::before {
+//   position: absolute;
+//   content: '';
+//   top: 0;
+//   right: 0;
+//   bottom: 40px;
+//   left: 0;
+//   border-radius: 8px;
+//   background: #ffffff;
+//   box-shadow: 0 0 24px 0 rgb(0 0 0 / 7%);
+//   transition: all .4s ease;
+//   z-index: -1;
+// }
+
+@media (max-width: 629px){
+  .card.text-white.bg-primary.mb-3 {
+    margin-left: 0px !important;
+  }
+  .card.text-white.bg-secondary.mb-3 {
+    margin: 0px !important ;
+  }
+
+  .card.text-white.bg-success.mb-3 {
+    margin-right: 0px !important;
+    margin-top: 40px  !important;
+  }
+  
+  .card.text-white.bg-danger.mb-3 {
+    margin-right: 0px !important; 
+  }
+
+  // img {
+  //   margin-left: 70px !important;
+  // }
+
+  img.majorpillarimg {
+    margin-left: 0px !important;
+  }
+
+  .container{
+    margin-right: 232px;
+  }
+}
+.stats-card.card.text-white.mb-3{
+  margin-right: 26px;
+}
+.card.text-center.pad{
+  margin-right: 20px;
+  grid-auto-rows: 1fr;
+  min-height: 200px !important;
+}
+
+
+.card.text-white.bg-secondary.mb-3 {
+  margin: 0px 25px;
+}
+
+.card.text-white.bg-success.mb-3 {
+  margin-right: 26px;
+}
+.card-img-services{
+  height: 100px;
+}
+.card.text-white.bg-danger.mb-3 {
+  margin-right: 28px;
+}
+
+.card {
+  display: inline-block;
+  width: 100%;
+}
+
+.col-12 {
+  text-align: center;
+}
+
+.card.border.border-success.shadow-0.mb-3 {
+  margin: 0px 28px;
+}
+
+.card.border.border-warning.shadow-0.mb-3 {
+  margin: 0px 28px;
+}
+.quote-modern-text{
+  font-weight: 300;
+letter-spacing: .075em;
+font-style: italic;
+text-transform: none;
+font-family: "Roboto", -apple-system,
+"Helvetica Neue",
+sans-serif;
+color: #777777;
+font-size: 15px;
+}
+.quote-modern-author{
+font-weight: 500;
+letter-spacing: .05em;
+text-transform: none;
+font-size: 20px;
+}
+
+.heading-3{
+  margin-top: 0;
+  margin-bottom: 0;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color: #151515;   
+   font-size: 30px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+.copy-right_text {
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: #01386a;
+  font-size: 10pt;
+}
+#map1{
+  height: 42vh;
+  width:100%;
+}
+
+.heightstatus{
+  height: calc(100vh/2.1);
+}
+.callus{
+  height: 200px;
+  border: 2px #01386a;
+  background-color: #01386a;
+}
+.pillars{
+  padding: 30px;
+  text-align: center;
+  font-size: xx-large;
+  background-color: #01386a;
+}
+.centered{
+  align-items: center;
+color: white;
+font-size: 18px;
+padding-top: 20px;
+}
+.img-logo {
+  max-width: 100%;
+  height: auto;
+  object-fit: fill;
+}
+@media screen and (min-width:576px) and (max-width: 771px) {
+  .border {
+      height:50vh
+  }
+}
+.mb-2{
+  margin-top: -2rem;
+}
+
+@media screen and  (max-width: 450px) {
+.callus{
+  height: 365px;
+}
+.centered{
+  top: 51%;
+}
+}

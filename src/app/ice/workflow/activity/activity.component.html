@@ -1,0 +1,126 @@
+<div class="content-wrapper container-xxxl p-0">
+  <div class="content-body">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <core-card
+          *ngIf="oneComputeUnit"
+          [actions]="['reload']"
+          [isReload]="isReload"
+          (events)="refresh($event)"
+          class="card card-browser-states cursor-pointer">
+          <h4 class="card-title">
+            {{ oneComputeUnit.imageName | uppercase }}
+          </h4>
+
+          <ul ngbNav #navFilled="ngbNav" class="nav-tabs">
+            <li ngbNavItem>
+              <a ngbNavLink
+                ><i data-feather="file-text" class="mr-sm-50"></i
+                ><span class="d-none d-sm-block">Exection logs</span></a
+              >
+              <ng-template ngbNavContent>
+                <div class="row" style="padding: 10px">
+                  <div class="col-9">
+                    <h1 (click)="loadContent()">{{ nameOfPipeline }}</h1>
+                  </div>
+                  <div class="col-3 float-right">
+                    <i
+                      data-feather="clock"
+                      class="font-medium-3 text-muted cursor-pointer"></i
+                    >&nbsp;{{ oneComputeUnit.durationMessage }}&nbsp;
+                    <i
+                      data-feather="calendar"
+                      class="font-medium-3 text-muted cursor-pointer"></i
+                    >&nbsp;{{
+                      oneComputeUnit.submittedDate | date : "short" : "UTC"
+                    }}
+                  </div>
+                </div>
+                <br />
+                <div class="col-12 content-area-wrapper" style="border: 0">
+                  <div class="sidebar-left">
+                    <div class="sidebar">
+                      <core-sidebar
+                        class="sidebar-content"
+                        name="chat-sidebar"
+                        overlayClass="body-content-overlay"
+                        collapsibleSidebar="bs-gt-lg">
+                        <app-activity-sidebars
+                          class="chat-sidebar-wrapper"
+                          [oneComputeUnit]="
+                            oneComputeUnit
+                          "></app-activity-sidebars>
+                      </core-sidebar>
+                    </div>
+                  </div>
+                  <div class="content-right">
+                    <div class="content-wrapper">
+                      <div class="content-body">
+                        <app-activity-content></app-activity-content>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink
+                ><i data-feather="check-square" class="mr-sm-50"></i
+                ><span class="d-none d-sm-block">Results</span></a
+              >
+
+              <ng-template ngbNavContent>
+                <app-results></app-results>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink
+                ><i data-feather="align-left" class="mr-sm-50"></i
+                ><span class="d-none d-sm-block">Params</span></a
+              >
+
+              <ng-template ngbNavContent>
+                <div class="row" style="padding: 20px">
+                  <div class="col-lg-8 col-sm-12"></div>
+                  <div class="col-lg-4 col-sm-12 text-right">
+                    <button
+                      type="button"
+                      class="btn btn-icon btn-primary float-right"
+                      rippleEffect
+                      (click)="downloadJSONParams()">
+                      <span [data-feather]="'download'"></span>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="row" style="padding: 20px">
+                  <app-parameters class="newClass" [param]="params">
+                  </app-parameters>
+                  <!-- <div
+                    class="col-lg-12 col-sm-12 border"
+                    *ngFor="let item of params | keyvalue : asIsOrder">
+                    <div class="row match-height">
+                      <div class="col-lg-4 col-sm-12">
+                        <h2 class="text-primary">{{ item.key }} :</h2>
+                      </div>
+                      <div class="col-lg-8 col-sm-12">
+                        <h2 class="text-success">
+                          {{ item.value | replaceNull }}
+                        </h2>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </ng-template>
+            </li>
+          </ul>
+
+          <div [ngbNavOutlet]="navFilled" class="mt-2"></div>
+        </core-card>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,125 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <div class="content-body">
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+
+      <core-card
+        *ngIf="jobsDetails"
+        [actions]="['reload']"
+        [isReload]="isReload"
+        (events)="refresh($event)"
+        class="card card-browser-states cursor-pointer">
+        <h1 class="card-title">
+          {{
+            jobsDetails.imageName.lastIndexOf("/") > 0
+              ? jobsDetails.imageName.substring(
+                  jobsDetails.imageName.lastIndexOf("/") + 1
+                )
+              : (jobsDetails.imageName | uppercase)
+          }}
+        </h1>
+        <div class="card-body">
+          <div class="row" style="padding: 10px">
+            <div class="col-8">
+              <h3>
+                {{ jobsDetails.imageName }}
+              </h3>
+            </div>
+            <div class="col-1">
+              <div
+                class="badge badge-pill badge-primary"
+                [ngClass]="{
+                  'badge-success': jobsDetails.state == 'Running',
+                  'badge-danger': jobsDetails.state == 'Terminating',
+                  'badge-warning': jobsDetails.state == 'Pending',
+                  'badge-primary': jobsDetails.state == 'Initializing'
+                }"
+                style="font-size: 1.1rem; font-weight: 500; padding: 8px">
+                {{ jobsDetails.state }}
+              </div>
+            </div>
+            <div class="col-3 float-right">
+              <i
+                data-feather="clock"
+                class="font-medium-3 text-muted cursor-pointer"></i
+              >&nbsp;{{
+                jobsDetails.createdDate
+                  | amParse : "DD-MM-YYYY hh:mm:ss"
+                  | amTimeAgo
+              }}&nbsp;
+              <i
+                data-feather="calendar"
+                class="font-medium-3 text-muted cursor-pointer"></i
+              >&nbsp;{{ jobsDetails.minOld | date : "short" : "UTC" }}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <dl class="row" *ngIf="jobsDetails.jobName">
+                <dt class="col-sm-3 text-truncate">JobName</dt>
+                <dt class="col-sm-1 text-truncate">:</dt>
+                <dd class="col-sm-8">
+                  {{ jobsDetails.jobName }}
+                </dd>
+              </dl>
+              <dl class="row" *ngIf="jobsDetails.type">
+                <dt class="col-sm-3">Type</dt>
+                <dt class="col-sm-1 text-truncate">:</dt>
+                <dd class="col-sm-8">{{ jobsDetails.type }}</dd>
+              </dl>
+              <dl class="row" *ngIf="jobsDetails.cpu">
+                <dt class="col-sm-3">CPU</dt>
+                <dt class="col-sm-1 text-truncate">:</dt>
+                <dd class="col-sm-8">{{ jobsDetails.cpu | cpuUnit }} vCPU</dd>
+              </dl>
+              <dl class="row" *ngIf="jobsDetails.memory">
+                <dt class="col-sm-3">Memory</dt>
+                <dt class="col-sm-1 text-truncate">:</dt>
+                <dd class="col-sm-8 ml-auto">{{ jobsDetails.memory }} GB</dd>
+              </dl>
+              <dl class="row" *ngIf="jobsDetails.command">
+                <dt class="col-sm-3">Command</dt>
+                <dt class="col-sm-1 text-truncate">:</dt>
+                <dd class="col-sm-8">
+                  {{ jobsDetails.command }}
+                </dd>
+              </dl>
+              <dl class="row" *ngIf="jobsDetails.password">
+                <dt class="col-sm-3">Password</dt>
+                <dt class="col-sm-1 text-truncate">:</dt>
+                <dd class="col-sm-8">
+                  {{ jobsDetails.password }}
+                  <button
+                    class="btn"
+                    (click)="copyDynamicText(jobsDetails.password)">
+                    <i data-feather="copy" size="18" class="cursor-pointer"></i>
+                  </button>
+                </dd>
+              </dl>
+              <button
+                class="btn btn-danger"
+                (click)="confirmTextOpen(jobsDetails.jobName)">
+                Delete
+              </button>
+            </div>
+            <div class="col-8">
+              <div
+                *ngIf="jobsDetails.log"
+                id="log"
+                style="
+                  background-color: black;
+                  color: white;
+                  white-space: pre-line;
+                  overflow: scroll;
+                  height: 400px;
+                ">
+                {{ jobsDetails.log }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </core-card>
+    </div>
+  </div>
+</block-ui>

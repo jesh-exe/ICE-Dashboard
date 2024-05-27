@@ -1,0 +1,661 @@
+<!-- Ecommerce Sidebar Starts -->
+
+<!-- Clear Filters Ends -->
+
+<form>
+  <div class="card">
+    <div class="card-body">
+      <div class="row mt-1 d-none d-lg-block">
+        <div class="col-sm-12">
+          <h3
+            class="filter-heading center"
+            style="font-weight: 500; text-align: center"
+          >
+            Filters
+          </h3>
+        </div>
+      </div>
+
+      <!-- Clear Filters Starts -->
+      <div id="clear-filters">
+        <button
+          type="button"
+          class="btn btn-block btn-primary"
+          rippleEffect
+          (click)="reset()"
+        >
+          Clear All Filters
+        </button>
+      </div>
+      <div
+        class="badge badge-info"
+        style="
+          background-color: #314f8b !important;
+          margin: 5px 5px;
+          padding: 0.7rem 0.9rem;
+          font-size: 100%;
+        "
+        *ngFor="let t of onBadgeArray; let i = index"
+      >
+        {{ t }}
+        <button
+          aria-label="Close"
+          type="button"
+          class="close"
+          style="white-space: nowrap"
+          (click)="removefilter(t)"
+          style="display: contents; color: white"
+        >
+          <span class="cross" aria-hidden="true" style="padding: 9px 5px"
+            >×</span
+          >
+        </button>
+      </div>
+      <!-- Price Filter starts -->
+      <div class="multi-range-price">
+        <h4 class="filter-title mt-0" style="font-weight: 500">Size Range</h4>
+        <ul class="list-unstyled price-range" id="price-range">
+          <li>
+            <div class="custom-control custom-radio">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="sizeRange1"
+                [checked]="currentChecked === check_box_size.lt100Mb"
+                (change)="
+                  onMultipleFilterSelect1(check_box_size.lt100Mb, $event)
+                "
+              />
+              <label class="custom-control-label" for="sizeRange1"
+                >&lt;=100MB
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-radio">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="sizeRange2"
+                [checked]="currentChecked === check_box_size.fr100MBto500MB"
+                (change)="
+                  onMultipleFilterSelect1(check_box_size.fr100MBto500MB, $event)
+                "
+              />
+              <label class="custom-control-label" for="sizeRange2"
+                >100MB - 500MB
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-radio">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="sizeRange3"
+                [checked]="currentChecked === check_box_size.fr500MBto1GB"
+                (change)="
+                  onMultipleFilterSelect1(check_box_size.fr500MBto1GB, $event)
+                "
+              />
+              <label class="custom-control-label" for="sizeRange3"
+                >500MB - 1GB
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-radio">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="sizeRange4"
+                [checked]="currentChecked === check_box_size.fr1GBto1TB"
+                (change)="
+                  onMultipleFilterSelect1(check_box_size.fr1GBto1TB, $event)
+                "
+              />
+              <label class="custom-control-label" for="sizeRange4"
+                >1GB - 1TB
+              </label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-radio">
+              <input
+                type="radio"
+                class="custom-control-input"
+                id="sizeRange5"
+                [checked]="currentChecked === check_box_size.fr1TBto5TB"
+                (change)="
+                  onMultipleFilterSelect1(check_box_size.fr1TBto5TB, $event)
+                "
+              />
+              <label class="custom-control-label" for="sizeRange5"
+                >1TB - 5TB
+              </label>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div id="files-categories">
+        <h4 class="filter-title" style="font-weight: 500">File Extensions</h4>
+        <!-- [list]="list" (shareCheckedList)="shareCheckedList($event)"
+        (shareIndividualCheckedList)="shareIndividualCheckedList($event)" -->
+        <!-- <div>
+          <div (mouseleave)="showDropDown = false">
+            <button
+              type="button"
+              class="btn btn-block drop-toggle btn flat"
+              (click)="showDropDown = !showDropDown"
+            >
+              <span *ngIf="checkedList.length <= 0">Select</span>
+              <span *ngIf="checkedList.length > 0">{{
+                checkedList.join(", ")
+              }}</span>
+              <i class="fa fa-angle-down"></i>
+            </button>
+            <div class="drop-show" *ngIf="showDropDown">
+              <label *ngFor="let a of list">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="a.checked"
+                  [ngModelOptions]="{ standalone: true }"
+                  (change)="onMultipleFilterSelect1(a.checked, a.name)"
+                />
+                <span>{{ a.name }}</span>
+              </label>
+            </div>
+          </div>
+        </div> -->
+        <!-------------------------->
+
+        <div class="multiselect" style="position: relative">
+          <div
+            class="select-box"
+            (click)="toggleDropdown()"
+            style="
+              cursor: pointer;
+              border: 1px solid #0d0c0c;
+              padding: 10px;
+              background-color: #fff;
+            "
+          >
+            <span *ngIf="selectedItems.length === 0">Select Items</span>
+            <span *ngIf="selectedItems.length > 0">
+              {{ selectedItems.length }} item(s) selected
+            </span>
+            <i class="fa fa-angle-down"></i>
+          </div>
+          <div
+            class="dropdown"
+            *ngIf="showDropdown"
+            style="
+              border: 1px solid #ccc;
+              background-color: #f6f6f6;
+              max-height: 150px;
+              overflow-y: auto;
+              overflow-x: hidden;
+              z-index: 1000;
+              width: -webkit-fill-available;
+            "
+          >
+            <label
+              *ngFor="let item of items"
+              style="
+                display: block;
+                padding: 8px;
+                cursor: pointer;
+                font-size: 15px;
+              "
+            >
+              <input
+                type="checkbox"
+                [(ngModel)]="item.selected"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="onItemSelect(item)"
+              />
+              <span style="padding: 5px">{{ item.name }}</span>
+            </label>
+          </div>
+        </div>
+        <!-------------------------->
+
+        <!-- <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension1"
+            value="fastq"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension1">fastq</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension2"
+            value="sra"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension2">sra</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension3"
+            value="bam"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension3">bam</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension4"
+            value="sam"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension4">sam</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension5"
+            value="pdf"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension5">pdf</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension6"
+            value="bed"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension6">bed</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension7"
+            value="mp4"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension7">mp4</label>
+        </div>
+
+        <div class="custom-control custom-checkbox">
+          <input
+            type="checkbox"
+            id="extension8"
+            value="txt"
+            name="extension"
+            class="custom-control-input"
+            (change)="onMultipleFilterSelect($event)"
+          />
+          <label class="custom-control-label" for="extension8">txt</label>
+        </div> -->
+      </div>
+      <!-- Categories Ends  -->
+
+      <!-- <div class="Metadata">
+        <h4 class="filter-title" style="font-weight: 500">Categories</h4>
+        <div>
+          <div (mouseleave)="showDropDown = false">
+            <button
+              class="drop-toggle btn flat"
+              (click)="showDropDown = !showDropDown"
+            >
+              <span *ngIf="checkedList.length <= 0">Select</span>
+              <span *ngIf="checkedList.length > 0">{{
+                checkedList.join(", ")
+              }}</span>
+              <i class="fa fa-angle-down"></i>
+            </button>
+            <div class="drop-show" *ngIf="showDropDown">
+              <label *ngFor="let a of list">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="a.checked"
+                  [ngModelOptions]="{ standalone: true }"
+                  (change)="onMultipleFilterSelect1(a.checked, a.name)"
+                />
+                <span>{{ a.name }}</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <br />
+      <!-- Brands starts -->
+      <div class="Metadata">
+        <h4 class="filter-title" style="font-weight: 500">Metadata</h4>
+        <!-- <ul class="list-unstyled brand-list">
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata1"
+                value="filetype"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata1"
+                >filetype</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata2"
+                value="assay_type"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata2"
+                >Assay_type</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata3"
+                value="libraryselection"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata3"
+                >LibrarySelection</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata4"
+                value="librarysource"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata4"
+                >LibrarySource</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata5"
+                value="librarylayout"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata5"
+                >LibraryLayout</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata6"
+                value="platform"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata6"
+                >Platform</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata7"
+                value="model"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata7">Model</label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata8"
+                value="number_of_replicates"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata8"
+                >Number_of_Replicates</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata9"
+                value="avg_read_length_fastq"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata9"
+                >AVG_Read_Length_fastq</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata10"
+                value="number_of_reads"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata10"
+                >Number_of_Reads</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata11"
+                value="insertsize"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata11"
+                >InsertSize</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata12"
+                value="size_mb"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata12"
+                >size_MB</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata13"
+                value="organism_name"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata13"
+                >Organism_Name</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata14"
+                value="organism_scientific_name"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata14"
+                >Organism_Scientific_Name</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata15"
+                value="cell_line"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata15"
+                >cell_line</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata16"
+                value="tissue"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata16"
+                >tissue</label
+              >
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata17"
+                value="sex"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata17">Sex</label>
+            </div>
+          </li>
+          <li>
+            <div class="custom-control custom-checkbox">
+              <input
+                type="checkbox"
+                class="custom-control-input"
+                id="metadata18"
+                value="disease"
+                (change)="onMultipleFilterSelect($event)"
+              />
+              <label class="custom-control-label" for="metadata18"
+                >Disease</label
+              >
+            </div>
+          </li>
+        </ul> -->
+
+        <!------------------------------->
+        <div class="multiselect" style="position: relative">
+          <div
+            class="select-box"
+            (click)="toggleDropdownMetaList()"
+            style="
+              cursor: pointer;
+              border: 1px solid #0d0c0c;
+              padding: 10px;
+              background-color: #fff;
+            "
+          >
+            <span *ngIf="selectedMetaList.length === 0">Select Items</span>
+            <span *ngIf="selectedMetaList.length > 0">
+              {{ selectedMetaList.length }} item(s) selected
+            </span>
+            <i class="fa fa-angle-down"></i>
+          </div>
+          <div
+            class="dropdown"
+            *ngIf="showDropdownList"
+            style="
+              border: 1px solid #ccc;
+              background-color: #f6f6f6;
+              max-height: 150px;
+              overflow-y: auto;
+              overflow-x: hidden;
+              z-index: 1000;
+              width: -webkit-fill-available;
+            "
+          >
+            <label
+              *ngFor="let item of metalist"
+              style="
+                display: block;
+                padding: 8px;
+                cursor: pointer;
+                font-size: 15px;
+              "
+            >
+              <input
+                type="checkbox"
+                [(ngModel)]="item.selected"
+                [ngModelOptions]="{ standalone: true }"
+                (change)="onMetaListSelect(item)"
+              />
+              <span style="padding: 5px">{{ item.name }}</span>
+            </label>
+          </div>
+        </div>
+        <!------------------------------->
+      </div>
+      <!-- Metadata ends -->
+    </div>
+  </div>
+</form>
+<!-- Metadata Sidebar Ends -->

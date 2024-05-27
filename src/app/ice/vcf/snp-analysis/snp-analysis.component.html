@@ -1,0 +1,306 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="card">
+      <div class="card-body">
+        <div class="row my-2">
+          <div class="col-12 col-md-12">
+            <h4 class="card-title">SNP based Population Differentiation</h4>
+            <p class="card-text">
+              To discover a probable list of variants that can differentiate two
+              sets of data (populations / Disease). Such SNPs have direct
+              applications in array design, genotype imputation and in
+              cataloging of variants in regions of interest. Allowing user to
+              partition samples based on traits, and identify SNPs consistent
+              with that partitioning. Users have to define splits, i.e. two
+              disjoint groups of samples, on a set of variant data (only SNPs)
+              that were generated with respect to the same reference genome
+              sequence. This provides a powerful filter for narrowing down
+              candidate SNPs, and for directing further research into them.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="modern-vertical-wizard">
+      <div
+        id="stepper"
+        class="bs-stepper vertical wizard-modern modern-vertical-wizard-example">
+        <div class="bs-stepper-header">
+          <div class="step" data-target="#account-details-vertical-modern">
+            <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">
+                <i data-feather="file-text" class="font-medium-3"></i>
+              </span>
+              <span class="bs-stepper-label">
+                <span class="bs-stepper-title">Variant File</span>
+                <span class="bs-stepper-subtitle">Setup Variant File</span>
+              </span>
+            </button>
+          </div>
+          <div class="step" data-target="#personal-info-vertical-modern">
+            <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">
+                <i data-feather="file-text" class="font-medium-3"></i>
+              </span>
+              <span class="bs-stepper-label">
+                <span class="bs-stepper-title">DataSet</span>
+                <span class="bs-stepper-subtitle">Add DataSet Info</span>
+              </span>
+            </button>
+          </div>
+          <div class="step" data-target="#address-step-vertical-modern">
+            <button type="button" class="step-trigger">
+              <span class="bs-stepper-box">
+                <i data-feather="file-text" class="font-medium-3"></i>
+              </span>
+              <span class="bs-stepper-label">
+                <span class="bs-stepper-title">Genomic coordinates</span>
+                <span class="bs-stepper-subtitle">Add Genomic coordinates</span>
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="bs-stepper-content">
+          <div id="account-details-vertical-modern" class="content">
+            <div class="content-header">
+              <h5 class="mb-0">Variant File</h5>
+              <small class="text-muted">Enter Variant File</small>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-12">
+                <ng-select
+                  [items]="Collection"
+                  [(ngModel)]="selectCollection"
+                  bindLabel="name">
+                  <ng-template ng-footer-tmp>
+                    <button
+                      (click)="addFileForAnalysis()"
+                      class="btn btn-primary"
+                      rippleEffect>
+                      Add File for Analysis
+                    </button>
+                  </ng-template>
+                  <!-- <ng-template ng-footer-tmp>
+                                        Selected count: {{ set2Selected.length }}
+                                    </ng-template> -->
+                </ng-select>
+              </div>
+              <!-- Selected: {{ selectCollection }} -->
+            </div>
+            <div class="d-flex justify-content-between">
+              <button
+                class="btn btn-outline-secondary btn-prev"
+                disabled
+                rippleEffect>
+                <i
+                  data-feather="arrow-left"
+                  class="align-middle mr-sm-25 mr-0"></i>
+                <span class="align-middle d-sm-inline-block d-none"
+                  >Previous</span
+                >
+              </button>
+              <button
+                class="btn btn-primary btn-next"
+                (click)="collectionNext(selectCollection)"
+                rippleEffect>
+                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                <i
+                  data-feather="arrow-right"
+                  class="align-middle ml-sm-25 ml-0"></i>
+              </button>
+            </div>
+          </div>
+          <div id="personal-info-vertical-modern" class="content">
+            <div class="content-header">
+              <h5 class="mb-0">Dataset</h5>
+              <small>Enter Dataset</small>
+            </div>
+            <div class="row">
+              <div class="form-group col-md-6">
+                <label>Dataset 1</label>
+
+                <ng-select
+                  [multiple]="true"
+                  [items]="sampleList"
+                  [(ngModel)]="set1Selected"
+                  placeholder="Select Dataset 1"
+                  ngModel
+                  (ngModelChange)="myFunc()"
+                  bindLabel="name"
+                  class="text-white">
+                  <ng-template ng-header-tmp>
+                    <!-- <button (click)="set1SelectAll()" class="btn btn-sm btn-secondary mr-1"
+                                        rippleEffect>
+                                        Select all
+                                    </button> -->
+                    <button
+                      (click)="set1UnselectAll()"
+                      class="btn btn-sm btn-secondary"
+                      rippleEffect>
+                      Unselect all
+                    </button>
+                  </ng-template>
+                  <ng-template ng-footer-tmp>
+                    Selected count: {{ set1Selected.length }}
+                  </ng-template>
+                </ng-select>
+                <br />
+                <!-- Selected Set 1: {{ set1Selected }} -->
+              </div>
+              <div class="form-group col-md-6">
+                <label>Dataset 2</label>
+                <ng-select
+                  [multiple]="true"
+                  [items]="sampleList"
+                  [(ngModel)]="set2Selected"
+                  placeholder="Select Dataset 2"
+                  ngModel
+                  (ngModelChange)="myFunc()"
+                  bindLabel="name">
+                  <ng-template ng-header-tmp>
+                    <!-- <button (click)="set2SelectAll()" class="btn btn-sm btn-secondary mr-1"
+                                        rippleEffect>
+                                        Select all
+                                    </button> -->
+                    <button
+                      (click)="set2UnselectAll()"
+                      class="btn btn-sm btn-secondary"
+                      rippleEffect>
+                      Unselect all
+                    </button>
+                  </ng-template>
+                  <ng-template ng-footer-tmp>
+                    Selected count: {{ set2Selected.length }}
+                  </ng-template>
+                </ng-select>
+                <br />
+                <!-- Selected Set 2: {{ set2Selected }} -->
+              </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+              <button
+                class="btn btn-primary btn-prev"
+                (click)="Previous()"
+                rippleEffect>
+                <i
+                  data-feather="arrow-left"
+                  class="align-middle mr-sm-25 mr-0"></i>
+                <span class="align-middle d-sm-inline-block d-none"
+                  >Previous</span
+                >
+              </button>
+              <button
+                class="btn btn-primary btn-next"
+                (click)="Next()"
+                rippleEffect>
+                <span class="align-middle d-sm-inline-block d-none">Next</span>
+                <i
+                  data-feather="arrow-right"
+                  class="align-middle ml-sm-25 ml-0"></i>
+              </button>
+            </div>
+          </div>
+          <div
+            id="address-step-vertical-modern"
+            class="content"
+            style="align-items: center">
+            <label class="form-label" for="Range">Chromosomes</label>
+            <ng-select
+              [items]="Chromosomes"
+              [(ngModel)]="selectChromosomes"
+              bindValue="selectChromosomes"
+              bindName="selectChromosomes">
+            </ng-select>
+            <!-- Selected: {{ selectChromosomes }} -->
+            <br />
+            <label class="form-label" for="Range">Genomic Coordinates</label>
+            <div class="row" id="row">
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <label class="form-label" for="Range">Start</label>
+                <input
+                  type="number"
+                  id="rangeFrom"
+                  [(ngModel)]="rangeFrom"
+                  class="form-control" />
+              </div>
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <label class="form-label" for="Range">End</label>
+                <input
+                  type="number"
+                  id="rangeTo"
+                  [(ngModel)]="rangeTo"
+                  class="form-control" />
+              </div>
+            </div>
+            <br />
+
+            <div class="d-flex justify-content-between">
+              <button
+                class="btn btn-primary btn-prev"
+                (click)="Previous()"
+                rippleEffect>
+                <i
+                  data-feather="arrow-left"
+                  class="align-middle mr-sm-25 mr-0"></i>
+                <span class="align-middle d-sm-inline-block d-none"
+                  >Previous</span
+                >
+              </button>
+              <button
+                class="btn btn-success btn-submit"
+                rippleEffect
+                (click)="onSubmit()">
+                Submit
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div *ngIf="msgResponse">
+    <div class="content-wrapper container-xxxl p-0">
+      <div class="content-body">
+        <div class="card" style="padding: 30px">
+          <ul ngbNav #nav="ngbNav" class="nav-tabs">
+            <li ngbNavItem>
+              <a ngbNavLink><span [data-feather]="'list'"></span> Table</a>
+              <ng-template ngbNavContent>
+                <app-snp-table-response
+                  [msgResponse]="msgResponse"
+                  [selectCollection]="selectCollection">
+                </app-snp-table-response>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink
+                ><span [data-feather]="'bar-chart-2'"></span>Chart</a
+              >
+              <ng-template ngbNavContent>
+                <app-snp-chart
+                  [msgResponse]="msgResponse"
+                  [selectCollection]="selectCollection">
+                </app-snp-chart>
+              </ng-template>
+            </li>
+            <li ngbNavItem>
+              <a ngbNavLink
+                ><span [data-feather]="'bar-chart-2'"></span>Analysis</a
+              >
+              <ng-template ngbNavContent>
+                <app-snp-chart-analysis
+                  [msgResponse]="msgResponse"
+                  [selectCollection]="
+                    selectCollection
+                  "></app-snp-chart-analysis>
+              </ng-template>
+            </li>
+          </ul>
+          <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</block-ui>

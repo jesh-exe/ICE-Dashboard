@@ -1,0 +1,71 @@
+
+<!-- <form action="#" > -->
+<div>
+    <div *ngFor="let item of items; let i = index">
+      <div class="row d-flex align-items-end">
+        <div class="col-md-5 col-12 col-lg-5">
+          <div class="form-group">
+            
+                    <label for="typeahead-focus">Key </label>
+                 
+                    <input 
+                      id="{{i}}"
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="item.key"
+                      [ngbTypeahead]="search"
+                      (focus)="focus$.next($any($event).target.id)"
+                      (click)="click$.next($any($event).target.id)"
+                      #instance="ngbTypeahead"                                
+                      placement="top-left"
+                      [ngModelOptions]="{standalone: true}"
+                      #newItem
+                    />
+          </div>
+        </div>
+        <div class="col-md-5 col-12 col-lg-5">
+          <div class="form-group">
+            <label for="value[i]">Value</label>
+            <input
+              type="text"
+              class="form-control"
+              id="{{i}}"
+              [(ngModel)]="item.value"                   
+              [ngModelOptions]="{standalone: true}"
+              #newItem
+            />
+          </div>
+        </div>
+        <div class="col-md-2 col-12 mb-50">
+          <div class="form-group">
+            <button
+              class="btn btn-outline-danger text-nowrap px-1"
+              (click)="deleteItem(i)"
+              rippleEffect
+            >
+              <i data-feather="x" class="mr-25"></i>
+              <span>Delete</span>
+            </button>
+          </div>
+        </div>
+      </div>
+ 
+  <!-- </form> -->
+
+</div>
+
+
+<div class="row" style="float: right; margin-top: 5px">
+  <div class="col-12">
+    <button
+      class="btn btn-icon btn-sm btn-primary"
+      type="button"
+    
+      rippleEffect
+      (click)="addNewItem(items)"
+    >
+      <span>Add Info</span>
+    </button>
+  </div>
+</div>
+</div>

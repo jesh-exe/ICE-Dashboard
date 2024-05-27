@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>button_jamsandekar_btn icon-btn waves-effec_5602a9</name>
+   <tag></tag>
+   <elementGuidId>51025b00-6b30-4c4f-9bf3-fb3f7577bb32</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>(//button[@type='button'])[7]</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>3549ba33-98ab-4c1e-b809-c1ac16ad61cf</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>type</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>e7d36554-0b19-4e95-a3f8-acc3468a65a4</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>btn icon-btn waves-effect waves-float waves-light</value>
+      <webElementGuid>71fbc71d-7125-443e-8525-d68bc75b87f0</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography ng-tns-0-0 default-layout&quot;]/app-root[@class=&quot;vertical-layout navbar-floating footer-static menu-expanded vertical-overlay-menu menu-hide&quot;]/vertical-layout[@class=&quot;ng-star-inserted&quot;]/div[@class=&quot;app-content content&quot;]/content[@class=&quot;ng-tns-c118-1 ng-star-inserted&quot;]/div[@class=&quot;ng-tns-c118-1 ng-trigger ng-trigger-zoomIn&quot;]/app-user-list[@class=&quot;ng-star-inserted&quot;]/div[@class=&quot;content-wrapper container-xxl p-0&quot;]/div[@class=&quot;content-body&quot;]/section[@class=&quot;users-list-wrapper&quot;]/div[@class=&quot;card mb-3 lg-3 xs-3&quot;]/div[@class=&quot;table-responsive&quot;]/table[@class=&quot;table table-sm mb-0&quot;]/tr[@class=&quot;ng-star-inserted&quot;]/td[5]/button[@class=&quot;btn icon-btn waves-effect waves-float waves-light&quot;]</value>
+      <webElementGuid>7615b122-a701-4993-8718-8e68b07c0424</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>7bb38c2b-e3fd-4922-821b-8449660e2098</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>type</name>
+      <type>Main</type>
+      <value>button</value>
+      <webElementGuid>0b42d2fd-49fc-4936-8b26-414caab6a57e</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>btn icon-btn waves-effect waves-float waves-light</value>
+      <webElementGuid>943ec1d4-ee2a-4cab-964d-3f02897f99d4</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography ng-tns-0-0 default-layout&quot;]/app-root[@class=&quot;vertical-layout navbar-floating footer-static menu-expanded vertical-overlay-menu menu-hide&quot;]/vertical-layout[@class=&quot;ng-star-inserted&quot;]/div[@class=&quot;app-content content&quot;]/content[@class=&quot;ng-tns-c118-1 ng-star-inserted&quot;]/div[@class=&quot;ng-tns-c118-1 ng-trigger ng-trigger-zoomIn&quot;]/app-user-list[@class=&quot;ng-star-inserted&quot;]/div[@class=&quot;content-wrapper container-xxl p-0&quot;]/div[@class=&quot;content-body&quot;]/section[@class=&quot;users-list-wrapper&quot;]/div[@class=&quot;card mb-3 lg-3 xs-3&quot;]/div[@class=&quot;table-responsive&quot;]/table[@class=&quot;table table-sm mb-0&quot;]/tr[@class=&quot;ng-star-inserted&quot;]/td[5]/button[@class=&quot;btn icon-btn waves-effect waves-float waves-light&quot;]</value>
+      <webElementGuid>1dbff1d6-ee23-4e6d-8811-d3fdb98db674</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:attributes</name>
+      <type>Main</type>
+      <value>(//button[@type='button'])[7]</value>
+      <webElementGuid>08e84226-e205-45f5-bbfc-d8167d8a3ce6</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='jamsandekar'])[2]/following::button[1]</value>
+      <webElementGuid>0a87ac0a-8b86-4acb-a8ee-f8d1bb0174d2</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='sunil'])[2]/following::button[1]</value>
+      <webElementGuid>f0dbf7dc-9b55-4ce7-8f4c-29dba7d16a9a</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='First'])[1]/preceding::button[2]</value>
+      <webElementGuid>bf327605-22fd-496d-b241-affa14730dd7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//tr[5]/td[5]/button</value>
+      <webElementGuid>492b8e91-923c-45ed-b4e5-9db6104f037d</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//button[@type = 'button']</value>
+      <webElementGuid>995c8f99-0409-471f-bf83-1202a23a73dd</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -1,0 +1,21 @@
+@import '@core/scss/angular/libs/form-wizard.component.scss';
+@import '@core/scss/angular/libs/select.component.scss';
+
+p {
+    font-family: Lato;
+  }
+  
+  .invalid-input.ng-invalid.ng-touched{
+    border: 1px solid red;
+  }
+
+  @media (min-width: 1440px){  .container-xxl{     max-width: 2440px; }
+  }
+
+  .font-weight-bold {
+    font-size: medium;
+}
+
+button.btn.btn-primary {
+  margin: auto;
+}

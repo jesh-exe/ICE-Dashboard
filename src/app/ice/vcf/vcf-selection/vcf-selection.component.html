@@ -1,0 +1,68 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <app-content-header [contentHeader]="contentHeader"></app-content-header>
+    <div class="card">
+      <div class="card-body">
+        <div class="row my-2">
+          <div class="col-12 col-md-12">
+            <h4 class="card-title">Variant File Upload</h4>
+            <p class="card-text">
+              The Variant Call Format (VCF) specifies the format of a text file
+              used in bioinformatics for storing variation data. It is used by
+              large scale variant mapping projects such as The International
+              Genome Sample Resource (IGSR). It is also the standard output of
+              variant calling softwares such as GATK, BCFTOOLS, VArscan FREEbays
+              etc. VCF is a preferred format because it is unambiguous, scalable
+              and flexible, allowing extra information to be added to the info
+              field. Many millions of variants for population can be stored in a
+              single VCF file. Please Upload your vcf file for Storage / Analyse
+              / Query / Visualise
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Variant File Upload</h2>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label class="h6">Select VCF</label>
+            <ng-select
+              [items]="VCF"
+              [(ngModel)]="selectvcf"
+              placeholder="Select VCF"
+              ngModel
+              bindLabel="name">
+            </ng-select>
+            <br />
+          </div>
+          <div class="form-group col-md-6">
+            <label class="h6">Select GTF</label>
+            <ng-select
+              [items]="GTF"
+              [(ngModel)]="selectgtf"
+              placeholder="Select GTF"
+              ngModel
+              bindLabel="name">
+            </ng-select>
+            <br />
+          </div>
+        </div>
+        <div style="text-align: right">
+          <button
+            class="btn btn-success btn-submit"
+            rippleEffect
+            (click)="onSubmit()"
+            [disabled]="
+              this.selectvcf === undefined && this.selectgtf === undefined
+            ">
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</block-ui>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>vertical-layout_PagesNo results found.Files_4adb35</name>
+   <tag></tag>
+   <elementGuidId>c77362b4-b327-4069-b8f8-4f74eecfa576</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//vertical-layout</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>vertical-layout.ng-star-inserted</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>vertical-layout</value>
+      <webElementGuid>4b971dc3-e71e-40e8-b1fe-8d6973f62835</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>ng-star-inserted</value>
+      <webElementGuid>8bacbce3-f2c4-409e-a8aa-6df41764bff8</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>PagesNo results found.FilesNo results found.MembersNo results found.EnglishICEHomeAdminStorageUsersVcfContact UsAbout UsStorage ListFile Drive Home HomeSample Todo Chat Email Calendar Slide 1 of 3  Slide 2 of 3  Slide 3 of 3 PreviousNextHigh Performance Computing, Grid  &amp; Cloud ComputingHigh Performance Computing (HPC) plays an important role in both scientific advancement and economic competitiveness of a nation - making production of scientific and industrial solutions faster, less expensive, and of higher quality. HPC is a key component in many applications: designing vehicles and airplanes; designing high-rise buildings and bridges; discovery of drugs; discovery and extraction of new energy sources like oil and natural gas; weather forecasting; and many more.Read Supercomputing ApplicationsThe supercomputing systems and facilities of C-DAC are used to solve computationally challenging problems in a number of areas of practical significance.Read Cyber Security and Cyber ForensicsIncreased Internet penetration has given exponential rise in sophisticated attacks on Information Technology (IT) infrastructure. Attackers are gaining access to sensitive information like credit card details and other financial information. Smartphone attacks are growing in multiple folds. Also with the growth of 3G services and business transactions using mobile phones, there is a substantial increase in mobile malware. In order to make our IT infrastructure resilient against these threats, there is a need for cutting-edge Research and Development efforts in Cyber Security. C-DAC has been actively pursuing R &amp; D in a number of sub-areas in Cyber Security domain.Read Health InformaticsHealth Informatics technologies help to improve quality of healthcare, reduce medical errors, reduce healthcare costs, increase administrative efficiency, and expand access to affordable healthcare. C-DAC has developed several technologies and software/hardware solutions in this area; many of which are deployed and are being used in practice.Read Bioinformatics ActivitiesThe Bioinformatics Group at C-DAC leverages on the inherent technological expertise to delve into complex biological systems and develop an understanding of underlying processes by providing high throughput solutions and services. The group has a dual capability of expertise in advanced areas of research in computational biology along with understanding of High Performance Computing. The activities of the Bioinformatics Group are aimed towards acquiring in-depth knowledge and understanding the various strata of bio-complexity and hence include an entire spectrum of data analyses and essential research consumables.Read Cloud ComputingC-DACs research focus in cloud computing includes design and development of Open source cloud middleware; virtualization and management tools; and end-to-end security solution for the cloud. A number of applications in C-DAC are being migrated to Cloud computing technology. These include hospital information systems, disaster recovery, telemedicine, HPC services, language services (like translation), e-governance applications, etc. Considering the related, but complimentary driving forces of grid and cloud computing disciplines, C-DAC is also exploring integration of grid and cloud computing.Read </value>
+      <webElementGuid>93966e9a-accc-495e-80a7-e6cff6643e18</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>/html[1]/body[@class=&quot;mat-typography ng-tns-0-0 default-layout&quot;]/app-root[@class=&quot;vertical-layout navbar-floating footer-static menu-expanded vertical-overlay-menu&quot;]/vertical-layout[@class=&quot;ng-star-inserted&quot;]</value>
+      <webElementGuid>2d91e6ea-ff8f-4ff8-9755-344fdeede353</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//vertical-layout</value>
+      <webElementGuid>3c23ea68-bda4-455b-bc7b-9a7325c94b12</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//vertical-layout[(text() = 'PagesNo results found.FilesNo results found.MembersNo results found.EnglishICEHomeAdminStorageUsersVcfContact UsAbout UsStorage ListFile Drive Home HomeSample Todo Chat Email Calendar Slide 1 of 3  Slide 2 of 3  Slide 3 of 3 PreviousNextHigh Performance Computing, Grid  &amp; Cloud ComputingHigh Performance Computing (HPC) plays an important role in both scientific advancement and economic competitiveness of a nation - making production of scientific and industrial solutions faster, less expensive, and of higher quality. HPC is a key component in many applications: designing vehicles and airplanes; designing high-rise buildings and bridges; discovery of drugs; discovery and extraction of new energy sources like oil and natural gas; weather forecasting; and many more.Read Supercomputing ApplicationsThe supercomputing systems and facilities of C-DAC are used to solve computationally challenging problems in a number of areas of practical significance.Read Cyber Security and Cyber ForensicsIncreased Internet penetration has given exponential rise in sophisticated attacks on Information Technology (IT) infrastructure. Attackers are gaining access to sensitive information like credit card details and other financial information. Smartphone attacks are growing in multiple folds. Also with the growth of 3G services and business transactions using mobile phones, there is a substantial increase in mobile malware. In order to make our IT infrastructure resilient against these threats, there is a need for cutting-edge Research and Development efforts in Cyber Security. C-DAC has been actively pursuing R &amp; D in a number of sub-areas in Cyber Security domain.Read Health InformaticsHealth Informatics technologies help to improve quality of healthcare, reduce medical errors, reduce healthcare costs, increase administrative efficiency, and expand access to affordable healthcare. C-DAC has developed several technologies and software/hardware solutions in this area; many of which are deployed and are being used in practice.Read Bioinformatics ActivitiesThe Bioinformatics Group at C-DAC leverages on the inherent technological expertise to delve into complex biological systems and develop an understanding of underlying processes by providing high throughput solutions and services. The group has a dual capability of expertise in advanced areas of research in computational biology along with understanding of High Performance Computing. The activities of the Bioinformatics Group are aimed towards acquiring in-depth knowledge and understanding the various strata of bio-complexity and hence include an entire spectrum of data analyses and essential research consumables.Read Cloud ComputingC-DACs research focus in cloud computing includes design and development of Open source cloud middleware; virtualization and management tools; and end-to-end security solution for the cloud. A number of applications in C-DAC are being migrated to Cloud computing technology. These include hospital information systems, disaster recovery, telemedicine, HPC services, language services (like translation), e-governance applications, etc. Considering the related, but complimentary driving forces of grid and cloud computing disciplines, C-DAC is also exploring integration of grid and cloud computing.Read ' or . = 'PagesNo results found.FilesNo results found.MembersNo results found.EnglishICEHomeAdminStorageUsersVcfContact UsAbout UsStorage ListFile Drive Home HomeSample Todo Chat Email Calendar Slide 1 of 3  Slide 2 of 3  Slide 3 of 3 PreviousNextHigh Performance Computing, Grid  &amp; Cloud ComputingHigh Performance Computing (HPC) plays an important role in both scientific advancement and economic competitiveness of a nation - making production of scientific and industrial solutions faster, less expensive, and of higher quality. HPC is a key component in many applications: designing vehicles and airplanes; designing high-rise buildings and bridges; discovery of drugs; discovery and extraction of new energy sources like oil and natural gas; weather forecasting; and many more.Read Supercomputing ApplicationsThe supercomputing systems and facilities of C-DAC are used to solve computationally challenging problems in a number of areas of practical significance.Read Cyber Security and Cyber ForensicsIncreased Internet penetration has given exponential rise in sophisticated attacks on Information Technology (IT) infrastructure. Attackers are gaining access to sensitive information like credit card details and other financial information. Smartphone attacks are growing in multiple folds. Also with the growth of 3G services and business transactions using mobile phones, there is a substantial increase in mobile malware. In order to make our IT infrastructure resilient against these threats, there is a need for cutting-edge Research and Development efforts in Cyber Security. C-DAC has been actively pursuing R &amp; D in a number of sub-areas in Cyber Security domain.Read Health InformaticsHealth Informatics technologies help to improve quality of healthcare, reduce medical errors, reduce healthcare costs, increase administrative efficiency, and expand access to affordable healthcare. C-DAC has developed several technologies and software/hardware solutions in this area; many of which are deployed and are being used in practice.Read Bioinformatics ActivitiesThe Bioinformatics Group at C-DAC leverages on the inherent technological expertise to delve into complex biological systems and develop an understanding of underlying processes by providing high throughput solutions and services. The group has a dual capability of expertise in advanced areas of research in computational biology along with understanding of High Performance Computing. The activities of the Bioinformatics Group are aimed towards acquiring in-depth knowledge and understanding the various strata of bio-complexity and hence include an entire spectrum of data analyses and essential research consumables.Read Cloud ComputingC-DACs research focus in cloud computing includes design and development of Open source cloud middleware; virtualization and management tools; and end-to-end security solution for the cloud. A number of applications in C-DAC are being migrated to Cloud computing technology. These include hospital information systems, disaster recovery, telemedicine, HPC services, language services (like translation), e-governance applications, etc. Considering the related, but complimentary driving forces of grid and cloud computing disciplines, C-DAC is also exploring integration of grid and cloud computing.Read ')]</value>
+      <webElementGuid>fb5a62d4-ae01-428f-ae3a-8834dee0126b</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

@@ -1,0 +1,360 @@
+<block-ui>
+  <div class="content-wrapper container-xxxl p-0">
+    <div class="content-body">
+      <app-content-header [contentHeader]="contentHeader"></app-content-header>
+      <!-- page users view start -->
+      <section class="app-user-view" *ngIf="data">
+        <!-- User Card & Plan Starts -->
+        <div class="row">
+          <!-- User Card starts-->
+          <div class="col-xl-9 col-lg-8 col-md-7">
+            <div class="card user-card">
+              <div class="card-body">
+                <div class="row">
+                  <div
+                    class="col-xl-6 col-lg-12 d-flex flex-column justify-content-between border-container-lg">
+                    <div class="user-avatar-section">
+                      <div class="d-flex justify-content-start">
+                        <div *ngIf="data.avatar; else customAvatar">
+                          <img
+                            class="img-fluid rounded"
+                            [src]="data.avatar"
+                            height="104"
+                            width="104"
+                            alt="User avatar" />
+                        </div>
+                        <ng-template #customAvatar>
+                          <div class="mr-1 ml-0">
+                            <div
+                              [ngClass]="{
+                                'bg-light-success': data.status == 'active',
+                                'bg-light-secondary': data.status == 'inactive',
+                                'bg-light-warning': data.status == 'pending'
+                              }"
+                              class="rounded p-3">
+                              <h2
+                                [ngClass]="{
+                                  'text-success': data.status == 'active',
+                                  'text-secondary': data.status == 'inactive',
+                                  'text-warning': data.status == 'pending'
+                                }"
+                                class="m-0">
+                                {{ data.name.firstName | initials }}&nbsp;{{
+                                  data.name.lastName | initials
+                                }}
+                              </h2>
+                            </div>
+                          </div>
+                        </ng-template>
+                        <div class="d-flex flex-column ml-1">
+                          <div class="user-info mb-1">
+                            <h4 class="mb-0">
+                              {{ data.name.firstName }}&nbsp;&nbsp;{{
+                                data.name.lastName
+                              }}
+                            </h4>
+                            <span class="card-text">{{ data.email }}</span>
+                          </div>
+
+                          <div class="d-flex flex-wrap">
+                            <ng-container *ngIf="data.userEnabled; else enable">
+                              <button
+                                class="btn btn-outline-danger"
+                                #disable
+                                rippleEffect
+                                (click)="onCancelClick()">
+                                Disable
+                              </button>
+                            </ng-container>
+
+                            <ng-template #enable
+                              ><button
+                                class="btn btn-primary"
+                                rippleEffect
+                                (click)="onCancelClick()">
+                                Enable
+                              </button>
+                            </ng-template>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex align-items-center user-total-numbers">
+                      <div class="d-flex align-items-center mr-2">
+                        <div class="color-box bg-light-primary">
+                          <i
+                            [data-feather]="'map-pin'"
+                            [class]="'text-primary'"></i>
+                        </div>
+                        <div class="ml-1">
+                          <h5 class="mb-0">
+                            {{ data.address.addressLine1 }},
+                            {{ data.address.addressLine2 }},
+                            {{ data.address.landmark }},
+                            {{ data.address.city }}, {{ data.address.state }},
+                            {{ data.address.zipCode }}
+                          </h5>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-xl-6 col-lg-12 mt-2 mt-xl-0">
+                    <div class="user-info-wrapper">
+                      <div class="d-flex flex-wrap">
+                        <div class="user-info-title">
+                          <i data-feather="user" class="mr-1"></i>
+                          <span
+                            class="card-text user-info-title font-weight-bold mb-0"
+                            >Username</span
+                          >
+                        </div>
+                        <p class="card-text mb-0">{{ data.userName }}</p>
+                      </div>
+                      <div class="d-flex flex-wrap my-50">
+                        <div class="user-info-title">
+                          <i data-feather="check" class="mr-1"></i>
+                          <span
+                            class="card-text user-info-title font-weight-bold mb-0"
+                            >Gender</span
+                          >
+                        </div>
+                        <p class="card-text mb-0">{{ data.gender }}</p>
+                      </div>
+                      <div class="d-flex flex-wrap my-50">
+                        <div class="user-info-title">
+                          <i data-feather="star" class="mr-1"></i>
+                          <span
+                            class="card-text user-info-title font-weight-bold mb-0"
+                            >Role</span
+                          >
+                        </div>
+                        <p class="card-text mb-0">{{ data.permission }}</p>
+                      </div>
+                      <div class="d-flex flex-wrap my-50">
+                        <div class="user-info-title">
+                          <i data-feather="phone" class="mr-1"></i>
+                          <span
+                            class="card-text user-info-title font-weight-bold mb-0"
+                            >Contact Number</span
+                          >
+                        </div>
+                        <p class="card-text mb-0">{{ data.contactNumber }}</p>
+                      </div>
+                      <div class="d-flex flex-wrap my-50">
+                        <div class="user-info-title">
+                          <i data-feather="gift" class="mr-1"></i>
+                          <span
+                            class="card-text user-info-title font-weight-bold mb-0"
+                            >Date of Birth</span
+                          >
+                        </div>
+                        <p class="card-text mb-0">
+                          {{ data.dateOfBirth.day }}/{{
+                            data.dateOfBirth.month
+                          }}/{{ data.dateOfBirth.year }}
+                        </p>
+                      </div>
+                      <div class="d-flex flex-wrap my-50">
+                        <div class="user-info-title">
+                          <span
+                            class="card-text user-info-title font-weight-bold mb-0"
+                            >Assign Role:</span
+                          >
+                        </div>
+                        <div class="user-info-title">
+                          <ng-select
+                            class="ng-select-size-lg"
+                            [items]="roles"
+                            [(ngModel)]="selectedRole"
+                            bindLabel="name"
+                            (change)="keyBlur()">
+                          </ng-select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-xl-3 col-lg-4 col-md-5">
+            <div class="card plan-card border-primary">
+              <div class="card-body">
+                <ul class="list-unstyled my-1">
+                  <li>
+                    <span class="align-middle"
+                      ><div
+                        class="badge badge-light-primary"
+                        style="
+                          font-size: 1.1rem;
+                          font-weight: 500;
+                          padding: 8px;
+                        ">
+                        Activated Date:
+                      </div>
+                      {{ data.activatedDate }}</span
+                    >
+                  </li>
+                  <li class="my-25">
+                    <span class="align-middle"
+                      ><div
+                        class="badge badge-light-primary"
+                        style="
+                          font-size: 1.1rem;
+                          font-weight: 500;
+                          padding: 8px;
+                        ">
+                        Activated By:
+                      </div>
+                      {{ data.activatedBy }}</span
+                    >
+                  </li>
+                  <li class="my-25">
+                    <span class="align-middle"
+                      ><div
+                        class="badge badge-light-primary"
+                        style="
+                          font-size: 1.1rem;
+                          font-weight: 500;
+                          padding: 8px;
+                        ">
+                        Deactivation Date:
+                      </div>
+                      {{ data.deactivateDate }}</span
+                    >
+                  </li>
+                  <li class="my-25">
+                    <span class="align-middle"
+                      ><div
+                        class="badge badge-light-primary"
+                        style="
+                          font-size: 1.1rem;
+                          font-weight: 500;
+                          padding: 8px;
+                        ">
+                        Deactivated By:
+                      </div>
+                      {{ data.deactivatedBy }}</span
+                    >
+                  </li>
+                  <li class="my-25"></li>
+                </ul>
+                <!-- <button class="btn btn-primary text-center btn-block" rippleEffect>Upgrade Plan</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title mb-2">User Timeline</h4>
+              </div>
+              <div class="card-body">
+                <ul class="timeline">
+                  <li class="timeline-item">
+                    <span
+                      class="timeline-point timeline-point-indicator"></span>
+                    <div class="timeline-event">
+                      <div
+                        class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                        <h6>12 Invoices have been paid</h6>
+                        <span class="timeline-event-time">12 min ago</span>
+                      </div>
+                      <p>Invoices have been paid to the company.</p>
+                      <div class="media align-items-center">
+                        <img
+                          class="mr-1"
+                          src="assets/images/icons/file-icons/pdf.png"
+                          alt="invoice"
+                          height="23" />
+                        <div class="media-body">invoice.pdf</div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="timeline-item">
+                    <span
+                      class="timeline-point timeline-point-warning timeline-point-indicator"></span>
+                    <div class="timeline-event">
+                      <div
+                        class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                        <h6>Client Meeting</h6>
+                        <span class="timeline-event-time">45 min ago</span>
+                      </div>
+                      <p>Project meeting with john @10:15am.</p>
+                      <div class="media align-items-center">
+                        <div class="avatar">
+                          <img
+                            src="assets/images/avatars/12-small.png"
+                            alt="avatar"
+                            height="38"
+                            width="38" />
+                        </div>
+                        <div class="media-body ml-50">
+                          <h6 class="mb-0">John Doe (Client)</h6>
+                          <span>CEO of Infibeam</span>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li class="timeline-item">
+                    <span
+                      class="timeline-point timeline-point-info timeline-point-indicator"></span>
+                    <div class="timeline-event">
+                      <div
+                        class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+                        <h6>Create a new project for client</h6>
+                        <span class="timeline-event-time">2 days ago</span>
+                      </div>
+                      <p class="mb-0">Add files to new design folder</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Permissions</h4>
+              </div>
+              <p class="card-text ml-2">Permission according to roles</p>
+              <div class="table-responsive">
+                <table
+                  class="table table-striped table-borderless"
+                  *ngIf="roles">
+                  <thead class="thead-light">
+                    <tr>
+                      <th>Roles</th>
+                      <th>Allocated</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let role of roles">
+                      <td>{{ role }}</td>
+                      <td>
+                        <div class="custom-control custom-checkbox">
+                          <input
+                            type="checkbox"
+                            class="custom-control-input"
+                            [checked]="data.permission[role]"
+                            [disable]="data.permission[role]" />
+                          <label
+                            class="custom-control-label"
+                            for="admin-read"></label>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</block-ui>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Male</name>
+   <tag></tag>
+   <elementGuidId>5f74f983-9832-476e-b057-3e10004b9f1d</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>XPATH</key>
+         <value>//div[@id='row']/div[7]/div/div/div/div</value>
+      </entry>
+      <entry>
+         <key>CSS</key>
+         <value>div.custom-control.custom-control-primary.custom-radio.gender</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>c4dd7094-d287-4075-a4a1-e7bebe32edcb</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>custom-control custom-control-primary custom-radio gender</value>
+      <webElementGuid>89792099-97ae-4179-b6fb-17e85783141b</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Male</value>
+      <webElementGuid>d7877343-9da1-4e41-9c1e-43ee650a6d62</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;row&quot;)/div[@class=&quot;col-lg-6 col-md-6 col-sm-6&quot;]/div[@class=&quot;form-group&quot;]/div[@class=&quot;row&quot;]/div[@class=&quot;col-lg-3 ng-star-inserted&quot;]/div[@class=&quot;custom-control custom-control-primary custom-radio gender&quot;]</value>
+      <webElementGuid>c0dceb10-8e63-4a12-a301-92697a83bafb</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//div[@id='row']/div[7]/div/div/div/div</value>
+      <webElementGuid>8f6ceab1-8145-4eb6-8f1b-70acc80778c7</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Gender'])[1]/following::div[3]</value>
+      <webElementGuid>7f98ad36-a3ff-4799-a7f4-9604b1909438</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Date of Birth'])[1]/following::div[8]</value>
+      <webElementGuid>87284043-863d-4b88-a5f3-6d9cc1046f42</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Female'])[1]/preceding::div[1]</value>
+      <webElementGuid>77b6e8fe-f5b2-4ab6-a2de-b6827f628b2f</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div[7]/div/div/div/div</value>
+      <webElementGuid>c621b5e4-2c2a-4983-8cdb-4a5615495d62</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Male' or . = 'Male')]</value>
+      <webElementGuid>662846b6-6db9-4122-9143-6dfc3bf8f48a</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>

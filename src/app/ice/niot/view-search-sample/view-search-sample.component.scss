@@ -1,0 +1,46 @@
+.color{
+    color: #01386a;
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 300px;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+    a{
+        text-decoration: underline;
+        color:#01386a
+      }
+      
+      /* mouse over link */
+      a:hover {
+        color: green;
+        text-decoration: underline;
+      }
+
+      dt {
+        font-size: larger;
+    }
+    dd{
+      font-size: larger;
+    }
+
+    .table thead th, .table tfoot th {
+      font-size: 1.1rem;
+  }
+  
+  .font-weight-bold {
+      font-size: medium;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    background-color:orange
+}
+#sampleMap{
+  height: 22vh;
+  width:100%;
+}

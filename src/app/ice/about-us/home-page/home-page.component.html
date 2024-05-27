@@ -1,0 +1,18 @@
+
+<section id="card-style-variation">
+    <!-- <div class="row ">
+      <div class="col-md-6 col-xl-4 card-height " > -->
+        <div class="card text-white" [ngStyle]="{backgroundColor:getColor(index)}" >
+          <!-- <div class="card-body" [ngStyle]="{'background-color':card.status ==='even'?'#a69cac':'#474973'}" > -->
+            <div class="card-body" >
+            <h4 class="card-title text-white">{{card.title}}</h4>
+            <p class="card-text text-white active" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">{{card.summary}}</p>
+            <button class="btn btn-color"  (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsed">Read </button>
+          </div>
+        <!-- </div>
+      </div> -->
+    </div>
+  </section>
+
+  
+    
