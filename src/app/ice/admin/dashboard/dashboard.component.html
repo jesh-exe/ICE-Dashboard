@@ -1,11 +1,11 @@
-<div class="content-wrapper container-xxxl p-0">
+<div class="content-wrapper container-xxxl">
   <app-content-header [contentHeader]="contentHeader"></app-content-header>
   <div class="content-body">
+    <!-- First Row (Welcome + Stats) -->
     <div class="row mb-1">
-
       <!-- Welcome Card -->
       <div class="col-xl-3 col-md-12 col-12 my-1">
-        <app-welcome-card ></app-welcome-card>
+        <app-welcome-card></app-welcome-card>
       </div>
       <!-- Statistics Card -->
       <div class="col-xl-9 col-md-12 col-12 my-1">
@@ -153,16 +153,21 @@
     </div>
 
     <div class="row match-height">
+
+      <div class="col-xl-8 col-md-12 col-12">
+
+      </div>
+      <div class="col-xl-4 col-md-12 col-12">
+
+      </div>
+
       <!-- Browser States Card -->
-      <div class="col-lg-8 col-12">
+      <!-- <div class="col-lg-8 col-12">
         <div class="card">
           <ngx-datatable [rows]="timeline" [rowHeight]="50" class="bootstrap core-bootstrap" [limit]="selectedOption"
             [columnMode]="ColumnMode.force" [headerHeight]="50" [footerHeight]="50" [scrollbarH]="true">
             <ngx-datatable-column name="User Name" prop="userName" [width]="10">
             </ngx-datatable-column>
-
-            <!-- <ngx-datatable-column name="Path" prop="path" [width]="50">
-            </ngx-datatable-column> -->
 
             <ngx-datatable-column name="Message" prop="message" [width]="350">
             </ngx-datatable-column>
@@ -185,10 +190,9 @@
             </ngx-datatable-column>
           </ngx-datatable>
         </div>
-      </div>
-
+      </div> -->
       <!-- Goal Overview Card -->
-      <div class="col-lg-4 col-md-6 col-12">
+      <!-- <div class="col-lg-4 col-md-6 col-12">
         <div class="card card-browser-states">
           <div class="card-header">
             <div class="broweser-states-header">
@@ -236,7 +240,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
+    
     </div>
   </div>
 </div>

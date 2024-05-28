@@ -57,8 +57,8 @@ export class TotalStoragePieComponent implements OnInit {
       series: [
         {
           type: 'pie',
-          radius: ['35%', '70%'],
-          center: ['85%', '50%'],
+          radius: ['25%', '50%'],
+          center: ['83%', '50%'],
           label: {
             show: false
           },
