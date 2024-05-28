@@ -48,14 +48,14 @@ export class TotalContainerPieComponent implements OnInit {
       series: [
         {
           type: 'pie',
-          radius: ['25%', '50%'],
+          radius: ['35%', '85%'],
           center: ['83%', '50%'],
           label: {
             show: false
           },
           data: [
-            { value: 11, name: 'Running', itemStyle : {color : "rgb(19, 221, 210)"}},
-            { value: 34, name: 'Stopped', itemStyle : {color : "rgb(91, 126, 234)"}},
+            { value: 11, name: 'Stopped', itemStyle : {color : "rgb(19, 221, 210)"}},
+            { value: 34, name: 'Running', itemStyle : {color : "rgb(91, 126, 234)"}},
           ]
         }
       ]

@@ -57,14 +57,14 @@ export class TotalStoragePieComponent implements OnInit {
       series: [
         {
           type: 'pie',
-          radius: ['25%', '50%'],
+          radius: ['35%', '85%'],
           center: ['83%', '50%'],
           label: {
             show: false
           },
           data: [
-            { value: this.convertToGigaByte(this.dataFromBackend.totalUsed), name: 'Used', itemStyle : {color : "#d17d15"}},
             { value: this.convertToGigaByte(this.dataFromBackend.available), name: 'Remaining', itemStyle : {color : "#eec281"}},
+            { value: this.convertToGigaByte(this.dataFromBackend.totalUsed), name: 'Used', itemStyle : {color : "#d17d15"}},
           ]
         }
       ]

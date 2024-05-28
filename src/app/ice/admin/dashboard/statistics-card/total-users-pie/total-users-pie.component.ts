@@ -49,7 +49,7 @@ export class TotalUsersPieComponent implements OnInit {
       series: [
         {
           type: 'pie',
-          radius: ['25%', '50%'],
+          radius: ['35%', '85%'],
           center: ['83%', '50%'],
           label: {
             show: false
