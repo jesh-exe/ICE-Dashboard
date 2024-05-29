@@ -26,6 +26,10 @@ import { BarChartComponent } from "./dashboard/user-reports/bar-chart/bar-chart.
 import { UserPieChartComponent } from "./dashboard/user-reports/user-pie-chart/user-pie-chart.component";
 import { ContainerStatusComponent } from "./dashboard/container-status/container-status.component";
 import { StackedBarChartComponent } from "./dashboard/container-status/stacked-bar-chart/stacked-bar-chart.component";
+import { MatTooltipModule} from '@angular/material/tooltip';
+import { ContainerStatusDummyComponent } from "./dashboard/container-status-dummy/container-status-dummy.component";
+import { StackedBarStatusComponent } from "./dashboard/container-status-dummy/stacked-bar-status/stacked-bar-status.component";
+import { StackedBarTypeComponent } from "./dashboard/container-status-dummy/stacked-bar-type/stacked-bar-type.component";
 
 
 const adminRoutes: Routes = [
@@ -57,7 +61,10 @@ const adminRoutes: Routes = [
     BarChartComponent,
     UserPieChartComponent,
     ContainerStatusComponent,
-    StackedBarChartComponent
+    StackedBarChartComponent,
+    ContainerStatusDummyComponent,
+    StackedBarStatusComponent,
+    StackedBarTypeComponent,
   ],
   imports: [
     ContentHeaderModule,
@@ -71,6 +78,7 @@ const adminRoutes: Routes = [
     NgbProgressbarModule,
     NgSelectModule,
     MatTabsModule,
+    MatTooltipModule,
     NgxDatatableModule.forRoot({
       messages: {
         emptyMessage: "No data to display", // Message to show when array is presented, but contains no values

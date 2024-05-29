@@ -1,26 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import * as echarts from 'echarts/core';
 import { BarChart } from 'echarts/charts';
-import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
+import { LegendComponent, TooltipComponent } from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
+
+echarts.use([TooltipComponent, LegendComponent, BarChart, CanvasRenderer]);
+
 @Component({
-  selector: 'app-stacked-bar-chart',
-  templateUrl: './stacked-bar-chart.component.html',
-  styleUrls: ['./stacked-bar-chart.component.scss']
+  selector: 'app-stacked-bar-status',
+  templateUrl: './stacked-bar-status.component.html',
+  styleUrls: ['./stacked-bar-status.component.scss']
 })
-export class StackedBarChartComponent implements OnInit {
+export class StackedBarStatusComponent implements OnInit {
 
-  echartsExtentions: any;
-  echartsOptions = {};
+  @Output() selectedName = new EventEmitter();
 
-  constructor() {
-    this.echartsExtentions = [
-      TooltipComponent,
-      GridComponent,
-      LegendComponent,
-      BarChart
-    ]
-  }
+  echartsInstance: any;
+  echartsOptions: any;
+
+  constructor() {}
 
   ngOnInit() {
+    this.echartsOptions = {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+          type: 'shadow'
+        }
+      },
+      legend: {
+        bottom: 0
+      },
+      grid: {
+        bottom: 110,
+        left: 30,
+        right: 20,
+        top: 10
+      },
+      xAxis: {
+        type: 'category',
+        data: [], 
+      },
+      yAxis: {
+        type: 'value',
+      },
+      series: [], 
+    };
+
+    this.initializeEcharts();
+  }
+
+  initializeEcharts() {
+    this.echartsInstance = echarts.init(document.getElementById('barChart'));
+    this.echartsInstance.setOption(this.echartsOptions);
+
+    // Fill xAxis and series dynamically
     const data = [
       {
         "userName": "prachi",
@@ -113,7 +148,6 @@ export class StackedBarChartComponent implements OnInit {
         "succeededContainerCount": 0
       }
     ];
-
     const userNames = data.map(item => item.userName || 'Unknown');
     const containerTypes = [
       {
@@ -137,48 +171,26 @@ export class StackedBarChartComponent implements OnInit {
         name: "Succeded",
       },
     ] as const;
-    const containerData = containerTypes.map(type => {
+    
+    const seriesData = containerTypes.map(type => {
       return {
-        type: type.name,
-        data: data.map(item => item[type.actualName])
+        name: type.name,
+        type: 'bar',
+        stack: 'total',
+        data: data.map(item => item[type.actualName]),
+        barWidth: '40%',
       };
     });
+    
+    this.echartsInstance.setOption({
+      xAxis: { data: userNames },
+      series: seriesData
+    });
 
-    this.echartsOptions = {
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      legend: {
-        bottom : 0
-      },
-      grid : {
-        bottom : 110,
-        left : 30,
-        right: 20,
-        top : 10
-      },
-      xAxis: {
-        type: 'category',
-        data: userNames,
-      },
-      yAxis: {
-        type: 'value',
-        // splitLine : false
-      },
-      series: containerData.map(val => {
-        return {
-          name: val.type,
-          type: 'bar',
-          stack: 'total',
-          data: val.data,
-          barWidth: '20%',
-          itemStyle: {
-          }
-        };
-      })
-    };
+    // Register click event handler for the chart
+    this.echartsInstance.on('click', (params) => {
+      const userName = userNames[params.dataIndex];
+      this.selectedName.emit(userName);
+    });
   }
 }

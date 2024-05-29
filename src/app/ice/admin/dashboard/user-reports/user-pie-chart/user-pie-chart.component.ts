@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { PieChart } from 'echarts/charts';
 import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
 
@@ -9,6 +9,7 @@ import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/compon
 })
 export class UserPieChartComponent implements OnInit {
 
+  @Input() selectedName : string;
   
   echartExtensions: any[]
   echartsOptions = {}
@@ -41,11 +42,10 @@ export class UserPieChartComponent implements OnInit {
             borderWidth: 2
           },
           data: [
-            { value: 1048, name: 'Search Engine' },
-            { value: 735, name: 'Direct' },
-            { value: 580, name: 'Email' },
-            { value: 484, name: 'Union Ads' },
-            { value: 300, name: 'Video Ads' }
+            { value: 1048, name: 'BLAST' },
+            { value: 735, name: 'Notebook' },
+            { value: 580, name: 'GUI' },
+            { value: 484, name: 'Code' },
           ]
         }
       ]

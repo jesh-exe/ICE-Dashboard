@@ -1,0 +1,20 @@
+<div class="border bg-white p-3 h-100">
+  <div class="d-flex justify-content-between">
+    <div class="text-primary pb-3" style="font-size: clamp(22px,2vw,26px);">Container Status</div>
+    <div>
+      <select name="" class="form-control" id="" [(ngModel)]="selectedValue">
+        <option value="status">Container Status</option>
+        <option value="type">Container Type</option>
+      </select>
+    </div>
+  </div>
+  <div class="mt-4">
+    <!-- <app-stacked-bar-status *ngIf="selectedValue == 'status'"></app-stacked-bar-status>
+    <app-stacked-bar-type  *ngIf="selectedValue == 'type'"></app-stacked-bar-type> -->
+    <div class="d-flex justify-content-end" *ngIf="selectedName!=''">
+      <button class="btn btn-sm mb-2 btn-primary" (click)="selectedName=''">Go Back</button>
+    </div>
+    <app-stacked-bar-status (selectedName)="fetchSelectedName($event)" *ngIf="selectedName == ''"></app-stacked-bar-status>
+    <app-user-pie-chart [selectedName]="selectedName" *ngIf="selectedName != ''"></app-user-pie-chart>
+  </div>
+</div>
