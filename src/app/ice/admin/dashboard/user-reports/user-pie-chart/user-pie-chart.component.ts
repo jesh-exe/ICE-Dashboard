@@ -28,14 +28,15 @@ export class UserPieChartComponent implements OnInit {
         trigger: 'item'
       },
       legend: {
-        top: '90%',
-        left: 'center'
+        bottom : 0
       },
       series: [
         {
           name: 'Access From',
           type: 'pie',
-          radius: ['40%', '65%'],
+          // radius: ['40%', '65%'],
+          radius: ['45%', '75%'],
+          center: ['50%', '40%'],
           itemStyle: {
             borderRadius: 10,
             borderColor: '#fff',

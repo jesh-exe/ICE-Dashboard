@@ -30,6 +30,7 @@ import { MatTooltipModule} from '@angular/material/tooltip';
 import { ContainerStatusDummyComponent } from "./dashboard/container-status-dummy/container-status-dummy.component";
 import { StackedBarStatusComponent } from "./dashboard/container-status-dummy/stacked-bar-status/stacked-bar-status.component";
 import { StackedBarTypeComponent } from "./dashboard/container-status-dummy/stacked-bar-type/stacked-bar-type.component";
+import { StackedLineChartComponent } from "./dashboard/container-status-dummy/stacked-line-chart/stacked-line-chart.component";
 
 
 const adminRoutes: Routes = [
@@ -65,6 +66,7 @@ const adminRoutes: Routes = [
     ContainerStatusDummyComponent,
     StackedBarStatusComponent,
     StackedBarTypeComponent,
+    StackedLineChartComponent
   ],
   imports: [
     ContentHeaderModule,

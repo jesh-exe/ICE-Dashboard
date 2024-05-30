@@ -58,117 +58,71 @@ export class StackedBarStatusComponent implements OnInit {
     // Fill xAxis and series dynamically
     const data = [
       {
-        "userName": "prachi",
-        "totalContainerCount": 1,
-        "runningContainerCount": 0,
-        "completedContainerCount": 1,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "username": "user1",
+        "totalRunningContainer": 10,
+        "blastContainerCount": 4,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 5,
+        "containerContainerCount": 7,
+        "codeContainerCount": 3,
+        "otherContainerCount": 3
       },
       {
-        "userName": "sucheta",
-        "totalContainerCount": 8,
-        "runningContainerCount": 0,
-        "completedContainerCount": 5,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 3,
-        "succeededContainerCount": 0
+        "username": "user2",
+        "totalRunningContainer": 20,
+        "blastContainerCount": 4,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 5,
+        "containerContainerCount": 7,
+        "codeContainerCount": 3,
+        "otherContainerCount": 3
       },
       {
-        "userName": "hrishikesh",
-        "totalContainerCount": 4,
-        "runningContainerCount": 0,
-        "completedContainerCount": 1,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 3,
-        "succeededContainerCount": 0
+        "username": "user3",
+        "totalRunningContainer": 5,
+        "blastContainerCount": 4,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 5,
+        "containerContainerCount": 7,
+        "codeContainerCount": 3,
+        "otherContainerCount": 3
       },
       {
-        "userName": null,
-        "totalContainerCount": 32,
-        "runningContainerCount": 0,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 32,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
-      },
-      {
-        "userName": "blast",
-        "totalContainerCount": 72,
-        "runningContainerCount": 0,
-        "completedContainerCount": 46,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 12,
-        "succeededContainerCount": 14
-      },
-      {
-        "userName": "preet",
-        "totalContainerCount": 1,
-        "runningContainerCount": 1,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
-      },
-      {
-        "userName": "asetiya",
-        "totalContainerCount": 1,
-        "runningContainerCount": 1,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
-      },
-      {
-        "userName": "palash",
-        "totalContainerCount": 3,
-        "runningContainerCount": 2,
-        "completedContainerCount": 1,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
-      },
-      {
-        "userName": "pallavi",
-        "totalContainerCount": 71,
-        "runningContainerCount": 5,
-        "completedContainerCount": 22,
-        "pendingContainerCount": 9,
-        "failedContainerCount": 34,
-        "succeededContainerCount": 1
-      },
-      {
-        "userName": "sandeep",
-        "totalContainerCount": 1,
-        "runningContainerCount": 1,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "username": "user4",
+        "totalRunningContainer": 10,
+        "blastContainerCount": 4,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 0,
+        "containerContainerCount": 1,
+        "codeContainerCount": 1,
+        "otherContainerCount": 1
       }
     ];
-    const userNames = data.map(item => item.userName || 'Unknown');
+    const usernames = data.map(item => item.username || 'Unknown');
     const containerTypes = [
       {
-        actualName: 'runningContainerCount',
-        name: "Running",
+        actualName: 'totalRunningContainer',
+        name: "Total Running",
       },
       {
-        actualName: 'completedContainerCount',
-        name: "Completed",
+        actualName: 'blastContainerCount',
+        name: "BLAST",
       },
       {
-        actualName: 'pendingContainerCount',
-        name: "Pending",
+        actualName: 'guiContainerCount',
+        name: "GUI",
       },
       {
-        actualName: 'failedContainerCount',
-        name: "Failed",
+        actualName: 'notebookContainerCount',
+        name: "Notebook",
       },
       {
-        actualName: 'succeededContainerCount',
-        name: "Succeded",
+        actualName: 'codeContainerCount',
+        name: "Code",
+      },
+      {
+        actualName: 'otherContainerCount',
+        name: "Others",
       },
     ] as const;
     
@@ -183,13 +137,13 @@ export class StackedBarStatusComponent implements OnInit {
     });
     
     this.echartsInstance.setOption({
-      xAxis: { data: userNames },
+      xAxis: { data: usernames },
       series: seriesData
     });
 
     // Register click event handler for the chart
     this.echartsInstance.on('click', (params) => {
-      const userName = userNames[params.dataIndex];
+      const userName = usernames[params.dataIndex];
       this.selectedName.emit(userName);
     });
   }
