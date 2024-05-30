@@ -19,12 +19,12 @@
 
 
     <!-- Type 1 -->
-    <!-- <app-stacked-bar-status (selectedName)="fetchSelectedName($event)" *ngIf="selectedName == ''"></app-stacked-bar-status>
-    <app-user-pie-chart [selectedName]="selectedName" *ngIf="selectedName != ''"></app-user-pie-chart>  -->
+    <app-stacked-bar-status (selectedName)="fetchSelectedName($event)" *ngIf="selectedName == ''"></app-stacked-bar-status>
+    <app-user-pie-chart [selectedName]="selectedName" *ngIf="selectedName != ''"></app-user-pie-chart> 
 
 
     <!-- Type 2 -->
-    <div class="d-flex">
+    <!-- <div class="d-flex">
       <div style="flex-grow: 1;">
         <app-stacked-bar-status (selectedName)="fetchSelectedName($event)"></app-stacked-bar-status>
       </div>
@@ -44,5 +44,5 @@
     <div>
       <app-stacked-line-chart></app-stacked-line-chart>
     </div>
-  </div>
+  </div> -->
 </div>

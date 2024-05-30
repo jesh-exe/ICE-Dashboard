@@ -15,7 +15,7 @@ import { ListComponent } from "./list/list.component";
 import { NgxDatatableModule } from "@swimlane/ngx-datatable";
 import { ContentHeaderModule } from "app/layout/components/content-header/content-header.module";
 import { EchartsxModule } from 'echarts-for-angular';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { WelcomeCardComponent } from "./dashboard/welcome-card/welcome-card.component";
 import { StatisticsCardComponent } from "./dashboard/statistics-card/statistics-card.component";
 import { TotalUsersPieComponent } from "./dashboard/statistics-card/total-users-pie/total-users-pie.component";
@@ -26,11 +26,13 @@ import { BarChartComponent } from "./dashboard/user-reports/bar-chart/bar-chart.
 import { UserPieChartComponent } from "./dashboard/user-reports/user-pie-chart/user-pie-chart.component";
 import { ContainerStatusComponent } from "./dashboard/container-status/container-status.component";
 import { StackedBarChartComponent } from "./dashboard/container-status/stacked-bar-chart/stacked-bar-chart.component";
-import { MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ContainerStatusDummyComponent } from "./dashboard/container-status-dummy/container-status-dummy.component";
 import { StackedBarStatusComponent } from "./dashboard/container-status-dummy/stacked-bar-status/stacked-bar-status.component";
 import { StackedBarTypeComponent } from "./dashboard/container-status-dummy/stacked-bar-type/stacked-bar-type.component";
 import { StackedLineChartComponent } from "./dashboard/container-status-dummy/stacked-line-chart/stacked-line-chart.component";
+import { StorageQuotaComponent } from "./dashboard/storage-quota/storage-quota.component";
+import { NightingalePieChartComponent } from "./dashboard/storage-quota/nightingale-pie-chart/nightingale-pie-chart.component";
 
 
 const adminRoutes: Routes = [
@@ -66,7 +68,9 @@ const adminRoutes: Routes = [
     ContainerStatusDummyComponent,
     StackedBarStatusComponent,
     StackedBarTypeComponent,
-    StackedLineChartComponent
+    StackedLineChartComponent,
+    StorageQuotaComponent,
+    NightingalePieChartComponent
   ],
   imports: [
     ContentHeaderModule,
