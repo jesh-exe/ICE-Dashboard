@@ -1,0 +1,20 @@
+.heading-container{
+    position: relative;
+    top: -50px;
+    // background: linear-gradient(to right, #fcc9f1, #e23e98) !important;
+    // background: linear-gradient(to right, #a3e5ff, #2dceff) !important;
+    background: linear-gradient(to right, #b2a7e4, #5e48d8) !important;
+    color: white !important;
+    width: 250px;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-bottom: 20px !important;
+    box-shadow: 3px 3px 5px rgba(116, 116, 116, 0.301) !important;
+    transition: all 0.35s ease-in-out;
+    cursor: pointer;
+}
+
+.heading-container:hover {
+    scale: 1.04;
+}

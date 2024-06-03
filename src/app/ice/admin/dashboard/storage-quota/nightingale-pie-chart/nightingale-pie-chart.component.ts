@@ -38,7 +38,10 @@ export class NightingalePieChartComponent implements OnInit, OnChanges {
         show: true
       },
       legend: {
-        show: false,
+        show: true,
+        // bottom : 0,
+        left : 'left',
+        orient : 'vertical'
       },
       toolbox: {
         show: true,
@@ -58,6 +61,9 @@ export class NightingalePieChartComponent implements OnInit, OnChanges {
           roseType: 'area',
           itemStyle: {
             borderRadius: 8
+          },
+          label: {
+            show: false
           },
           data: this.data ? this.data.map(val => ({
             value: val.quotaUsed,

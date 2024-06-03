@@ -33,6 +33,9 @@ import { StackedBarTypeComponent } from "./dashboard/container-status-dummy/stac
 import { StackedLineChartComponent } from "./dashboard/container-status-dummy/stacked-line-chart/stacked-line-chart.component";
 import { StorageQuotaComponent } from "./dashboard/storage-quota/storage-quota.component";
 import { NightingalePieChartComponent } from "./dashboard/storage-quota/nightingale-pie-chart/nightingale-pie-chart.component";
+import { StatisticsCardDummyComponent } from "./dashboard/statistics-card-dummy/statistics-card-dummy.component";
+import { UserCardComponent } from "./dashboard/statistics-card-dummy/user-card/user-card.component";
+import { UserBarStatsChartComponent } from "./dashboard/statistics-card-dummy/user-card/user-bar-stats-chart/user-bar-stats-chart.component";
 
 
 const adminRoutes: Routes = [
@@ -70,7 +73,10 @@ const adminRoutes: Routes = [
     StackedBarTypeComponent,
     StackedLineChartComponent,
     StorageQuotaComponent,
-    NightingalePieChartComponent
+    NightingalePieChartComponent,
+    StatisticsCardDummyComponent,
+    UserCardComponent,
+    UserBarStatsChartComponent
   ],
   imports: [
     ContentHeaderModule,

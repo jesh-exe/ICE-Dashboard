@@ -114,6 +114,23 @@ export class StackedBarChartComponent implements OnInit {
       }
     ];
 
+    const pastelColors = [
+      // Blue Shade
+      '#1976D2',
+      '#1E88E5',
+      '#2196F3',
+      '#42A5F5',
+      '#64B5F6',
+      '#90CAF9',
+
+      //Purple Shade
+      // '#8b6ae3',
+      // '#9E7CE5',
+      // '#B695EA',
+      // '#D1B1F1',
+      // '#E5C7F7',
+      // '#F0DCF9',
+    ];
     const userNames = data.map(item => item.userName || 'Unknown');
     const containerTypes = [
       {
@@ -168,14 +185,15 @@ export class StackedBarChartComponent implements OnInit {
         type: 'value',
         // splitLine : false
       },
-      series: containerData.map(val => {
+      series: containerData.map((val,index) => {
         return {
           name: val.type,
           type: 'bar',
           stack: 'total',
           data: val.data,
-          barWidth: '20%',
+          barWidth: '40%',
           itemStyle: {
+            color: pastelColors[index % pastelColors.length]
           }
         };
       })

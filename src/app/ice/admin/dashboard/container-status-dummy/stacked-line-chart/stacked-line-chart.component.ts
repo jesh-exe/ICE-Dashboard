@@ -286,25 +286,29 @@ export class StackedLineChartComponent implements OnInit {
           name: 'Completed',
           type: 'line',
           yAxisIndex: 1,
-          data: [21, 5, 13, 4, 8, 15, 7, 10, 5, 20]
+          data: [21, 5, 13, 4, 8, 15, 7, 10, 5, 20],
+          smooth : true,
         },
         {
           name: 'Pending',
           type: 'line',
           yAxisIndex: 1,
-          data: [2, 12, 23, 9, 14, 3, 25, 18, 8, 12]
+          data: [2, 12, 23, 9, 14, 3, 25, 18, 8, 12],
+          smooth : true,
         },
         {
           name: 'Succeeded',
           type: 'line',
           yAxisIndex: 1,
-          data: [8, 2, 17, 15, 9, 6, 19, 14, 12, 11]
+          data: [8, 2, 17, 15, 9, 6, 19, 14, 12, 11],
+          smooth : true,
         },
         {
           name: 'Failed',
           type: 'line',
           yAxisIndex: 1,
-          data: [1, 19, 3, 12, 11, 8, 4, 7, 15, 9]
+          data: [1, 19, 3, 12, 11, 8, 4, 7, 15, 9],
+          smooth : true,
         }
       ]
     };

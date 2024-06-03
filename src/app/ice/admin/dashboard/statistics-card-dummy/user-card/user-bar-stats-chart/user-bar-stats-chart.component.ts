@@ -2,41 +2,26 @@ import { Component, OnInit } from '@angular/core';
 import { BarChart } from 'echarts/charts';
 import { GridComponent, LegendComponent, TooltipComponent } from 'echarts/components';
 
+
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.scss']
+  selector: 'app-user-bar-stats-chart',
+  templateUrl: './user-bar-stats-chart.component.html',
+  styleUrls: ['./user-bar-stats-chart.component.scss']
 })
-export class BarChartComponent implements OnInit {
+export class UserBarStatsChartComponent implements OnInit {
+
 
   readonly echartsExtentions: any[];
   echartsOptions = {};
 
   public data = [
     {
-      "name" : "Jayesh",
-      "upload" : 500
+      "name" : "Online",
+      "upload" : 143
     },
     {
-      "name" : "Prachi",
-      "upload" : 800
-    },
-    {
-      "name" : "Supriya",
-      "upload" : 1200
-    },
-    {
-      "name" : "Preet",
-      "upload" : 700
-    },
-    {
-      "name" : "Palash",
-      "upload" : 550
-    }
-    ,
-    {
-      "name" : "Arpit",
-      "upload" : 550
+      "name" : "Offline",
+      "upload" : 97
     }
   ]
 
@@ -52,7 +37,12 @@ export class BarChartComponent implements OnInit {
           type: "shadow"
         }
       },
-      yAxis: {
+      grid : {
+        top: 10,
+        bottom : 0,
+        left : 0
+      },
+      xAxis: {
         type: "value",
         axisLabel: {
           show: false
@@ -61,7 +51,7 @@ export class BarChartComponent implements OnInit {
           show: false
         }
       },
-      xAxis: {
+      yAxis: {
         type: "category",
         data: this.data.map(data => data.name),
         axisLabel: {
@@ -79,8 +69,8 @@ export class BarChartComponent implements OnInit {
           data: this.data.map((data, index) => ({
             value: data.upload,
             itemStyle: {
-              color: index === 2 ? '#7367f0' : '#b8c2cc',
-              barBorderRadius: [50, 50, 0, 0]
+              color : index == 0 ? "green" : "red",
+              barBorderRadius: [0,50,50,0,]
             }
           })),
           barWidth: '40%'
