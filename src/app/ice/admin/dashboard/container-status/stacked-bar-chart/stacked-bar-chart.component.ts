@@ -23,108 +23,98 @@ export class StackedBarChartComponent implements OnInit {
   ngOnInit() {
     const data = [
       {
-        "userName": "prachi",
-        "totalContainerCount": 1,
-        "runningContainerCount": 0,
-        "completedContainerCount": 1,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "userName": "prachi", 
+        "blastContainerCount": 12,
+        "codeContainerCount": 1,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 12,
+        "notebookContainerCount": 12
       },
       {
-        "userName": "sucheta",
-        "totalContainerCount": 8,
-        "runningContainerCount": 0,
-        "completedContainerCount": 5,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 3,
-        "succeededContainerCount": 0
+        "userName": "sucheta",  
+        "blastContainerCount": 12,
+        "codeContainerCount": 5,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 12
       },
       {
-        "userName": "hrishikesh",
-        "totalContainerCount": 4,
-        "runningContainerCount": 0,
-        "completedContainerCount": 1,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 3,
-        "succeededContainerCount": 0
+        "userName": "hrishikesh", 
+        "blastContainerCount": 12,
+        "codeContainerCount": 1,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 12
       },
       {
-        "userName": null,
-        "totalContainerCount": 32,
-        "runningContainerCount": 0,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 32,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "userName": null, 
+        "blastContainerCount": 12,
+        "codeContainerCount": 12,
+        "pipelineContainerCount": 32,
+        "guiContainerCount": 12,
+        "notebookContainerCount": 12
       },
       {
-        "userName": "blast",
-        "totalContainerCount": 72,
-        "runningContainerCount": 0,
-        "completedContainerCount": 46,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 12,
-        "succeededContainerCount": 14
+        "userName": "blast",  
+        "blastContainerCount": 12,
+        "codeContainerCount": 46,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 12,
+        "notebookContainerCount": 14
       },
       {
-        "userName": "preet",
-        "totalContainerCount": 1,
-        "runningContainerCount": 1,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "userName": "preet",  
+        "blastContainerCount": 1,
+        "codeContainerCount": 12,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 12,
+        "notebookContainerCount": 12
       },
       {
-        "userName": "asetiya",
-        "totalContainerCount": 1,
-        "runningContainerCount": 1,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "userName": "asetiya",  
+        "blastContainerCount": 1,
+        "codeContainerCount": 12,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 12,
+        "notebookContainerCount": 12
       },
       {
-        "userName": "palash",
-        "totalContainerCount": 3,
-        "runningContainerCount": 2,
-        "completedContainerCount": 1,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "userName": "palash", 
+        "blastContainerCount": 2,
+        "codeContainerCount": 1,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 12,
+        "notebookContainerCount": 12
       },
       {
-        "userName": "pallavi",
-        "totalContainerCount": 71,
-        "runningContainerCount": 5,
-        "completedContainerCount": 22,
-        "pendingContainerCount": 9,
-        "failedContainerCount": 34,
-        "succeededContainerCount": 1
+        "userName": "pallavi",  
+        "blastContainerCount": 5,
+        "codeContainerCount": 22,
+        "pipelineContainerCount": 9,
+        "guiContainerCount": 34,
+        "notebookContainerCount": 1
       },
       {
-        "userName": "sandeep",
-        "totalContainerCount": 1,
-        "runningContainerCount": 1,
-        "completedContainerCount": 0,
-        "pendingContainerCount": 0,
-        "failedContainerCount": 0,
-        "succeededContainerCount": 0
+        "userName": "sandeep",  
+        "blastContainerCount": 1,
+        "codeContainerCount": 12,
+        "pipelineContainerCount": 12,
+        "guiContainerCount": 12,
+        "notebookContainerCount": 12
       }
     ];
 
     const pastelColors = [
       // Blue Shade
-      '#1976D2',
-      '#1E88E5',
+      '#ff869a',
+      '#ffcb80',
+      '#61ead4',
       '#2196F3',
+      '#8b6ae3',
       '#42A5F5',
-      '#64B5F6',
-      '#90CAF9',
+      // '#64B5F6',
 
       //Purple Shade
-      // '#8b6ae3',
       // '#9E7CE5',
       // '#B695EA',
       // '#D1B1F1',
@@ -134,24 +124,24 @@ export class StackedBarChartComponent implements OnInit {
     const userNames = data.map(item => item.userName || 'Unknown');
     const containerTypes = [
       {
-        actualName: 'runningContainerCount',
-        name: "Running",
+        actualName: 'blastContainerCount',
+        name: "BLAST",
       },
       {
-        actualName: 'completedContainerCount',
-        name: "Completed",
+        actualName: 'codeContainerCount',
+        name: "Code",
       },
       {
-        actualName: 'pendingContainerCount',
-        name: "Pending",
+        actualName: 'pipelineContainerCount',
+        name: "Pipeline",
       },
       {
-        actualName: 'failedContainerCount',
-        name: "Failed",
+        actualName: 'guiContainerCount',
+        name: "GUI",
       },
       {
-        actualName: 'succeededContainerCount',
-        name: "Succeded",
+        actualName: 'notebookContainerCount',
+        name: "Notebook",
       },
     ] as const;
     const containerData = containerTypes.map(type => {
@@ -173,8 +163,8 @@ export class StackedBarChartComponent implements OnInit {
       },
       grid : {
         bottom : 110,
-        left : 30,
-        right: 20,
+        // left : 30,
+        // right: 20,
         top : 10
       },
       xAxis: {
@@ -193,7 +183,8 @@ export class StackedBarChartComponent implements OnInit {
           data: val.data,
           barWidth: '40%',
           itemStyle: {
-            color: pastelColors[index % pastelColors.length]
+            color: pastelColors[index % pastelColors.length],
+            barBorderRadius: index == containerData.length-1 ? [50, 50, 0, 0] : [0,0,0,0],
           }
         };
       })

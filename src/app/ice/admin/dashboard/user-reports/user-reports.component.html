@@ -1,68 +1,64 @@
 <div style="border-radius: 10px;" class="border bg-white p-3 h-100">
-  <div style="font-size: clamp(22px, 2vw, 26px);" class="lead heading-user-reports shadow">User Reports</div>
 
-  <div class="py-2">
+  <!-- Copy the Style (heading-user-reports) in SCSS to apply to other headings -->
+  <div class="lead heading-uplifted shadow">User Reports</div>
 
-    <div class="row">
-      <div style="width: 35%;" class="col-12 col-xl-4">
-        <div class="pt-xl-5">
-          <!-- <div class="lead">Enter Username</div> -->
-          <input type="text" class="form-control" placeholder="Enter Username">
-          <div class="">
-            <button class="btn btn-primary my-1" (click)="getDataOfUser()">View Details</button>
-          </div>
-        </div>
-      </div>
-      <div *ngIf="!flag" style="flex-grow: 1;" class="col-12 col-xl-8">
-        <app-bar-chart></app-bar-chart>
-      </div>
-      <div *ngIf="flag" style="flex-grow: 1;" class="col-12 col-xl-8">
-        <app-user-pie-chart></app-user-pie-chart>
-      </div>
-    </div>
-
-
-    <div class="row avg-sessions pt-50">
-      <div class="col-6 mb-2">
-        <div #tooltip="matTooltip" matTooltip="Storage Used : {{adminData.storage}} %" matTooltipPosition="above"
-          matTooltipHideDelay=""
-          aria-label="Button that displays a tooltip that hides when scrolled out of the container"
-          class="example-button">
-          <p class="mb-50">Storage </p>
-          <ngb-progressbar type="primary" [height]="'6px'" [value]="adminData.storage"></ngb-progressbar>
-        </div>
-      </div>
-      <div class="col-6 mb-2">
-        <div #tooltip="matTooltip" matTooltip="Container Running : {{adminData.container}}" matTooltipPosition="above"
-          matTooltipHideDelay=""
-          aria-label="Button that displays a tooltip that hides when scrolled out of the container"
-          class="example-button">
-          <p class="mb-50">Container </p>
-          <ngb-progressbar type="warning" [height]="'6px'" [value]="adminData.container"></ngb-progressbar>
-        </div>
-      </div>
-      <div class="col-6">
-        <div #tooltip="matTooltip" matTooltip="Pipelines Running : {{adminData.pipelines}}" matTooltipPosition="above"
-          matTooltipHideDelay=""
-          aria-label="Button that displays a tooltip that hides when scrolled out of the container"
-          class="example-button">
-          <p class="mb-50">Pipelines </p>
-          <ngb-progressbar type="danger" [height]="'6px'" [value]="adminData.pipelines"></ngb-progressbar>
-        </div>
-      </div>
-      <div class="col-6">
-        <div #tooltip="matTooltip" matTooltip="VCF Used : {{adminData.vcf}}" matTooltipPosition="above"
-          matTooltipHideDelay=""
-          aria-label="Button that displays a tooltip that hides when scrolled out of the container"
-          class="example-button">
-          <p class="mb-50">VCF </p>
-          <ngb-progressbar type="success" [height]="'6px'" [value]="adminData.vcf"></ngb-progressbar>
+  <div class="row">
+    <div style="width: 35%;" class="col-12 col-xl-4">
+      <div class="">
+        <!-- <div class="lead">Enter Username</div> -->
+        <input type="text" class="form-control" placeholder="Enter Username">
+        <div class="">
+          <button class="btn btn-primary my-1" (click)="getDataOfUser()">View Details</button>
         </div>
       </div>
     </div>
+    <div *ngIf="!flag" style="flex-grow: 1;" class="col-12 col-xl-8">
+      <app-bar-chart></app-bar-chart>
+    </div>
+    <div *ngIf="flag" style="flex-grow: 1;" class="col-12 col-xl-8">
+      <app-user-pie-chart></app-user-pie-chart>
+    </div>
+  </div>
 
 
-    <!-- <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+  <div class="row avg-sessions pt-50">
+    <div class="col-6 mb-2">
+      <div #tooltip="matTooltip" matTooltip="Storage Used : {{adminData.storage}} %" matTooltipPosition="above"
+        matTooltipHideDelay="" aria-label="Button that displays a tooltip that hides when scrolled out of the container"
+        class="example-button">
+        <p class="mb-50">Storage </p>
+        <ngb-progressbar type="primary" [height]="'6px'" [value]="adminData.storage"></ngb-progressbar>
+      </div>
+    </div>
+    <div class="col-6 mb-2">
+      <div #tooltip="matTooltip" matTooltip="Container Running : {{adminData.container}}" matTooltipPosition="above"
+        matTooltipHideDelay="" aria-label="Button that displays a tooltip that hides when scrolled out of the container"
+        class="example-button">
+        <p class="mb-50">Container </p>
+        <ngb-progressbar type="warning" [height]="'6px'" [value]="adminData.container"></ngb-progressbar>
+      </div>
+    </div>
+    <div class="col-6">
+      <div #tooltip="matTooltip" matTooltip="Pipelines Running : {{adminData.pipelines}}" matTooltipPosition="above"
+        matTooltipHideDelay="" aria-label="Button that displays a tooltip that hides when scrolled out of the container"
+        class="example-button">
+        <p class="mb-50">Pipelines </p>
+        <ngb-progressbar type="danger" [height]="'6px'" [value]="adminData.pipelines"></ngb-progressbar>
+      </div>
+    </div>
+    <div class="col-6">
+      <div #tooltip="matTooltip" matTooltip="VCF Used : {{adminData.vcf}}" matTooltipPosition="above"
+        matTooltipHideDelay="" aria-label="Button that displays a tooltip that hides when scrolled out of the container"
+        class="example-button">
+        <p class="mb-50">VCF </p>
+        <ngb-progressbar type="success" [height]="'6px'" [value]="adminData.vcf"></ngb-progressbar>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
       <mat-tab label="Chart">
         <div class="d-flex">
           <div class="w-25">Jayesh</div>
@@ -84,5 +80,4 @@
         </div>
       </mat-tab>
     </mat-tab-group> -->
-  </div>
 </div>

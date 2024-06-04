@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { UserBarStatsChartComponent } from './user-bar-stats-chart.component';
+import { HorizontalBarChartComponent } from './horizontal-bar-chart.component';
 
-describe('UserBarStatsChartComponent', () => {
-  let component: UserBarStatsChartComponent;
-  let fixture: ComponentFixture<UserBarStatsChartComponent>;
+describe('HorizontalBarChartComponent', () => {
+  let component: HorizontalBarChartComponent;
+  let fixture: ComponentFixture<HorizontalBarChartComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UserBarStatsChartComponent ]
+      declarations: [ HorizontalBarChartComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UserBarStatsChartComponent);
+    fixture = TestBed.createComponent(HorizontalBarChartComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

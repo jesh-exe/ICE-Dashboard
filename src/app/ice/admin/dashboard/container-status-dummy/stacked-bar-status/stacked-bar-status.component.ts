@@ -19,7 +19,7 @@ export class StackedBarStatusComponent implements OnInit {
   echartsInstance: any;
   echartsOptions: any;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.echartsOptions = {
@@ -33,19 +33,19 @@ export class StackedBarStatusComponent implements OnInit {
         bottom: 0
       },
       grid: {
-        bottom: 110,
+        bottom: 80,
         left: 30,
         right: 20,
         top: 10
       },
       xAxis: {
         type: 'category',
-        data: [], 
+        data: [],
       },
       yAxis: {
         type: 'value',
       },
-      series: [], 
+      series: [],
     };
 
     this.initializeEcharts();
@@ -55,10 +55,9 @@ export class StackedBarStatusComponent implements OnInit {
     this.echartsInstance = echarts.init(document.getElementById('barChart'));
     this.echartsInstance.setOption(this.echartsOptions);
 
-    // Fill xAxis and series dynamically
     const data = [
       {
-        "username": "user1",
+        "username": "User 1",
         "totalRunningContainer": 10,
         "blastContainerCount": 4,
         "guiContainerCount": 3,
@@ -68,7 +67,7 @@ export class StackedBarStatusComponent implements OnInit {
         "otherContainerCount": 3
       },
       {
-        "username": "user2",
+        "username": "User 2",
         "totalRunningContainer": 20,
         "blastContainerCount": 4,
         "guiContainerCount": 3,
@@ -78,7 +77,7 @@ export class StackedBarStatusComponent implements OnInit {
         "otherContainerCount": 3
       },
       {
-        "username": "user3",
+        "username": "User 3",
         "totalRunningContainer": 5,
         "blastContainerCount": 4,
         "guiContainerCount": 3,
@@ -88,11 +87,71 @@ export class StackedBarStatusComponent implements OnInit {
         "otherContainerCount": 3
       },
       {
-        "username": "user4",
+        "username": "User 4",
         "totalRunningContainer": 10,
         "blastContainerCount": 4,
         "guiContainerCount": 3,
         "notebookContainerCount": 0,
+        "containerContainerCount": 1,
+        "codeContainerCount": 1,
+        "otherContainerCount": 1
+      },
+      {
+        "username": "User 5",
+        "totalRunningContainer": 15,
+        "blastContainerCount": 14,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 0,
+        "containerContainerCount": 1,
+        "codeContainerCount": 1,
+        "otherContainerCount": 1
+      },
+      {
+        "username": "User 6",
+        "totalRunningContainer": 30,
+        "blastContainerCount": 4,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 0,
+        "containerContainerCount": 1,
+        "codeContainerCount": 1,
+        "otherContainerCount": 1
+      },
+      {
+        "username": "User 7",
+        "totalRunningContainer": 10,
+        "blastContainerCount": 41,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 0,
+        "containerContainerCount": 1,
+        "codeContainerCount": 1,
+        "otherContainerCount": 1
+      },
+      {
+        "username": "User 8",
+        "totalRunningContainer": 22,
+        "blastContainerCount": 4,
+        "guiContainerCount": 31,
+        "notebookContainerCount": 0,
+        "containerContainerCount": 1,
+        "codeContainerCount": 12,
+        "otherContainerCount": 1
+      },
+      {
+        "username": "User 9",
+        "totalRunningContainer": 10,
+        "blastContainerCount": 4,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 10,
+        "containerContainerCount": 1,
+        "codeContainerCount": 1,
+        "otherContainerCount": 11
+      },
+      {
+        "username": "User 10",
+        "totalRunningContainer": 20,
+        "blastContainerCount": 34,
+        "guiContainerCount": 3,
+        "notebookContainerCount": 10,
         "containerContainerCount": 1,
         "codeContainerCount": 1,
         "otherContainerCount": 1
@@ -125,7 +184,7 @@ export class StackedBarStatusComponent implements OnInit {
         name: "Others",
       },
     ] as const;
-    
+
     const seriesData = containerTypes.map(type => {
       return {
         name: type.name,
@@ -135,7 +194,7 @@ export class StackedBarStatusComponent implements OnInit {
         barWidth: '40%',
       };
     });
-    
+
     this.echartsInstance.setOption({
       xAxis: { data: usernames },
       series: seriesData

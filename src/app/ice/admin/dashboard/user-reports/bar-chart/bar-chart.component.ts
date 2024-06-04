@@ -14,29 +14,29 @@ export class BarChartComponent implements OnInit {
 
   public data = [
     {
-      "name" : "Jayesh",
-      "upload" : 500
+      "name": "Jayesh",
+      "upload": 500
     },
     {
-      "name" : "Prachi",
-      "upload" : 800
+      "name": "Prachi",
+      "upload": 800
     },
     {
-      "name" : "Supriya",
-      "upload" : 1200
+      "name": "Supriya",
+      "upload": 1200
     },
     {
-      "name" : "Preet",
-      "upload" : 700
+      "name": "Preet",
+      "upload": 700
     },
     {
-      "name" : "Palash",
-      "upload" : 550
+      "name": "Palash",
+      "upload": 550
     }
     ,
     {
-      "name" : "Arpit",
-      "upload" : 550
+      "name": "Arpit",
+      "upload": 550
     }
   ]
 
@@ -69,13 +69,13 @@ export class BarChartComponent implements OnInit {
         }
       },
       legend: {
-        show:false,
+        show: false,
         bottom: 0
       },
       series: [
         {
           name: "Upload",
-          type: "bar",  
+          type: "bar",
           data: this.data.map((data, index) => ({
             value: data.upload,
             itemStyle: {

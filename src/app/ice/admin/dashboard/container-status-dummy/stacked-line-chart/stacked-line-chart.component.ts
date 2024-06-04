@@ -210,6 +210,9 @@ export class StackedLineChartComponent implements OnInit {
           saveAsImage: { show: true },
         }
       },
+      grid : {
+        top : 0
+      },
       legend: {
         // {
         //   left: 'center', 

@@ -18,9 +18,6 @@ import { EchartsxModule } from 'echarts-for-angular';
 import { MatTabsModule } from '@angular/material/tabs';
 import { WelcomeCardComponent } from "./dashboard/welcome-card/welcome-card.component";
 import { StatisticsCardComponent } from "./dashboard/statistics-card/statistics-card.component";
-import { TotalUsersPieComponent } from "./dashboard/statistics-card/total-users-pie/total-users-pie.component";
-import { TotalStoragePieComponent } from "./dashboard/statistics-card/total-storage-pie/total-storage-pie.component";
-import { TotalContainerPieComponent } from "./dashboard/statistics-card/total-container-pie/total-container-pie.component";
 import { UserReportsComponent } from "./dashboard/user-reports/user-reports.component";
 import { BarChartComponent } from "./dashboard/user-reports/bar-chart/bar-chart.component";
 import { UserPieChartComponent } from "./dashboard/user-reports/user-pie-chart/user-pie-chart.component";
@@ -34,8 +31,14 @@ import { StackedLineChartComponent } from "./dashboard/container-status-dummy/st
 import { StorageQuotaComponent } from "./dashboard/storage-quota/storage-quota.component";
 import { NightingalePieChartComponent } from "./dashboard/storage-quota/nightingale-pie-chart/nightingale-pie-chart.component";
 import { StatisticsCardDummyComponent } from "./dashboard/statistics-card-dummy/statistics-card-dummy.component";
-import { UserCardComponent } from "./dashboard/statistics-card-dummy/user-card/user-card.component";
-import { UserBarStatsChartComponent } from "./dashboard/statistics-card-dummy/user-card/user-bar-stats-chart/user-bar-stats-chart.component";
+import { UserStatCardComponent } from "./dashboard/statistics-card-dummy/cards/user-stat-card/user-stat-card.component";
+import { ContainerStatCardComponent } from "./dashboard/statistics-card-dummy/cards/container-stat-card/container-stat-card.component";
+import { StorageStatCardComponent } from "./dashboard/statistics-card-dummy/cards/storage-stat-card/storage-stat-card.component";
+import { TotalUsersPieComponent } from "./dashboard/statistics-card-dummy/charts/total-users-pie/total-users-pie.component";
+import { TotalContainerPieComponent } from "./dashboard/statistics-card-dummy/charts/total-container-pie/total-container-pie.component";
+import { TotalStoragePieComponent } from "./dashboard/statistics-card-dummy/charts/total-storage-pie/total-storage-pie.component";
+import { HorizontalBarChartComponent } from "./dashboard/container-status/horizontal-bar-chart/horizontal-bar-chart.component";
+
 
 
 const adminRoutes: Routes = [
@@ -60,9 +63,6 @@ const adminRoutes: Routes = [
     ListComponent,
     WelcomeCardComponent,
     StatisticsCardComponent,
-    TotalUsersPieComponent,
-    TotalStoragePieComponent,
-    TotalContainerPieComponent,
     UserReportsComponent,
     BarChartComponent,
     UserPieChartComponent,
@@ -75,8 +75,13 @@ const adminRoutes: Routes = [
     StorageQuotaComponent,
     NightingalePieChartComponent,
     StatisticsCardDummyComponent,
-    UserCardComponent,
-    UserBarStatsChartComponent
+    UserStatCardComponent,
+    ContainerStatCardComponent,
+    StorageStatCardComponent,
+    TotalUsersPieComponent,
+    TotalContainerPieComponent,
+    TotalStoragePieComponent,
+    HorizontalBarChartComponent
   ],
   imports: [
     ContentHeaderModule,

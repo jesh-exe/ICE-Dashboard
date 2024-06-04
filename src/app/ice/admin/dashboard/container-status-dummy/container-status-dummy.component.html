@@ -1,7 +1,9 @@
 <div class="border bg-white p-3 h-100">
   <div class="d-flex justify-content-between">
-    <div *ngIf="selectedName==''" class="text-primary pb-3" style="font-size: clamp(22px,2vw,26px);">Container Status</div>
-    <div *ngIf="selectedName!=''" class="text-primary pb-3" style="font-size: clamp(22px,2vw,26px);">Container Status of {{selectedName}}</div>
+    <div *ngIf="selectedName==''" class="text-primary heading-uplifted">Container Status
+    </div>
+    <div *ngIf="selectedName!=''" class="text-primary heading-container-status-2">Container Status of
+      {{selectedName}}</div>
     <div *ngIf="selectedName!=''">
       <!-- <select name="" class="form-control" id="" [(ngModel)]="selectedValue">
         <option value="status">Container Status</option>
@@ -19,30 +21,32 @@
 
 
     <!-- Type 1 -->
-    <!-- <app-stacked-bar-status (selectedName)="fetchSelectedName($event)" *ngIf="selectedName == ''"></app-stacked-bar-status>
-    <app-user-pie-chart [selectedName]="selectedName" *ngIf="selectedName != ''"></app-user-pie-chart>  -->
+    <app-stacked-bar-status (selectedName)="fetchSelectedName($event)" *ngIf="selectedName == ''"></app-stacked-bar-status>
+    <app-user-pie-chart [selectedName]="selectedName" *ngIf="selectedName != ''"></app-user-pie-chart> 
 
 
     <!-- Type 2 -->
-    <div class="d-flex">
+    <!-- <div class="d-flex">
       <div style="flex-grow: 1;">
         <app-stacked-bar-status (selectedName)="fetchSelectedName($event)"></app-stacked-bar-status>
       </div>
       <div style="flex-grow: 1;">
-        <app-user-pie-chart  [selectedName]="selectedName" *ngIf="selectedName != ''"></app-user-pie-chart>
+        <app-user-pie-chart [selectedName]="selectedName" *ngIf="selectedName != ''"></app-user-pie-chart>
       </div>
     </div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />x`
+    <br />
+    <br />
+    <br />
     <div>
       <app-stacked-line-chart></app-stacked-line-chart>
-    </div>
+    </div> -->
+
+
   </div>
 </div>

@@ -41,6 +41,7 @@ export class NightingalePieChartComponent implements OnInit, OnChanges {
         show: true,
         // bottom : 0,
         left : 'left',
+        top : 50,
         orient : 'vertical'
       },
       toolbox: {
