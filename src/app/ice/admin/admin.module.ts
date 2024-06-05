@@ -38,6 +38,7 @@ import { TotalUsersPieComponent } from "./dashboard/statistics-card-dummy/charts
 import { TotalContainerPieComponent } from "./dashboard/statistics-card-dummy/charts/total-container-pie/total-container-pie.component";
 import { TotalStoragePieComponent } from "./dashboard/statistics-card-dummy/charts/total-storage-pie/total-storage-pie.component";
 import { HorizontalBarChartComponent } from "./dashboard/container-status/horizontal-bar-chart/horizontal-bar-chart.component";
+import {NgsRevealModule} from 'ngx-scrollreveal';
 
 
 
@@ -96,6 +97,7 @@ const adminRoutes: Routes = [
     NgSelectModule,
     MatTabsModule,
     MatTooltipModule,
+    NgsRevealModule,
     NgxDatatableModule.forRoot({
       messages: {
         emptyMessage: "No data to display", // Message to show when array is presented, but contains no values

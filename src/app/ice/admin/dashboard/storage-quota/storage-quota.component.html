@@ -1,13 +1,27 @@
 <div class="p-3 border h-100 bg-white">
   <div class="d-flex justify-content-between mb-3">
-    <div class="text-primary heading-uplifted" >Storage Quota</div>
+    <div [ngsReveal]="{
+      duration : 2500,
+      distance : '320px',
+      scale : 2.0,
+      origin : 'right'
+    }">
+      <div class="text-primary heading-uplifted">Storage Quota</div>
+    </div>
     <div>
-      <select name="numberOfUsers" [(ngModel)]="numberOfUsers" class="form-control" (change)="handleNumberOfUsers()" id="numberOfUsers">
+      <select name="numberOfUsers" [(ngModel)]="numberOfUsers" class="form-control" (change)="handleNumberOfUsers()"
+        id="numberOfUsers">
         <option value="10" selected>Top 10</option>
         <option value="20">Top 20</option>
         <option value="30">Top 30</option>
       </select>
     </div>
   </div>
-  <app-nightingale-pie-chart [data]="data" class="mt-4"></app-nightingale-pie-chart>
+  <div [ngsReveal]="{
+    duration : 1500,
+    distance : '320px',
+    origin : 'right'
+  }">
+    <app-nightingale-pie-chart [data]="data" class="mt-4"></app-nightingale-pie-chart>
+  </div>
 </div>

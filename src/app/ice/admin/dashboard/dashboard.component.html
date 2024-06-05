@@ -5,12 +5,19 @@
     <div class="row mb-0">
       <!-- Welcome Card -->
       <div class="col-xxl-3 col-xl-12 col-12 my-1">
-        <app-welcome-card></app-welcome-card>
+        <div [ngsReveal]="{
+          distance : '520px',
+          origin : 'left',
+          duration : 1500,
+          reset : 'true'
+        }">
+          <app-welcome-card></app-welcome-card>
+        </div>
       </div>
       <!-- Statistics Card -->
       <div class="col-xxl-9 col-xl-12 col-12 my-1">
         <!-- <app-statistics-card></app-statistics-card> -->
-        <app-statistics-card-dummy></app-statistics-card-dummy>
+        <app-statistics-card-dummy ngsReveal></app-statistics-card-dummy>
       </div>
 
     </div>
@@ -22,7 +29,11 @@
         <app-user-reports class="h-100"></app-user-reports>
       </div>
       <div class="col-xl-5 col-md-12 col-12 mt-3 mt-xl-0">
-        <app-storage-quota class="h-100"></app-storage-quota>
+        <app-storage-quota [ngsReveal]="{
+          duration : 1500,
+          distance : '520px',
+          origin : 'right'
+        }" class="h-100"></app-storage-quota>
       </div>
 
     </div>
@@ -30,7 +41,7 @@
     <div class="row match-height mt-2 ">
       <!-- Container Status -->
       <div class="col-12 mt-2">
-        <app-container-status class="h-100 border bg-white p-3"></app-container-status>
+        <app-container-status ngsReveal class="h-100 border bg-white p-3"></app-container-status>
       </div>
     </div>
 
