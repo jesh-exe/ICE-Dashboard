@@ -41,8 +41,14 @@
     <div class="row match-height mt-2 ">
       <!-- Container Status -->
       <div class="col-12 mt-2">
-        <app-container-status ngsReveal class="h-100 border bg-white p-3"></app-container-status>
+        <app-container-status [ngsReveal]="{
+          reset : 'true'
+        }" class="h-100 border bg-white p-3"></app-container-status>
       </div>
+    </div>
+
+    <div class="row match-height mt-2">
+      <app-activity-timeline class="h-100 w-100 border bg-white py-3 px-lg-3"></app-activity-timeline>
     </div>
 
   </div>

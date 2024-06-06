@@ -39,6 +39,7 @@ import { TotalContainerPieComponent } from "./dashboard/statistics-card-dummy/ch
 import { TotalStoragePieComponent } from "./dashboard/statistics-card-dummy/charts/total-storage-pie/total-storage-pie.component";
 import { HorizontalBarChartComponent } from "./dashboard/container-status/horizontal-bar-chart/horizontal-bar-chart.component";
 import {NgsRevealModule} from 'ngx-scrollreveal';
+import { ActivityTimelineComponent } from "./dashboard/activity-timeline/activity-timeline.component";
 
 
 
@@ -82,7 +83,8 @@ const adminRoutes: Routes = [
     TotalUsersPieComponent,
     TotalContainerPieComponent,
     TotalStoragePieComponent,
-    HorizontalBarChartComponent
+    HorizontalBarChartComponent,
+    ActivityTimelineComponent
   ],
   imports: [
     ContentHeaderModule,
