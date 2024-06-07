@@ -4,17 +4,16 @@
     <div class="mt-1 py-3 px-lg-3 border" style="height: 400px; overflow: scroll; border-radius: 20px;">
       <ul class="timeline">
         <li class="timeline-item timeline-item-transparent ps-4" *ngFor="let user of data; index as ind">
-          <span class="timeline-point" [ngClass]="'timeline-point-' + colors[ind % colors.length]"></span>          <div class="timeline-event">
+          <span class="timeline-point" [ngClass]="'timeline-point-' + colors[ind % colors.length]"></span>
+          <div class="timeline-event">
             <div class="timeline-header d-flex justify-content-between">
-              <div class="text-primary">{{user.title}}</div>
+              <div class="text-primary lead">{{user.title}}</div>
               <small class="text-muted">{{user.time}}</small>
             </div>
             <p class="mb-2">{{user.description}}</p>
             <div class="d-flex flex-wrap">
               <div class="avatar me-2">
-                <img
-                  src={{user.avatar}}
-                  alt="Avatar" class="rounded-circle img-fluid" width="50" height="50">
+                <img src={{user.avatar}} alt="Avatar" class="rounded-circle img-fluid" width="50" height="50">
               </div>
               <div class="" style="margin-left: 8px; margin-top: 2px;">
                 <div class="mb-0 lead">{{user.fullName}}</div>

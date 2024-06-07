@@ -19,7 +19,7 @@ export class UserviewComponent implements OnInit {
   public contentHeader: object;
   public roles: string[];
   public permission: any;
-  public selectedRole: string;
+  public selectedRole: string = "Select Role";
   constructor(
     private aservice: AdminService,
     private service: UsersService,
@@ -127,6 +127,7 @@ export class UserviewComponent implements OnInit {
     this.service.getUserByIdPreview(this.urlLastValue).subscribe(
       (value: UserView) => {
         this.data = value;
+        this.selectedRole = this.data.permission != "" ? this.data.permission : "Select Role"
         this.logService.debug(JSON.stringify(value));
         console.log(value);
       },
