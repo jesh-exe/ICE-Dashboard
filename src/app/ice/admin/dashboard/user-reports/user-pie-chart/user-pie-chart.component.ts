@@ -35,7 +35,7 @@ export class UserPieChartComponent implements OnInit {
           name: 'Access From',
           type: 'pie',
           // radius: ['40%', '65%'],
-          radius: ['45%', '75%'],
+          // radius: ['45%', '75%'],
           center: ['50%', '40%'],
           itemStyle: {
             borderRadius: 10,

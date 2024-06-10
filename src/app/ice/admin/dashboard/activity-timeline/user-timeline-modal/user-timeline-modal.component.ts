@@ -1,15 +1,13 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import * as bootstrap from 'bootstrap';
-import { UserTimelineModalComponent } from './user-timeline-modal/user-timeline-modal.component';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-activity-timeline',
-  templateUrl: './activity-timeline.component.html',
-  styleUrls: ['./activity-timeline.component.scss']
+  selector: 'app-user-timeline-modal',
+  templateUrl: './user-timeline-modal.component.html',
+  styleUrls: ['./user-timeline-modal.component.scss']
 })
-export class ActivityTimelineComponent implements OnInit {
+export class UserTimelineModalComponent implements OnInit {
 
-  public selectedUser;
+  @Input() user;
 
   public data = [
     {
@@ -56,9 +54,8 @@ export class ActivityTimelineComponent implements OnInit {
       "fullName" : "Jayesh Murodiya",
       "role" : "User",
       "avatar" : "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?w=826&t=st=1717668579~exp=1717669179~hmac=c32cead28485d1dfc68c7639e261cdfcd3c7ab5ac0c8b5be928265eabdcc3eb4"
-    }
+    },
   ]
-
   
   public colors = [
     'warning',
@@ -71,30 +68,6 @@ export class ActivityTimelineComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-
-
-  @ViewChild('exampleModal', { static: true }) modal!: ElementRef;
-
-  openModal(user: any) {
-    this.selectedUser = user;
-    const modalElement = this.modal.nativeElement;
-    if (modalElement) {
-      modalElement.classList.add('show');
-      modalElement.style.display = 'block';
-      modalElement.removeAttribute('aria-hidden');
-      modalElement.setAttribute('aria-modal', 'true');
-    }
-  }
-
-  closeModal() {
-    const modalElement = this.modal.nativeElement;
-    if (modalElement) {
-      modalElement.classList.remove('show');
-      modalElement.style.display = 'none';
-      modalElement.setAttribute('aria-hidden', 'true');
-      modalElement.removeAttribute('aria-modal');
-    }
   }
 
 }

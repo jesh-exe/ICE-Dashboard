@@ -159,14 +159,14 @@ export class StackedBarChartComponent implements OnInit {
         }
       },
       legend: {
-        bottom : 0
+        top : 0
       },
-      grid : {
-        bottom : 110,
-        // left : 30,
-        // right: 20,
-        top : 10
-      },
+        // grid : {
+        //   bottom : 110,
+        //   // left : 30,
+        //   // right: 20,
+        //   top : 10
+        // },
       xAxis: {
         type: 'category',
         data: userNames,

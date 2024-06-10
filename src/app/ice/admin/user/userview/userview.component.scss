@@ -1,1 +1,26 @@
 @import '@core/scss/base/pages/app-user.scss';
+
+.heading-uplifted {
+    font-size: 20px;
+    position: relative;
+    top: -30px;
+    // background: linear-gradient(to right, #b2a7e4, #5e48d8) !important;
+    background: linear-gradient(to right, #8fc0dd, #167dd1) !important;
+    color: white !important;
+    width: fit-content;
+    border-radius: 10px;
+    margin-left: 5px;
+    padding: 12px;
+    box-shadow: 3px 3px 5px rgba(116, 116, 116, 0.39) !important;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .heading-uplifted:hover{
+    scale: 1.04;
+  }
+
+
+  .bg-holder{
+
+  }

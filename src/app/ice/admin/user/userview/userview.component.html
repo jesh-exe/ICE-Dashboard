@@ -2,14 +2,13 @@
   <div class="content-wrapper container-xxxl p-0">
     <div class="content-body">
       <app-content-header [contentHeader]="contentHeader"></app-content-header>
-      <!-- page users view start -->
       <section class="app-user-view" *ngIf="data">
-        <!-- User Card & Plan Starts -->
 
-        <div class="row mt-3">
+        <!-- First Row -->
+        <div class="row">
           <!-- Left Part -->
-          <div class="col-12 col-lg-4">
-            <div class="border bg-white" style="border-radius: 25px;">
+          <div class="col-12 col-lg-4 my-2">
+            <div class="card border bg-holder bg-white h-100" style="border-radius: 25px;">
 
               <!-- Avatar Image -->
               <div class="text-center">
@@ -38,6 +37,8 @@
                   </div>
                 </div>
 
+                <hr />
+                <!-- <div class="text-center text-secondary pt-2" style="font-size: 20px;">Profile Controls</div> -->
                 <!-- Buttons -->
                 <div class="d-flex flex-wrap justify-content-center">
                   <div class="p-1">
@@ -65,253 +66,197 @@
             </div>
           </div>
 
-          <!-- RIght Part -->
-          <div class="col-12 col-lg-8">
-            <div class="border bg-white p-2" style="border-radius: 25px;">
-              <!-- <table>
-                <tr>
-                  <td><i data-feather="user" class="mr-1"></i></td>
-                  <td><div class="card-text user-info-title font-weight-bold mb-0">Username</div></td>
-                  <td><div class="card-text mb-0">{{ data.userName }}</div></td>
-                </tr>
-              </table> -->
-              <div class="user-info-wrapper">
-                <div class="d-flex flex-wrap">
-                  <div class="user-info-title">
-                    <i data-feather="user" class="mr-1"></i>
-                    <span class="card-text user-info-title font-weight-bold mb-0">Username</span>
-                  </div>
-                  <p class="card-text mb-0">{{ data.userName }}</p>
-                </div>
-                <div class="d-flex flex-wrap my-50">
-                  <div class="user-info-title">
-                    <i data-feather="check" class="mr-1"></i>
-                    <span class="card-text user-info-title font-weight-bold mb-0">Gender</span>
-                  </div>
-                  <p class="card-text mb-0">{{ data.gender }}</p>
-                </div>
-                <div class="d-flex flex-wrap my-50">
-                  <div class="user-info-title">
-                    <i data-feather="star" class="mr-1"></i>
-                    <span class="card-text user-info-title font-weight-bold mb-0">Role</span>
-                  </div>
-                  <p class="card-text mb-0">{{ data.permission }}</p>
-                </div>
-                <div class="d-flex flex-wrap my-50">
-                  <div class="user-info-title">
-                    <i data-feather="phone" class="mr-1"></i>
-                    <span class="card-text user-info-title font-weight-bold mb-0">Contact Number</span>
-                  </div>
-                  <p class="card-text mb-0">{{ data.contactNumber }}</p>
-                </div>
-                <div class="d-flex flex-wrap my-50">
-                  <div class="user-info-title">
-                    <i data-feather="gift" class="mr-1"></i>
-                    <span class="card-text user-info-title font-weight-bold mb-0">Date of Birth</span>
-                  </div>
-                  <p class="card-text mb-0">
-                    {{ data.dateOfBirth.day }}/{{
-                    data.dateOfBirth.month
-                    }}/{{ data.dateOfBirth.year }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="row">
-          <!-- User Card starts-->
-          <div class="col-xl-9 col-lg-8 col-md-7">
-            <div class="card user-card">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-xl-6 col-lg-12 d-flex flex-column justify-content-between border-container-lg">
-                    <div class="user-avatar-section">
-                      <div class="d-flex justify-content-start">
-                        <div *ngIf="data.avatar; else customAvatar">
-                          <img class="img-fluid rounded" [src]="data.avatar" height="104" width="104"
-                            alt="User avatar" />
+          <!-- Middle Part -->
+          <div class="col-12 col-lg-4 my-2">
+            <div class="card border bg-white p-lg-2 p-1 h-100" style="border-radius: 25px;">
+              <div class="heading-uplifted">Personal Details</div>
+              <div class="table-responsive">
+                <table align="center" [width]="['100%']" [cellPadding]="10" [cellSpacing]="10">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div class="d-flex">
+                          <i data-feather="user" class="mr-1 text-primary"></i>
+                          <span style="font-size: 16px; font-weight: 300;" class="mb-0">Username</span>
                         </div>
-                        <ng-template #customAvatar>
-                          <div class="mr-1 ml-0">
-                            <div [ngClass]="{
-                                'bg-light-success': data.status == 'active',
-                                'bg-light-secondary': data.status == 'inactive',
-                                'bg-light-warning': data.status == 'pending'
-                              }" class="rounded p-3">
-                              <h2 [ngClass]="{
-                                  'text-success': data.status == 'active',
-                                  'text-secondary': data.status == 'inactive',
-                                  'text-warning': data.status == 'pending'
-                                }" class="m-0">
-                                {{ data.name.firstName | initials }}&nbsp;{{
-                                data.name.lastName | initials
-                                }}
-                              </h2>
-                            </div>
-                          </div>
-                        </ng-template>
-                        <div class="d-flex flex-column ml-1">
-                          <div class="user-info mb-1">
-                            <h4 class="mb-0">
-                              {{ data.name.firstName }}&nbsp;&nbsp;{{
-                              data.name.lastName
-                              }}
-                            </h4>
-                            <span class="card-text">{{ data.email }}</span>
-                          </div>
-
-                          <div class="d-flex flex-wrap">
-                            <ng-container *ngIf="data.userEnabled; else enable">
-                              <button class="btn btn-outline-danger" #disable rippleEffect (click)="onCancelClick()">
-                                Disable
-                              </button>
-                            </ng-container>
-
-                            <ng-template #enable><button class="btn btn-primary" rippleEffect (click)="onCancelClick()">
-                                Enable
-                              </button>
-                            </ng-template>
-                          </div>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <p style="font-size: 16px; font-weight: 300;" class="mb-0">{{ data.userName }}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex">
+                          <i data-feather="mail" class="mr-1 text-primary"></i>
+                          <span style="font-size: 16px; font-weight: 300;" class="mb-0">Email</span>
                         </div>
-                      </div>
-                    </div>
-                    <div class="d-flex align-items-center user-total-numbers">
-                      <div class="d-flex align-items-center mr-2">
-                        <div class="color-box bg-light-primary">
-                          <i [data-feather]="'map-pin'" [class]="'text-primary'"></i>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <p style="font-size: 16px; font-weight: 300;" class=" mb-0">{{ data.email }}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex">
+                          <i data-feather="check" class="mr-1 text-primary"></i>
+                          <span style="font-size: 16px; font-weight: 300;" class="mb-0">Gender</span>
                         </div>
-                        <div class="ml-1">
-                          <h5 class="mb-0">
-                            {{ data.address.addressLine1 }},
-                            {{ data.address.addressLine2 }},
-                            {{ data.address.landmark }},
-                            {{ data.address.city }}, {{ data.address.state }},
-                            {{ data.address.zipCode }}
-                          </h5>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <p style="font-size: 16px; font-weight: 300;" class=" mb-0">{{ data.gender }}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex">
+                          <i data-feather="star" class="mr-1 text-primary"></i>
+                          <span style="font-size: 16px; font-weight: 300;" class="mb-0">Role</span>
                         </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-xl-6 col-lg-12 mt-2 mt-xl-0">
-                    <div class="user-info-wrapper">
-                      <div class="d-flex flex-wrap">
-                        <div class="user-info-title">
-                          <i data-feather="user" class="mr-1"></i>
-                          <span class="card-text user-info-title font-weight-bold mb-0">Username</span>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <p style="font-size: 16px; font-weight: 300;" class=" mb-0">{{ data.permission }}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex">
+                          <i data-feather="phone" class="mr-1 text-primary"></i>
+                          <span style="font-size: 16px; font-weight: 300;" class="mb-0">Mobile</span>
                         </div>
-                        <p class="card-text mb-0">{{ data.userName }}</p>
-                      </div>
-                      <div class="d-flex flex-wrap my-50">
-                        <div class="user-info-title">
-                          <i data-feather="check" class="mr-1"></i>
-                          <span class="card-text user-info-title font-weight-bold mb-0">Gender</span>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <p style="font-size: 16px; font-weight: 300;" class=" mb-0">{{ data.contactNumber }}</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex">
+                          <i data-feather="gift" class="mr-1 text-primary"></i>
+                          <span style="font-size: 16px; font-weight: 300;" class="mb-0">D.O.B</span>
                         </div>
-                        <p class="card-text mb-0">{{ data.gender }}</p>
-                      </div>
-                      <div class="d-flex flex-wrap my-50">
-                        <div class="user-info-title">
-                          <i data-feather="star" class="mr-1"></i>
-                          <span class="card-text user-info-title font-weight-bold mb-0">Role</span>
-                        </div>
-                        <p class="card-text mb-0">{{ data.permission }}</p>
-                      </div>
-                      <div class="d-flex flex-wrap my-50">
-                        <div class="user-info-title">
-                          <i data-feather="phone" class="mr-1"></i>
-                          <span class="card-text user-info-title font-weight-bold mb-0">Contact Number</span>
-                        </div>
-                        <p class="card-text mb-0">{{ data.contactNumber }}</p>
-                      </div>
-                      <div class="d-flex flex-wrap my-50">
-                        <div class="user-info-title">
-                          <i data-feather="gift" class="mr-1"></i>
-                          <span class="card-text user-info-title font-weight-bold mb-0">Date of Birth</span>
-                        </div>
-                        <p class="card-text mb-0">
-                          {{ data.dateOfBirth.day }}/{{
-                          data.dateOfBirth.month
-                          }}/{{ data.dateOfBirth.year }}
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <p style="font-size: 16px; font-weight: 300;" class=" mb-0">
+                          {{data.dateOfBirth.day }}/{{data.dateOfBirth.month}}/{{ data.dateOfBirth.year }}
                         </p>
-                      </div>
-                      <div class="d-flex flex-wrap my-50">
-                        <div class="user-info-title">
-                          <span class="card-text user-info-title font-weight-bold mb-0">Assign Role:</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div class="d-flex">
+                          <i data-feather="gift" class="mr-1 text-primary"></i>
+                          <span style="font-size: 16px; font-weight: 300;" class="mb-0">Address</span>
                         </div>
-                        <div class="user-info-title">
-                          <ng-select class="ng-select-size-lg" [items]="roles" [(ngModel)]="selectedRole"
-                            bindLabel="name" (change)="keyBlur()">
-                          </ng-select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                      </td>
+                      <td>:</td>
+                      <td>
+                        <p style="font-size: 16px; font-weight: 300;" class=" mb-0">
+                          {{ data.address.addressLine1 }},
+                          {{ data.address.addressLine2 }},
+                          {{ data.address.landmark }}
+                          <br />
+                          {{ data.address.city }}, {{ data.address.state }} -
+                          {{ data.address.zipCode }}
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
 
-          <div class="col-xl-3 col-lg-4 col-md-5">
-            <div class="card plan-card border-primary">
-              <div class="card-body">
-                <ul class="list-unstyled my-1">
+          <!-- Right Part -->
+          <div class="col-12 col-lg-4 my-2">
+            <div class="card plan-card border bg-white p-2 h-100" style="border-radius: 25px;">
+              <div class="heading-uplifted">Account Info</div>
+              <div class="pl-1">
+                <ul class="list-unstyled">
                   <li>
-                    <span class="align-middle">
+                    <span class="align-middle" style="font-size: 16px;font-weight: 400;">
                       <div class="badge badge-light-primary" style="
-                          font-size: 1.1rem;
-                          font-weight: 500;
-                          padding: 8px;
-                        ">
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 8px;
+                          ">
                         Activated Date:
                       </div>
                       {{ data.activatedDate }}
                     </span>
                   </li>
-                  <li class="my-25">
-                    <span class="align-middle">
+                  <li class="my-2">
+                    <span class="align-middle" style="font-size: 16px;font-weight: 400;">
                       <div class="badge badge-light-primary" style="
-                          font-size: 1.1rem;
-                          font-weight: 500;
-                          padding: 8px;
-                        ">
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 8px;
+                          ">
                         Activated By:
                       </div>
                       {{ data.activatedBy }}
                     </span>
                   </li>
-                  <li class="my-25">
-                    <span class="align-middle">
-                      <div class="badge badge-light-primary" style="
-                          font-size: 1.1rem;
-                          font-weight: 500;
-                          padding: 8px;
-                        ">
+                  <li class="my-2">
+                    <span class="align-middle" style="font-size: 16px;font-weight: 400;">
+                      <div class="badge badge-light-danger" style="
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 8px;
+                          ">
                         Deactivation Date:
                       </div>
                       {{ data.deactivateDate }}
                     </span>
                   </li>
-                  <li class="my-25">
-                    <span class="align-middle">
-                      <div class="badge badge-light-primary" style="
-                          font-size: 1.1rem;
-                          font-weight: 500;
-                          padding: 8px;
-                        ">
+                  <li class="my-2">
+                    <span class="align-middle" style="font-size: 16px;font-weight: 400;">
+                      <div class="badge badge-light-danger" style="
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 8px;
+                          ">
                         Deactivated By:
                       </div>
                       {{ data.deactivatedBy }}
                     </span>
                   </li>
-                  <li class="my-25"></li>
+                  <li class="my-2">
+                    <span class="align-middle" style="font-size: 16px;font-weight: 400;">
+                      <div class="badge badge-light-warning" style="
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 8px;
+                          ">
+                        Account Status:
+                      </div>
+                      {{ data.userEnabled ? "Active" : "Disabled" }}
+                    </span>
+                  </li>
+                  <li class="my-2">
+                    <span class="align-middle" style="font-size: 16px;font-weight: 400;">
+                      <div class="badge badge-light-warning" style="
+                            font-size: 16px;
+                            font-weight: 400;
+                            padding: 8px;
+                          ">
+                        Permission:
+                      </div>
+                      {{ data.permission.toUpperCase() }}
+                    </span>
+                  </li>
                 </ul>
                 <!-- <button class="btn btn-primary text-center btn-block" rippleEffect>Upgrade Plan</button> -->
               </div>
             </div>
           </div>
         </div>
+
 
         <div class="row">
           <div class="col-md-6">
@@ -330,7 +275,7 @@
                       </div>
                       <p>Invoices have been paid to the company.</p>
                       <div class="media align-items-center">
-                        <img class="mr-1" src="assets/images/icons/file-icons/pdf.png" alt="invoice" height="23" />
+                        <!-- <img style="margin class="mr-1 text-primary" src="assets/images/icons/file-icons/pdf.png" alt="invoice" height="23" /> -->
                         <div class="media-body">invoice.pdf</div>
                       </div>
                     </div>
@@ -400,6 +345,7 @@
             </div>
           </div>
         </div>
+        
       </section>
     </div>
   </div>
