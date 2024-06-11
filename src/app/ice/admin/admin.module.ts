@@ -41,7 +41,7 @@ import { HorizontalBarChartComponent } from "./dashboard/container-status/horizo
 import {NgsRevealModule} from 'ngx-scrollreveal';
 import { ActivityTimelineComponent } from "./dashboard/activity-timeline/activity-timeline.component";
 import { UserTimelineModalComponent } from "./dashboard/activity-timeline/user-timeline-modal/user-timeline-modal.component";
-
+import {CdkAccordionModule} from '@angular/cdk/accordion';
 
 
 const adminRoutes: Routes = [
@@ -102,6 +102,7 @@ const adminRoutes: Routes = [
     MatTabsModule,
     MatTooltipModule,
     NgsRevealModule,
+    CdkAccordionModule,
     NgxDatatableModule.forRoot({
       messages: {
         emptyMessage: "No data to display", // Message to show when array is presented, but contains no values
