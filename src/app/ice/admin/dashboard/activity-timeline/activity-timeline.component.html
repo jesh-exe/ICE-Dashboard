@@ -1,19 +1,17 @@
-<div class="col-12 col-md-6">
-  <div class="">
-    <div class="heading-uplifted">Activity Timeline</div>
-    <div class="mt-1 py-3 px-lg-3 border" style="height: 400px; overflow: scroll; border-radius: 20px;">
-      <ul class="timeline">
-        <li class="timeline-item timeline-item-transparent ps-4" *ngFor="let user of data; index as ind">
-          <span class="timeline-point" [ngClass]="'timeline-point-' + colors[ind % colors.length]"></span>
-          <div class="timeline-event">
-            <div class="timeline-header d-flex justify-content-between">
-              <div class="text-primary lead">{{user.title}}</div>
-              <small class="text-muted">{{user.time}}</small>
-            </div>
-            <p class="mb-2">{{user.description}}</p>
+<div class="heading-uplifted">Activity Timeline</div>
+<div class="mt-1 py-3 px-lg-3 border" style="height: 400px; overflow: scroll; border-radius: 20px;">
+  <ul class="timeline">
+    <li class="timeline-item timeline-item-transparent ps-4" *ngFor="let user of data; index as ind">
+      <span class="timeline-point" [ngClass]="'timeline-point-' + colors[ind % colors.length]"></span>
+      <div class="timeline-event">
+        <div class="timeline-header d-flex justify-content-between">
+          <div class="text-primary lead">{{user.title}}</div>
+          <small class="text-muted">{{user.time}}</small>
+        </div>
+        <p class="mb-2">{{user.description}}</p>
 
-            <!-- UnComment for Modal -->
-            <!-- <div class="d-flex flex-wrap" (click)="openModal(user)" role="button">  
+        <!-- UnComment for Modal -->
+        <!-- <div class="d-flex flex-wrap" (click)="openModal(user)" role="button">  
               <div class="avatar me-2">
                 <img src={{user.avatar}} alt="Avatar" class="rounded-circle img-fluid" width="50" height="50">
               </div>
@@ -23,48 +21,45 @@
               </div>
             </div> -->
 
-            <!-- Accordian Start -->
-            <cdk-accordion class="example-accordion w-100" >
-              <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button"
-                tabindex="0" [attr.id]="'accordion-header-' + ind" [attr.aria-expanded]="accordionItem.expanded"
-                [attr.aria-controls]="'accordion-body-' + ind">
-                <!-- User Avatar and Name -->
-                <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
-                  <div class="d-flex flex-wrap"  role="button">  
-                    <div class="avatar me-2">
-                      <img src={{user.avatar}} alt="Avatar" class="rounded-circle img-fluid" width="50" height="50">
+        <!-- Accordian Start -->
+        <cdk-accordion class="example-accordion w-100">
+          <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button"
+            tabindex="0" [attr.id]="'accordion-header-' + ind" [attr.aria-expanded]="accordionItem.expanded"
+            [attr.aria-controls]="'accordion-body-' + ind">
+            <!-- User Avatar and Name -->
+            <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+              <div class="d-flex flex-wrap" role="button">
+                <div class="avatar me-2">
+                  <img src={{user.avatar}} alt="Avatar" class="rounded-circle img-fluid" width="50" height="50">
+                </div>
+                <div class="" style="margin-left: 8px; margin-top: 2px;">
+                  <div class="mb-0 lead">{{user.fullName}}</div>
+                  <span class="text-secondary">{{user.role}}</span>
+                </div>
+              </div>
+            </div>
+            <div class="example-accordion-item-body mt-1" role="region"
+              [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + ind"
+              [attr.aria-labelledby]="'accordion-header-' + ind">
+              <!-- User Timeline -->
+              <ul class="timeline">
+                <li class="timeline-item timeline-item-transparent ps-4" *ngFor="let userInfo of data;">
+                  <span class="timeline-point" [ngClass]="'timeline-point-' + colors[ind % colors.length]"></span>
+                  <div class="timeline-event">
+                    <div class="timeline-header d-flex justify-content-between">
+                      <div class="text-primary lead">{{userInfo.title}}</div>
+                      <small class="text-muted">{{userInfo.time}}</small>
                     </div>
-                    <div class="" style="margin-left: 8px; margin-top: 2px;">
-                      <div class="mb-0 lead">{{user.fullName}}</div>
-                      <span class="text-secondary">{{user.role}}</span>
-                    </div>
+                    <p class="mb-2">{{userInfo.description}}</p>
                   </div>
-                </div>
-                <div class="example-accordion-item-body mt-1" role="region"
-                  [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + ind"
-                  [attr.aria-labelledby]="'accordion-header-' + ind">
-                  <!-- User Timeline -->
-                  <ul class="timeline">
-                    <li class="timeline-item timeline-item-transparent ps-4"
-                      *ngFor="let userInfo of data;">
-                      <span class="timeline-point" [ngClass]="'timeline-point-' + colors[ind % colors.length]"></span>
-                      <div class="timeline-event">
-                        <div class="timeline-header d-flex justify-content-between">
-                          <div class="text-primary lead">{{userInfo.title}}</div>
-                          <small class="text-muted">{{userInfo.time}}</small>
-                        </div>
-                        <p class="mb-2">{{userInfo.description}}</p>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </cdk-accordion-item>
-            </cdk-accordion>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
+                </li>
+              </ul>
+            </div>
+          </cdk-accordion-item>
+        </cdk-accordion>
+      </div>
+    </li>
+  </ul>
 </div>
 
 

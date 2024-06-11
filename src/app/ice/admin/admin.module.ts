@@ -42,6 +42,7 @@ import {NgsRevealModule} from 'ngx-scrollreveal';
 import { ActivityTimelineComponent } from "./dashboard/activity-timeline/activity-timeline.component";
 import { UserTimelineModalComponent } from "./dashboard/activity-timeline/user-timeline-modal/user-timeline-modal.component";
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { LineChartComponent } from "./dashboard/line-chart/line-chart.component";
 
 
 const adminRoutes: Routes = [
@@ -86,7 +87,8 @@ const adminRoutes: Routes = [
     TotalStoragePieComponent,
     HorizontalBarChartComponent,
     ActivityTimelineComponent,
-    UserTimelineModalComponent
+    UserTimelineModalComponent,
+    LineChartComponent
   ],
   imports: [
     ContentHeaderModule,
