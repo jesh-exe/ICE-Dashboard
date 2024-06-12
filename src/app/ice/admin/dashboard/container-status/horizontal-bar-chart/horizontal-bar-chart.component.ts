@@ -96,11 +96,11 @@ export class HorizontalBarChartComponent implements OnInit {
         }
       },
       legend: {
-        bottom: 0
+        top: 0
       },
       grid: {
-        bottom: 110,
-        top: 10,
+        // bottom: 110,
+        // top: 10,
         // containLabel: true
       },
       yAxis: {

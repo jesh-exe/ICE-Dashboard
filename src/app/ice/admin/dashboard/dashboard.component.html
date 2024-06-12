@@ -2,9 +2,9 @@
   <app-content-header [contentHeader]="contentHeader"></app-content-header>
   <div class="content-body">
     <!-- First Row (Welcome + Stats) -->
-    <div class="row mb-0">
+    <div class="row">
       <!-- Welcome Card -->
-      <div class="col-xxl-3 col-xl-12 col-12 my-1">
+      <div class="col-xxl-3 col-xl-12 col-12">
         <div [ngsReveal]="{
           distance : '520px',
           origin : 'left',
@@ -15,20 +15,44 @@
         </div>
       </div>
       <!-- Statistics Card -->
-      <div class="col-xxl-9 col-xl-12 col-12 my-1">
+      <div class="col-xxl-9 col-xl-12 col-12">
         <!-- <app-statistics-card></app-statistics-card> -->
         <app-statistics-card-dummy ngsReveal></app-statistics-card-dummy>
       </div>
 
     </div>
 
-    <div class="row match-height">
+    <div class="row match-height mt-2">
+      <!-- Container Status -->
+      <div class="col-12 col-md-6">
+        <app-stacked-bar-chart
+        [ngsReveal]="{
+          reset : true,
+          duration : 1500,
+          distance : '520px',
+          origin : 'left'
+        }"
+        class="h-100 border bg-white p-3" style="border-radius: 10px;"></app-stacked-bar-chart>
+      </div>
+      <div class="col-12 col-md-6">
+        <app-horizontal-bar-chart 
+        [ngsReveal]="{
+          reset : true,
+          duration : 1500,
+          distance : '520px',
+          origin : 'right'
+        }"
+        class="h-100 border bg-white p-3" style="border-radius: 10px;"></app-horizontal-bar-chart>
+      </div>
+    </div>
 
+
+    <div class="row match-height mt-2">
       <!-- User Reports -->
-      <div class="col-xl-7 col-md-12 col-12 mt-3 mt-xl-0">
+      <div class="col-xl-7 col-md-12 col-12">
         <app-user-reports class="h-100"></app-user-reports>
       </div>
-      <div class="col-xl-5 col-md-12 col-12 mt-3 mt-xl-0">
+      <div class="col-xl-5 col-md-12 col-12">
         <app-storage-quota [ngsReveal]="{
           duration : 1500,
           distance : '520px',
@@ -38,20 +62,11 @@
 
     </div>
 
-    <div class="row match-height mt-2 ">
-      <!-- Container Status -->
-      <div class="col-12 mt-2">
-        <app-container-status [ngsReveal]="{
-          reset : 'true'
-        }" class="h-100 border bg-white p-3"></app-container-status>
-      </div>
-    </div>
-
     <div class="row match-height mt-2">
       <div class="col-12 col-md-6">
-        <app-activity-timeline class="h-100 w-100 border bg-white py-3 px-lg-3"></app-activity-timeline>
+        <app-activity-timeline class="h-100 w-100 border bg-white py-3 px-lg-3" style="border-radius: 10px;"></app-activity-timeline>
       </div>
-      <div class="col-12 col-md-6 ">
+      <div class="col-12 col-md-6">
         <app-line-chart class="border w-100 h-100 bg-white py-3 px-lg-3" style="border-radius: 10px;"></app-line-chart>
       </div>
     </div>

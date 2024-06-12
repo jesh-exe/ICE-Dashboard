@@ -152,6 +152,11 @@ export class StackedBarChartComponent implements OnInit {
     });
 
     this.echartsOptions = {
+      title: [
+        {
+          text: 'Container Status'
+        }
+      ],
       tooltip: {
         trigger: 'axis',
         axisPointer: {
@@ -161,12 +166,6 @@ export class StackedBarChartComponent implements OnInit {
       legend: {
         top : 0
       },
-        // grid : {
-        //   bottom : 110,
-        //   // left : 30,
-        //   // right: 20,
-        //   top : 10
-        // },
       xAxis: {
         type: 'category',
         data: userNames,
