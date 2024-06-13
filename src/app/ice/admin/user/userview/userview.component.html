@@ -8,19 +8,19 @@
         <div class="row">
           <!-- Left Part -->
           <div class="col-12 col-lg-4 my-2">
-            <div class="card border bg-holder bg-white h-100" style="border-radius: 25px;">
+            <div class="shadow-sm border bg-holder bg-white h-100" style="border-radius: 25px;">
 
               <!-- Avatar Image -->
               <div class="text-center">
                 <img style="border: 15px solid #f8f8f8; position: relative; top: -40px;"
                   class="img-fluid rounded-circle" width="140px" height="140px"
-                  src="https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?w=826&t=st=1717754272~exp=1717754872~hmac=ffd17eaf517483c27b9738195a0a953913dfcb257e916231ee95648d937bf11b"
+                  [src]="data.gender == 'MALE' ? 'https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671142.jpg?w=826&t=st=1717754272~exp=1717754872~hmac=ffd17eaf517483c27b9738195a0a953913dfcb257e916231ee95648d937bf11b' : 'https://img.freepik.com/free-psd/3d-illustration-person-with-pink-hair_23-2149436186.jpg?w=826&t=st=1718281199~exp=1718281799~hmac=c5251ec0098043d5069970266cd90d035a52708152ffedcf3a7d36be87a1cc22'"
                   alt="">
               </div>
 
-              <div class="mb-3">
+              <div class="mb-2">
                 <!-- Name -->
-                <div class="text-primary text-center" style="font-size: clamp(20px, 2vw, 24px);">
+                <div class="text-primary text-center" style="font-size: clamp(20px, 2vw, 24px);font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
                   {{ data.name.firstName}}&nbsp;{{data.name.lastName}}
                 </div>
 
@@ -37,11 +37,12 @@
                   </div>
                 </div>
 
-                <hr />
+                <hr class="mb-2" />
                 <!-- <div class="text-center text-secondary pt-2" style="font-size: 20px;">Profile Controls</div> -->
                 <!-- Buttons -->
-                <div class="d-flex flex-wrap justify-content-center">
-                  <div class="p-1">
+                <div class="d-flex flex-wrap justify-content-center align-items-center">
+                  <div class="pr-2" style="font-size: 18px; font-weight: 300;">Profile Controls :</div>
+                  <div class="pr-1">
                     <div class="d-flex flex-wrap">
                       <ng-container *ngIf="data.userEnabled; else enable">
                         <button class="btn btn-outline-danger" #disable rippleEffect (click)="onCancelClick()">
@@ -54,7 +55,7 @@
                       </ng-template>
                     </div>
                   </div>
-                  <div class=" p-1">
+                  <div class="">
                     <div class="user-info-title">
                       <ng-select class="ng-select-size-lg" [items]="roles" [(ngModel)]="selectedRole" bindLabel="name"
                         (change)="keyBlur()">
@@ -147,7 +148,7 @@
                         </p>
                       </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                       <td>
                         <div class="d-flex">
                           <i data-feather="gift" class="mr-1 text-primary"></i>
@@ -165,7 +166,8 @@
                           {{ data.address.zipCode }}
                         </p>
                       </td>
-                    </tr>
+                    </tr> -->
+                  
                   </tbody>
                 </table>
               </div>
@@ -238,7 +240,7 @@
                       {{ data.userEnabled ? "Active" : "Disabled" }}
                     </span>
                   </li>
-                  <li class="my-2">
+                  <!-- <li class="my-2">
                     <span class="align-middle" style="font-size: 16px;font-weight: 400;">
                       <div class="badge badge-light-warning" style="
                             font-size: 16px;
@@ -249,7 +251,7 @@
                       </div>
                       {{ data.permission.toUpperCase() }}
                     </span>
-                  </li>
+                  </li> -->
                 </ul>
                 <!-- <button class="btn btn-primary text-center btn-block" rippleEffect>Upgrade Plan</button> -->
               </div>
